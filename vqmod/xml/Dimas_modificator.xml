@@ -1,0 +1,35 @@
+<modification>
+	<id><![CDATA[Dimas]]></id>
+	<version><![CDATA[1.0]]></version>
+	<vqmver><![CDATA[2.X]]></vqmver>
+	<author><![CDATA[Dimas]]></author>
+	<file name="catalog/model/catalog/product.php" error="log">
+		<operation error="log">
+			<search position="before"><![CDATA[
+			public function getTotalProductSpecials() {
+			]]></search>
+			<add>
+		// Cosyone start
+	public function getSpecialPriceEnd($product_id) {
+        $query = $this->db->query("SELECT date_end FROM " . DB_PREFIX . "product_special WHERE product_id = '" . (int)$product_id . "' AND customer_group_id = '" . $this->config->get('config_customer_group_id') . "' AND ((date_end = '0000-00-00 00:00:00' OR date_end > NOW())) ORDER BY priority ASC, price ASC LIMIT 1");
+        
+		if ($query->num_rows) {
+            return array(
+                'date_end'   => $query->row['date_end'],
+            );
+        } else {
+            return false;
+        }
+    }
+	public function getItemsSold($product_id) {
+        $query = $this->db->query("SELECT COUNT(*) AS total FROM `" . DB_PREFIX . "order_product` op LEFT JOIN `" . DB_PREFIX . "order` o ON (op.order_id = o.order_id) WHERE o.order_status_id > '0' AND op.product_id = '" . (int)$product_id . "'");
+        if ($query->row) {
+            return $query->row['total'];
+        } else {
+            return false;
+        }
+    } 
+			</add>
+		</operation>
+	</file>
+</modification>
