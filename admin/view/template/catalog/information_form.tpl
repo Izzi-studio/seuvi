@@ -138,6 +138,21 @@
                   </div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-top"><span data-toggle="tooltip" ><?php echo $entry_top; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($top) { ?>
+                      <input type="checkbox" name="top" value="1" checked="checked" id="input-top" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="top" value="1" id="input-top" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-status"><?php echo $entry_status; ?></label>
                 <div class="col-sm-10">

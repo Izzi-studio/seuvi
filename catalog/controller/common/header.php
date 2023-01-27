@@ -70,6 +70,25 @@ class ControllerCommonHeader extends Controller {
 		$data['text_category'] = $this->language->get('text_category');
 		$data['text_all'] = $this->language->get('text_all');
 
+        //custom
+        $data['text_header_city']    = $this->language->get('text_header_city');
+        $data['text_header_grafik_raboty']    = $this->language->get('text_header_grafik_raboty');
+        $data['text_header_bez_vyhodnyh']    = $this->language->get('text_header_bez_vyhodnyh');
+        $data['text_header_osennie_skidki']    = $this->language->get('text_header_osennie_skidki');
+        $data['text_header_besplatnaya_dostavka']    = $this->language->get('text_header_besplatnaya_dostavka');
+
+        $data['text_menu_sale']    = $this->language->get('text_menu_sale');
+        $data['text_menu_new']    = $this->language->get('text_menu_new');
+        $data['text_menu_otzivi']    = $this->language->get('text_menu_otzivi');
+        $data['text_menu_klientam']    = $this->language->get('text_menu_klientam');
+
+        $data['text_svernut']    = $this->language->get('text_svernut');
+        $data['text_razsvernut']    = $this->language->get('text_razsvernut');
+        $data['time']    = $this->config->get('config_open');
+
+		
+		
+
 		$data['home'] = $this->url->link('common/home');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$data['logged'] = $this->customer->isLogged();
@@ -84,7 +103,8 @@ class ControllerCommonHeader extends Controller {
 		$data['checkout'] = $this->url->link('checkout/checkout', '', 'SSL');
 		$data['contact'] = $this->url->link('information/contact');
 		$data['telephone'] = $this->config->get('config_telephone');
-
+		$data['blog_link'] = $this->url->link('blog/home', '', 'SSL');
+        $data['special_link'] = $this->url->link('product/special','',true);
 		$status = true;
 
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {
@@ -107,8 +127,7 @@ class ControllerCommonHeader extends Controller {
 		$data['categories'] = array();
 
 		$categories = $this->model_catalog_category->getCategories(0);
-
-		foreach ($categories as $category) {
+		/*foreach ($categories as $category) {
 			if ($category['top']) {
 				// Level 2
 				$children_data = array();
@@ -135,7 +154,57 @@ class ControllerCommonHeader extends Controller {
 					'href'     => $this->url->link('product/category', 'path=' . $category['category_id'])
 				);
 			}
-		}
+		}*/
+
+        foreach ($categories as $category) {
+            $children_data = array();
+            if ($category['top']) {
+            //if ($category['category_id'] == $data['category_id']) {
+            $children = $this->model_catalog_category->getCategories($category['category_id']);
+
+            foreach($children as $child) {
+                $filter_data = array('filter_category_id' => $child['category_id'], 'filter_sub_category' => true);
+
+                $childrenNested = $this->model_catalog_category->getCategories($child['category_id']);
+                $nestedCategory = array();
+                foreach($childrenNested as $childNested) {
+                    $nestedCategory[] = array(
+                        'category_id' => $childNested['category_id'],
+                        'name' => $childNested['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                        'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']. '_' . $childNested['category_id'])
+                    );
+                }
+
+                $children_data[] = array(
+                    'category_id' => $child['category_id'],
+                    'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                    'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
+                    'children' =>$nestedCategory
+                );
+            }
+            //}
+
+            $filter_data = array(
+                'filter_category_id'  => $category['category_id'],
+                'filter_sub_category' => true
+            );
+            if ($category['image'] != '') {
+                $image = $this->model_tool_image->resize($category['image'],80,80);
+            }else {
+                $image = '';
+            }
+
+            $data['categories'][] = array(
+                'category_id' => $category['category_id'],
+                'image' => $image ,
+                //'name'        => $category['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                'name'        => $category['name'] ,
+                'children'    => $children_data,
+                'href'        => $this->url->link('product/category', 'path=' . $category['category_id']),
+                'column'   => $category['column'] ? $category['column'] : 1,
+            );
+        }
+        }
 
 		$data['language'] = $this->load->controller('common/language');
 		$data['currency'] = $this->load->controller('common/currency');
@@ -158,6 +227,20 @@ class ControllerCommonHeader extends Controller {
 		} else {
 			$data['class'] = 'common-home';
 		}
+
+
+        $this->load->model('catalog/information');
+
+
+
+        foreach ($this->model_catalog_information->getInformations(true) as $result) {
+            if ($result['top']) {
+                $data['informations'][] = array(
+                    'title' => $result['title'],
+                    'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+                );
+            }
+        }
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);

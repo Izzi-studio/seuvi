@@ -300,6 +300,7 @@ class ControllerCatalogCategory extends Controller {
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_image'] = $this->language->get('entry_image');
 		$data['entry_top'] = $this->language->get('entry_top');
+		$data['entry_fav'] = 'Избранное';
 		$data['entry_column'] = $this->language->get('entry_column');
 		$data['entry_sort_order'] = $this->language->get('entry_sort_order');
 		$data['entry_status'] = $this->language->get('entry_status');
@@ -478,6 +479,14 @@ class ControllerCatalogCategory extends Controller {
 			$data['top'] = $category_info['top'];
 		} else {
 			$data['top'] = 0;
+		}
+
+		if (isset($this->request->post['favorites'])) {
+			$data['favorites'] = $this->request->post['favorites'];
+		} elseif (!empty($category_info)) {
+			$data['favorites'] = $category_info['favorites'];
+		} else {
+			$data['favorites'] = 0;
 		}
 
 		if (isset($this->request->post['column'])) {

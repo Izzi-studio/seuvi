@@ -6,6 +6,13 @@
       <div class="image"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a></div>
       <div class="caption">
         <h4><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></h4>
+        <h4><?php echo $product['manufacturer']; ?></h4>
+        <?php if ($product['special']) { ?>
+        SALE
+        <?php } ?>
+        <?php if($product['percent_sale']) { ?>
+           -<?php echo $product['percent_sale']; ?> %
+        <?php } ?>
         <p><?php echo $product['description']; ?></p>
         <?php if ($product['rating']) { ?>
         <div class="rating">

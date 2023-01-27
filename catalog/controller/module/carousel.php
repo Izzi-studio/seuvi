@@ -17,6 +17,8 @@ class ControllerModuleCarousel extends Controller {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['banners'][] = array(
 					'title' => $result['title'],
+					'description'  => $result['description'],
+					'btn_text'  => $result['btn_text'],
 					'link'  => $result['link'],
 					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);

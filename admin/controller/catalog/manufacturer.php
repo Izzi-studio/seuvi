@@ -268,7 +268,7 @@ class ControllerCatalogManufacturer extends Controller {
 		$data['text_default'] = $this->language->get('text_default');
 		$data['text_percent'] = $this->language->get('text_percent');
 		$data['text_amount'] = $this->language->get('text_amount');
-
+        $data['entry_fav'] = 'Избранное';
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_store'] = $this->language->get('entry_store');
 		$data['entry_keyword'] = $this->language->get('entry_keyword');
@@ -331,6 +331,8 @@ class ControllerCatalogManufacturer extends Controller {
 			$data['action'] = $this->url->link('catalog/manufacturer/edit', 'token=' . $this->session->data['token'] . '&manufacturer_id=' . $this->request->get['manufacturer_id'] . $url, 'SSL');
 		}
 
+
+
 		$data['cancel'] = $this->url->link('catalog/manufacturer', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 		if (isset($this->request->get['manufacturer_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
@@ -347,6 +349,13 @@ class ControllerCatalogManufacturer extends Controller {
 			$data['name'] = '';
 		}
 
+        if (isset($this->request->post['favorites'])) {
+            $data['favorites'] = $this->request->post['favorites'];
+        } elseif (!empty($manufacturer_info)) {
+            $data['favorites'] = $manufacturer_info['favorites'];
+        } else {
+            $data['favorites'] = 0;
+        }
 		$this->load->model('setting/store');
 
 		$data['stores'] = $this->model_setting_store->getStores();

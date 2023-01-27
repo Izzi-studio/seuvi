@@ -69,6 +69,26 @@
 <header>
   <div class="container">
     <div class="row">
+      <?php echo $text_header_city;?>
+      <?php echo $text_header_grafik_raboty;?>
+      <?php echo $time;?>
+      <?php echo $text_header_bez_vyhodnyh;?>
+      <?php echo $text_header_osennie_skidki;?>
+      <?php echo $text_header_besplatnaya_dostavka;?>
+      <?php echo $text_menu_sale;?>
+      <?php echo $text_menu_new;?>
+      <?php echo $text_menu_otzivi;?>
+      <?php echo $text_menu_klientam;?>
+      <?php echo $text_svernut;?>
+      <?php echo $text_razsvernut;?>
+      <?php echo $blog_link;?>
+      <?php echo $special_link;?>
+      <?php echo var_dump ($informations);?>
+    </div>
+
+  </div>
+      <div class="container">
+    <div class="row">
       <div class="col-sm-4">
         <div id="logo">
           <?php if ($logo) { ?>

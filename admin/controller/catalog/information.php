@@ -267,6 +267,7 @@ class ControllerCatalogInformation extends Controller {
 		$data['text_enabled'] = $this->language->get('text_enabled');
 		$data['text_disabled'] = $this->language->get('text_disabled');
 
+		$data['entry_top'] = 'Верхнее меню';
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_description'] = $this->language->get('entry_description');
 		$data['entry_meta_title'] = $this->language->get('entry_meta_title');
@@ -422,7 +423,13 @@ class ControllerCatalogInformation extends Controller {
 		} else {
 			$data['information_layout'] = array();
 		}
-
+        if (isset($this->request->post['top'])) {
+            $data['top'] = $this->request->post['top'];
+        } elseif (!empty($information_info)) {
+            $data['top'] = $information_info['top'];
+        } else {
+            $data['top'] = 0;
+        }
 		$this->load->model('design/layout');
 
 		$data['layouts'] = $this->model_design_layout->getLayouts();

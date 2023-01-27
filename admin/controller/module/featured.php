@@ -28,6 +28,7 @@ class ControllerModuleFeatured extends Controller {
 		$data['text_disabled'] = $this->language->get('text_disabled');
 
 		$data['entry_name'] = $this->language->get('entry_name');
+		$data['entry_name_front'] = 'Отображаемое имя модуля';
 		$data['entry_product'] = $this->language->get('entry_product');
 		$data['entry_limit'] = $this->language->get('entry_limit');
 		$data['entry_width'] = $this->language->get('entry_width');
@@ -101,6 +102,16 @@ class ControllerModuleFeatured extends Controller {
 
 		$data['token'] = $this->session->data['token'];
 
+
+        if (isset($this->request->post['module_description'])) {
+            $data['module_description'] = $this->request->post['module_description'];
+        } elseif (isset($this->request->get['module_id'])) {
+            $data['module_description'] = $this->model_extension_module->getModuleDescriptions($this->request->get['module_id']);
+        } else {
+            $data['module_description'] = array();
+        }
+
+
 		if (isset($this->request->post['name'])) {
 			$data['name'] = $this->request->post['name'];
 		} elseif (!empty($module_info)) {
@@ -167,6 +178,10 @@ class ControllerModuleFeatured extends Controller {
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
+
+        $this->load->model('localisation/language');
+
+        $data['languages'] = $this->model_localisation_language->getLanguages();
 
 		$this->response->setOutput($this->load->view('module/featured.tpl', $data));
 	}

@@ -33,7 +33,18 @@
               <div class="text-danger"><?php echo $error_name; ?></div>
               <?php } ?>
             </div>
-          </div>          
+          </div>
+
+          <div class="form-group required">
+            <label class="col-sm-2 control-label"><?php echo $entry_name_front; ?></label>
+            <div class="col-sm-10">
+              <?php foreach ($languages as $language) { ?>
+              <div class="input-group"><span class="input-group-addon"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /></span>
+                <input type="text" name="module_description[<?php echo $language['language_id']; ?>][title]" value="<?php echo isset($module_description[$language['language_id']]) ? $module_description[$language['language_id']]['title'] : ''; ?>" placeholder="<?php echo $entry_name_front; ?>" class="form-control" />
+              </div>
+              <?php } ?>
+            </div>
+          </div>
           <div class="form-group">
             <label class="col-sm-2 control-label" for="input-product"><?php echo $entry_product; ?></label>
             <div class="col-sm-10">

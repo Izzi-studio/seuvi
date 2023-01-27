@@ -161,6 +161,22 @@
                   </div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-favorites"><span data-toggle="tooltip" title="Избранные"><?php echo $entry_fav; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($favorites) { ?>
+                      <input type="checkbox" name="favorites" value="1" checked="checked" id="input-favorites" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="favorites" value="1" id="input-favorites" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-column"><span data-toggle="tooltip" title="<?php echo $help_column; ?>"><?php echo $entry_column; ?></span></label>
                 <div class="col-sm-10">

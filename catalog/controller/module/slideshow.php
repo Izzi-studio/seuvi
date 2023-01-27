@@ -1,6 +1,8 @@
 <?php
 class ControllerModuleSlideshow extends Controller {
 	public function index($setting) {
+
+
 		static $module = 0;
 
 		$this->load->model('design/banner');
@@ -17,6 +19,8 @@ class ControllerModuleSlideshow extends Controller {
 			if (is_file(DIR_IMAGE . $result['image'])) {
 				$data['banners'][] = array(
 					'title' => $result['title'],
+                    'description'  => $result['description'],
+                    'btn_text'  => $result['btn_text'],
 					'link'  => $result['link'],
 					'image' => $this->model_tool_image->resize($result['image'], $setting['width'], $setting['height'])
 				);

@@ -6,7 +6,7 @@ class ModelCatalogManufacturer extends Model {
 		return $query->row;
 	}
 
-	public function getManufacturers($data = array()) {
+	public function getManufacturers($data = array() ,$favorites = false) {
 		if ($data) {
 			$sql = "SELECT * FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE m2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
@@ -14,6 +14,10 @@ class ModelCatalogManufacturer extends Model {
 				'name',
 				'sort_order'
 			);
+
+			if($favorites){
+                $sql .= " where favorites = '1' ";
+            }
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
 				$sql .= " ORDER BY " . $data['sort'];
@@ -43,10 +47,19 @@ class ModelCatalogManufacturer extends Model {
 
 			return $query->rows;
 		} else {
+
 			$manufacturer_data = $this->cache->get('manufacturer.' . (int)$this->config->get('config_store_id'));
 
 			if (!$manufacturer_data) {
-				$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE m2s.store_id = '" . (int)$this->config->get('config_store_id') . "' ORDER BY name");
+				$sql = "SELECT * FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE m2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
+
+                if($favorites) {
+                    $sql .= " and favorites = '1' ";
+                }
+
+                $sql .= "  ORDER BY name";
+
+                $query = $this->db->query($sql);
 
 				$manufacturer_data = $query->rows;
 

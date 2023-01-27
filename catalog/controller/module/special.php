@@ -4,6 +4,7 @@ class ControllerModuleSpecial extends Controller {
 		$this->load->language('module/special');
 
 		$data['heading_title'] = $this->language->get('heading_title');
+		$data['btn_text'] = $this->language->get('btn_text');
 
 		$data['text_tax'] = $this->language->get('text_tax');
 
@@ -12,6 +13,7 @@ class ControllerModuleSpecial extends Controller {
 		$data['button_compare'] = $this->language->get('button_compare');
 
 		$this->load->model('catalog/product');
+		$this->load->model('catalog/manufacturer');
 
 		$this->load->model('tool/image');
 
@@ -40,11 +42,14 @@ class ControllerModuleSpecial extends Controller {
 					$price = false;
 				}
 
-				if ((float)$result['special']) {
-					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
-				} else {
-					$special = false;
-				}
+                if ((float)$result['special']) {
+                    $percentSale = (((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100  ;
+
+                    $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
+                } else {
+                    $special = false;
+                    $percentSale = false;
+                }
 
 				if ($this->config->get('config_tax')) {
 					$tax = $this->currency->format((float)$result['special'] ? $result['special'] : $result['price']);
@@ -57,11 +62,13 @@ class ControllerModuleSpecial extends Controller {
 				} else {
 					$rating = false;
 				}
-
+                $manufacturer = $this->model_catalog_manufacturer->getManufacturer($result['manufacturer_id']);
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
+                    'manufacturer'        => $manufacturer['name'],
+                    'percent_sale'     => $percentSale,
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
@@ -70,7 +77,7 @@ class ControllerModuleSpecial extends Controller {
 					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'])
 				);
 			}
-
+            $data['href'] = $this->url->link('product/special','',true);
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/special.tpl')) {
 				return $this->load->view($this->config->get('config_template') . '/template/module/special.tpl', $data);
 			} else {

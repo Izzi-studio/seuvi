@@ -267,6 +267,8 @@ class ControllerDesignBanner extends Controller {
 		$data['text_disabled'] = $this->language->get('text_disabled');
 		$data['text_default'] = $this->language->get('text_default');
 
+		$data['entry_description'] = 'Описание';
+		$data['entry_btn_text'] = 'Текст на кнопке';
 		$data['entry_name'] = $this->language->get('entry_name');
 		$data['entry_title'] = $this->language->get('entry_title');
 		$data['entry_link'] = $this->language->get('entry_link');
@@ -380,7 +382,7 @@ class ControllerDesignBanner extends Controller {
 
 			$data['banner_images'][] = array(
 				'banner_image_description' => $banner_image['banner_image_description'],
-				'link'                     => $banner_image['link'],
+				//'link'                     => $banner_image['link'],
 				'image'                    => $image,
 				'thumb'                    => $this->model_tool_image->resize($thumb, 100, 100),
 				'sort_order'               => $banner_image['sort_order']
