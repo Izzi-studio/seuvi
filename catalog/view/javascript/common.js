@@ -131,11 +131,11 @@ $(document).ready(function() {
 
 // Cart add remove functions
 var cart = {
-	'quickadd': function(product_id, quantity) {
+	'quickadd': function(product_id, quantity, module) {
 		$.ajax({
 			url: 'index.php?route=checkout/cart/add',
 			type: 'post',
-			data: $('#product'+product_id+' input[type=\'hidden\'], #product'+product_id+' input[type=\'radio\']:checked'),
+			data: $('#product-'+module+'-'+product_id+' input[type=\'hidden\'], #product-'+module+'-'+product_id+' input[type=\'radio\']:checked'),
 			dataType: 'json',
 			beforeSend: function() {
 				$('#button-cart').button('loading');

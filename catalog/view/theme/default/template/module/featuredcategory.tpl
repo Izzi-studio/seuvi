@@ -38,7 +38,7 @@
                 </p>
                 <?php } ?>
             </div>
-            <div id="product<?php echo $product['product_id']; ?>">
+            <div id="product-featuredcat-<?php echo $product['product_id']; ?>">
             <?php foreach ($product['options'] as $option) { ?>
 
             <?php if ($option['type'] == 'radio') { ?>
@@ -64,7 +64,11 @@
                 <input type="hidden" name="product_id" value="<?php echo $product['product_id']; ?>" />
             </div>
             <div class="button-group">
-                <button type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1);"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                <?php if(!empty($product['options'])) { ?>
+                <button type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'featuredcat');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                <?php }else{ ?>
+                <button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                <?php } ?>
                 <button type="button" data-toggle="tooltip" title="<?php echo $button_wishlist; ?>" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-heart"></i></button>
                 <button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>
             </div>
