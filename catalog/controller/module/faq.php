@@ -19,12 +19,14 @@ class ControllerModuleFaq extends Controller {
 
         $faqs = $this->model_faq_faq->getFaqs($faqsIds);
         $data['faqs'] = [];
-        foreach($faqs as $faq){
-            if($faq['in_product'] == 0) {
-                $data['faqs'][] = [
-                    'title' => $faq['title'],
-                    'description' => html_entity_decode($faq['description'], ENT_QUOTES, 'UTF-8'),
-                ];
+        if ($faqs) {
+            foreach ($faqs as $faq) {
+                if ($faq['in_product'] == 0) {
+                    $data['faqs'][] = [
+                        'title' => $faq['title'],
+                        'description' => html_entity_decode($faq['description'], ENT_QUOTES, 'UTF-8'),
+                    ];
+                }
             }
         }
         $category = $this->model_catalog_category->getCategory($cat_id);

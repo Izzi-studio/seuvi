@@ -71,6 +71,8 @@ class ControllerModuleFeatured extends Controller {
 					$manufacturer = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
 
 
+
+
 					$data['products'][] = array(
 						'product_id'  => $product_info['product_id'],
 						'thumb'       => $image,
