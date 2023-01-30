@@ -26,6 +26,7 @@
   </div>
   <?php } ?>
 </div>
+
 <script type="text/javascript">
 $('#slideshow<?php echo $module; ?>').owlCarousel({
 	items: 1,

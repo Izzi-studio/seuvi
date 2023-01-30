@@ -14,6 +14,7 @@
             <?php }?>
         </div>
 </div>
+
 <script type="text/javascript">
 $('.f_cats .items').owlCarousel({
     items: 5,
