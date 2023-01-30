@@ -1,33 +1,39 @@
-<div id="slideshow<?php echo $module; ?>" class="owl-carousel" style="opacity: 1;">
+<div id="slideshow<?php echo $module; ?>" class="owl-carousel mainslider" style="opacity: 1;">
   <?php foreach ($banners as $banner) { ?>
   <div class="item">
-    <?php if ($banner['title']) { ?>
-    <?php echo $banner['title']; ?>
-    <?php } ?>
-    <?php if ($banner['description']) { ?>
-    <?php echo $banner['description']; ?>
-    <?php } ?>
-    <?php if ($banner['btn_text']) { ?>
-    <?php echo $banner['btn_text']; ?>
-    <?php } ?>
-    <?php if ($banner['link']) { ?>
-    <?php echo $banner['link']; ?>
-    <?php } ?>
-    <?php if ($banner['link']) { ?>
-    <a href="<?php echo $banner['link']; ?>"><img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" /></a>
-    <?php } else { ?>
     <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
-    <?php } ?>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-6 offset-lg-5">
+          <div class="b_title">
+            <?php if ($banner['title']) { ?>
+              <?php echo $banner['title']; ?>
+            <?php } ?>
+          </div>
+          <div class="b_desc">
+            <?php if ($banner['description']) { ?>
+              <?php echo $banner['description']; ?>
+            <?php } ?>
+          </div>
+          <div class="b_but">
+            <?php if ($banner['btn_text']) { ?>
+              <a href="<?php echo $banner['link']; ?>"><?php echo $banner['btn_text']; ?></a>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
   <?php } ?>
 </div>
-<script type="text/javascript"><!--
+
+<script type="text/javascript">
 $('#slideshow<?php echo $module; ?>').owlCarousel({
-	items: 6,
+	items: 1,
 	autoPlay: 3000,
 	singleItem: true,
-	navigation: true,
-	navigationText: ['<i class="fa fa-chevron-left fa-5x"></i>', '<i class="fa fa-chevron-right fa-5x"></i>'],
-	pagination: true
+	nav: true,
+    dots:false,
+	navText: ['<img src="/image/seuvi/banner_left.svg">','<img src="/image/seuvi/banner_right.svg">']
 });
---></script>
+</script>
