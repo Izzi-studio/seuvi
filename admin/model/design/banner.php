@@ -20,8 +20,8 @@ class ModelDesignBanner extends Model {
 					   banner_id = '" . (int)$banner_id . "',
 					    title = '" .  $this->db->escape($banner_image_description['title']) . "',
 					     description = '" .  $this->db->escape($banner_image_description['description']) . "',
-					      btn_text = '" .  $this->db->escape($banner_image_description['btn_text']) . "'
-					      link = '" .  $this->db->escape($banner_image_description['btn_text']) . "'
+					      btn_text = '" .  $this->db->escape($banner_image_description['btn_text']) . "',
+					      link = '" .  $this->db->escape($banner_image_description['link']) . "'
 					    ");
 				}
 			}
@@ -57,7 +57,7 @@ class ModelDesignBanner extends Model {
 					   title = '" .  $this->db->escape($banner_image_description['title']) . "',
 					    description = '" .  $this->db->escape($banner_image_description['description']) . "',
 					     btn_text = '" .  $this->db->escape($banner_image_description['btn_text']) . "',
-					      link = '" .  $this->db->escape($banner_image_description['btn_text']) . "'
+					      link = '" .  $this->db->escape($banner_image_description['link']) . "'
 					   ");
 				}
 			}
