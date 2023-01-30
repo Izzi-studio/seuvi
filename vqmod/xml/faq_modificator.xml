@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+	<id>OPENCART BLOG</id>
+	<version>1.0</version>
+	<vqmver required="true">2.5.0</vqmver>
+	<author>Karl Pers - openthemer@gmail.com</author>
+	
+	<file name="admin/controller/common/menu.php">
+		<operation error="log">
+			<search position="after"><![CDATA[
+			$this->load->language('common/menu');
+			]]></search>
+			<add><![CDATA[
+			// faq start
+			$this->load->language('faq/faq');
+			$data['faq_title'] = $this->language->get('heading_title');
+			$data['faq_link'] =  $this->url->link('faq/faq', 'token=' . $this->session->data['token'], 'SSL');
+			// faq ends
+			]]></add>
+		</operation>
+	</file>
+	
+	<file name="admin/view/template/common/menu.tpl">
+		<operation error="log">
+			<search position="before"><![CDATA[
+			<li id="reports">
+			]]></search>
+			<add><![CDATA[
+			<li><a href="<?php echo $faq_link; ?>"><i class="fa fa-question-circle" aria-hidden="true"></i> <span><?php echo $faq_title; ?></span></a></li>
+			]]></add>
+		</operation>
+	</file>
+
+</modification>
