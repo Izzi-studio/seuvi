@@ -85,8 +85,10 @@ class ControllerCommonHeader extends Controller {
         $data['text_svernut']    = $this->language->get('text_svernut');
         $data['text_razsvernut']    = $this->language->get('text_razsvernut');
         $data['time']    = $this->config->get('config_open');
+        $blog_title = $this->config->get('blogsetting_home_title');
+        $data['text_blog']    =  $blog_title[$this->language->get('code')];
 
-		
+
 		
 
 		$data['home'] = $this->url->link('common/home');
