@@ -333,7 +333,7 @@ class ControllerProductProduct extends Controller {
 				);
 			}
             $this->load->model('helper/helper');
-			$data['options'] = $this->model_helper_helper->getProductOptions($result);
+			$data['options'] = $this->model_helper_helper->getProductOptions($product_info);
 
 
 			if ($product_info['minimum']) {
@@ -406,7 +406,7 @@ class ControllerProductProduct extends Controller {
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
-                    'options'        => $this->model_helper_helper->getProductOptions($result),
+                    'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,
