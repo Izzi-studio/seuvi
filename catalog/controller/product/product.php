@@ -405,6 +405,7 @@ class ControllerProductProduct extends Controller {
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+					'reviews'       => $result['reviews'],
 					'thumb'       => $image,
                     'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'        => $result['name'],

@@ -20,6 +20,18 @@ class ControllerAccountEdit extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+
+            $this->request->post['avatar'] = null;
+            if($this->request->files['avatar']){
+                $randomFileName  = token(16);
+                $filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['avatar']['name'], ENT_QUOTES, 'UTF-8')));
+                $ext = pathinfo($filename)['extension'];
+                $name = $randomFileName.'.'.$ext;
+                move_uploaded_file($this->request->files['avatar']['tmp_name'], DIR_USERS_AVATAR . $name);
+                $this->request->post['avatar'] = FRONT_USERS_AVATAR.$name;
+            }
+
+
 			$this->model_account_customer->editCustomer($this->request->post);
 
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -175,6 +187,8 @@ class ControllerAccountEdit extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
 
+		$data['avatar'] = $this->customer->getAvatar();
+        $data['entry_avatar'] = $this->language->get('entry_avatar');
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/account/edit.tpl')) {
 			$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/account/edit.tpl', $data));
 		} else {

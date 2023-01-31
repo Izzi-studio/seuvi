@@ -3,7 +3,7 @@ class ModelCatalogManufacturer extends Model {
 	public function addManufacturer($data) {
 		$this->event->trigger('pre.admin.manufacturer.add', $data);
 
-		$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer SET  `favorites` = '" . (isset($data['favorites']) ? (int)$data['favorites'] : 0) . ",'name = '" . $this->db->escape($data['name']) . "', sort_order = '" . (int)$data['sort_order'] . "'");
+		$this->db->query("INSERT INTO " . DB_PREFIX . "manufacturer SET  `favorites` = '" . (isset($data['favorites']) ? (int)$data['favorites'] : 0) . "',name = '" . $this->db->escape($data['name']) . "', sort_order = '" . (int)$data['sort_order'] . "'");
 
 		$manufacturer_id = $this->db->getLastId();
 
