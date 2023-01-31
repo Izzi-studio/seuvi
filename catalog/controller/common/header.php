@@ -109,6 +109,7 @@ class ControllerCommonHeader extends Controller {
 		$data['telephone'] = $this->config->get('config_telephone');
 		$data['blog_link'] = $this->url->link('blog/home', '', 'SSL');
         $data['special_link'] = $this->url->link('product/special','',true);
+        $data['review_link'] = $this->url->link('review/review','',true);
 		$status = true;
 
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {
@@ -127,6 +128,7 @@ class ControllerCommonHeader extends Controller {
 		$this->load->model('catalog/category');
 
 		$this->load->model('catalog/product');
+		$this->load->model('tool/image');
 
 		$data['categories'] = array();
 

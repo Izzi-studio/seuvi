@@ -209,10 +209,11 @@ class ControllerProductCategory extends Controller {
 				} else {
 					$rating = false;
 				}
-
+                $this->load->model('helper/helper');
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'thumb'       => $image,
+                    'options'        => $this->model_helper_helper->getProductOptions($result),
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,

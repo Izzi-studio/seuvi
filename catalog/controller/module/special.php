@@ -64,46 +64,11 @@ class ControllerModuleSpecial extends Controller {
 				}
                 $manufacturer = $this->model_catalog_manufacturer->getManufacturer($result['manufacturer_id']);
 
-
-                $options = [];
-
-                foreach ($this->model_catalog_product->getProductOptions($result['product_id']) as $option) {
-                    $product_option_value_data = array();
-
-                    foreach ($option['product_option_value'] as $option_value) {
-                        if (!$option_value['subtract'] || ($option_value['quantity'] > 0)) {
-                            if ((($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) && (float)$option_value['price']) {
-                                $price = $this->currency->format($this->tax->calculate($option_value['price'], $result['tax_class_id'], $this->config->get('config_tax') ? 'P' : false));
-                            } else {
-                                $price = false;
-                            }
-
-                            $product_option_value_data[] = array(
-                                'product_option_value_id' => $option_value['product_option_value_id'],
-                                'option_value_id'         => $option_value['option_value_id'],
-                                'name'                    => $option_value['name'],
-                                'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
-                                'price'                   => $price,
-                                'price_prefix'            => $option_value['price_prefix']
-                            );
-                        }
-                    }
-
-                    $options[]  = array(
-                        'product_option_id'    => $option['product_option_id'],
-                        'product_option_value' => $product_option_value_data,
-                        'option_id'            => $option['option_id'],
-                        'name'                 => $option['name'],
-                        'type'                 => $option['type'],
-                        'value'                => $option['value'],
-                        'required'             => $option['required']
-                    );
-                }
-
+                $this->load->model('helper/helper');
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
-                    'options'        => $options,
+                    'options'        => $this->model_helper_helper->getProductOptions($result),
 					'thumb'       => $image,
 					'name'        => $result['name'],
                     'manufacturer'        => $manufacturer['name'],
