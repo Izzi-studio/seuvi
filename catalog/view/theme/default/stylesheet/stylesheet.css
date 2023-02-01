@@ -417,6 +417,7 @@ a#wishlist-total{
 	padding: 14px;
 	border: 1px solid #F9EDED;
 }
+.brands h3,
 .f_cat h3{
 	font-weight: 400;
 	font-size: 40px;
@@ -608,6 +609,36 @@ button.addto img{
 }
 .product-layout:hover .abs{
 	display: block;
+}
+.col-lg-20{
+	width: 20%;
+}
+.brands a.item{
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 50px;
+	box-shadow:
+			1px 0 0 0 #FFBBBB,
+			0 1px 0 0 #FFBBBB,
+			1px 1px 0 0 #FFBBBB,   /* Just to fix the corner */
+			1px 0 0 0 #FFBBBB inset,
+			0 1px 0 0 #FFBBBB inset;
+	height: 100%;
+}
+.brands .col-lg-20:last-child a.item{
+	font-weight: 400;
+	font-size: 29px;
+	line-height: 40px;
+	text-decoration: underline;
+	color: #1F1F1F;
+}
+.brands .col-lg-20:last-child a.item:hover{
+	text-decoration: none;
+}
+.brands{
+	margin-bottom: 140px;
 }
 
 /*End home*/
