@@ -69,6 +69,7 @@ class ControllerModuleSpecial extends Controller {
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
                     'options'        => $this->model_helper_helper->getProductOptions($result),
+                    'reviews'        => $result['reviews'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
                     'manufacturer'        => $manufacturer['name'],

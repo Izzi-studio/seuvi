@@ -18,6 +18,17 @@ class ControllerAccountRegister extends Controller {
 		$this->load->model('account/customer');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+            $this->request->post['avatar'] = null;
+            if($this->request->files['avatar']){
+                $randomFileName  = token(16);
+                $filename = basename(preg_replace('/[^a-zA-Z0-9\.\-\s+]/', '', html_entity_decode($this->request->files['avatar']['name'], ENT_QUOTES, 'UTF-8')));
+                $ext = pathinfo($filename)['extension'];
+                $name = $randomFileName.'.'.$ext;
+                move_uploaded_file($this->request->files['avatar']['tmp_name'], DIR_USERS_AVATAR . $name);
+                $this->request->post['avatar'] = FRONT_USERS_AVATAR.$name;
+            }
+
+
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
 
 			// Clear any previous login attempts for unregistered accounts.
@@ -89,6 +100,7 @@ class ControllerAccountRegister extends Controller {
 
 		$data['button_continue'] = $this->language->get('button_continue');
 		$data['button_upload'] = $this->language->get('button_upload');
+		$data['entry_avatar'] = $this->language->get('entry_avatar');
 
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];

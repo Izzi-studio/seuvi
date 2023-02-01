@@ -23,6 +23,12 @@ class ModelAccountCustomer extends Model {
 
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET address_id = '" . (int)$address_id . "' WHERE customer_id = '" . (int)$customer_id . "'");
 
+		if($data['avatar']) {
+            $this->db->query(
+                "UPDATE " . DB_PREFIX . "customer SET avatar = '" . $data['avatar'] . "' WHERE customer_id = '" . (int)$customer_id . "'"
+            );
+        }
+
 		$this->load->language('mail/customer');
 
 		$subject = sprintf($this->language->get('text_subject'), html_entity_decode($this->config->get('config_name'), ENT_QUOTES, 'UTF-8'));
@@ -104,6 +110,13 @@ class ModelAccountCustomer extends Model {
 		$customer_id = $this->customer->getId();
 
 		$this->db->query("UPDATE " . DB_PREFIX . "customer SET firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', fax = '" . $this->db->escape($data['fax']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : '') . "' WHERE customer_id = '" . (int)$customer_id . "'");
+
+
+        if($data['avatar']) {
+            $this->db->query(
+                "UPDATE " . DB_PREFIX . "customer SET avatar = '" . $data['avatar'] . "' WHERE customer_id = '" . (int)$customer_id . "'"
+            );
+        }
 
 		$this->event->trigger('post.customer.edit', $customer_id);
 	}

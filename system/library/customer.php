@@ -6,6 +6,7 @@ class Customer {
 	private $customer_group_id;
 	private $email;
 	private $telephone;
+	private $avatar;
 	private $fax;
 	private $newsletter;
 	private $address_id;
@@ -23,6 +24,7 @@ class Customer {
 				$this->customer_id = $customer_query->row['customer_id'];
 				$this->firstname = $customer_query->row['firstname'];
 				$this->lastname = $customer_query->row['lastname'];
+				$this->avatar = $customer_query->row['avatar'];
 				$this->customer_group_id = $customer_query->row['customer_group_id'];
 				$this->email = $customer_query->row['email'];
 				$this->telephone = $customer_query->row['telephone'];
@@ -60,6 +62,7 @@ class Customer {
 			$this->email = $customer_query->row['email'];
 			$this->telephone = $customer_query->row['telephone'];
 			$this->fax = $customer_query->row['fax'];
+			$this->avatar = $customer_query->row['avatar'];
 			$this->newsletter = $customer_query->row['newsletter'];
 			$this->address_id = $customer_query->row['address_id'];
 
@@ -83,6 +86,7 @@ class Customer {
 		$this->fax = '';
 		$this->newsletter = '';
 		$this->address_id = '';
+		$this->avatar = '';
 	}
 
 	public function isLogged() {
@@ -119,6 +123,10 @@ class Customer {
 
 	public function getNewsletter() {
 		return $this->newsletter;
+	}
+
+	public function getAvatar() {
+		return $this->avatar;
 	}
 
 	public function getAddressId() {
