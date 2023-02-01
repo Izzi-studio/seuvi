@@ -65,7 +65,6 @@
 
         <?php if ($option['type'] == 'radio') { ?>
         <div class="form-group<?php echo ($option['required'] ? ' required' : ''); ?>">
-          <label class="control-label"><?php echo $option['name']; ?></label>
           <div id="input-option<?php echo $option['product_option_id']; ?>" class="radgroup">
             <?php foreach ($option['product_option_value'] as $option_value) { ?>
             <div class="radio">
