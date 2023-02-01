@@ -417,6 +417,7 @@ a#wishlist-total{
 	padding: 14px;
 	border: 1px solid #F9EDED;
 }
+.social_block h3,
 .brands h3,
 .f_cat h3{
 	font-weight: 400;
@@ -659,6 +660,36 @@ button.addto img{
 .html_module ul{
 	margin-bottom: 30px;
 }
-
+.social_block{
+	padding: 50px 0;
+}
+.social_block .item{
+	text-align: center;
+	height: 100%;
+	border-right: 1px solid #FFBBBB;
+	padding: 60px 0;
+}
+.social_block .row.no-gutters{
+	border: 1px solid #FFBBBB;
+	border-radius: 20px;
+}
+.social_block .item img{
+	margin-bottom: 10px;
+}
+.social_block .col-lg-4:last-child .item{
+	border-right: 0;
+}
+.social_block .item .count{
+	font-weight: 700;
+	font-size: 26px;
+	line-height: 136.87%;
+	color: #343F24;
+}
+.social_block .item span{
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 136.87%;
+	color: #BDBDBD;
+}
 
 /*End home*/
