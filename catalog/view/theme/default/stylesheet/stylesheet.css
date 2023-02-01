@@ -638,7 +638,27 @@ button.addto img{
 	text-decoration: none;
 }
 .brands{
-	margin-bottom: 140px;
+	margin-bottom: 70px;
 }
+.html_module{
+	padding: 60px 0;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+}
+.html_module p{
+	margin-bottom: 30px;
+}
+.html_module h3{
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 33px;
+	margin-bottom: 30px;
+}
+.html_module ol,
+.html_module ul{
+	margin-bottom: 30px;
+}
+
 
 /*End home*/
