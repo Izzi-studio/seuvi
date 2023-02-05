@@ -22,13 +22,24 @@ class ModelHelperHelper extends Model {
                         $priceOnly = false;
                     }
 
+                    if($option_value['price_special']){
+                        $priceSpecial = $this->currency->format($this->tax->calculate($option_value['price_special'], $product['tax_class_id'], $this->config->get('config_tax') ? 'P' : false));
+                        $percentSale = (((int)$option_value['price'] - (int)$option_value['price_special']) / (int)$option_value['price']) * 100;
+                    }else{
+                        $priceSpecial = false;
+                        $percentSale = false;
+                    }
+
                     $product_option_value_data[] = array(
                         'product_option_value_id' => $option_value['product_option_value_id'],
                         'option_value_id'         => $option_value['option_value_id'],
                         'name'                    => $option_value['name'],
                         'image'                   => $this->model_tool_image->resize($option_value['image'], 50, 50),
                         'price'                   => $price,
-                        'price_only'                   => $priceOnly,
+                        'percent_sale'           =>  $percentSale,
+                        'price_special'           =>  $priceSpecial,
+                        'default_selected'           =>  $option_value['default_selected'] ? true : false,
+                        'price_only'              => $priceOnly,
                         'price_prefix'            => $option_value['price_prefix']
                     );
                 }

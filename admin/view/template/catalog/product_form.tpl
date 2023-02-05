@@ -102,6 +102,52 @@
                   <input type="hidden" name="image" value="<?php echo $image; ?>" id="input-image" />
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-flag_bestseller"><span data-toggle="tooltip" title="Бестселлер"><?php echo $entry_flag_bestseller; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($flag_bestseller) { ?>
+                      <input type="checkbox" name="flag_bestseller" value="1" checked="checked" id="input-flag_bestseller" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="flag_bestseller" value="1" id="input-flag_bestseller" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-flag_new"><span data-toggle="tooltip" title="Новинки"><?php echo $entry_flag_new; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($flag_new) { ?>
+                      <input type="checkbox" name="flag_new" value="1" checked="checked" id="input-flag_new" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="flag_new" value="1" id="input-flag_new" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-flag_special"><span data-toggle="tooltip" title="Новинки"><?php echo $entry_flag_special; ?></span></label>
+                <div class="col-sm-10">
+                  <div class="checkbox">
+                    <label>
+                      <?php if ($flag_special) { ?>
+                      <input type="checkbox" name="flag_special" value="1" checked="checked" id="input-flag_special" />
+                      <?php } else { ?>
+                      <input type="checkbox" name="flag_special" value="1" id="input-flag_special" />
+                      <?php } ?>
+                      &nbsp; </label>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group required">
                 <label class="col-sm-2 control-label" for="input-model"><?php echo $entry_model; ?></label>
                 <div class="col-sm-10">
@@ -561,8 +607,10 @@
                               <td class="text-right"><?php echo $entry_quantity; ?></td>
                               <td class="text-left"><?php echo $entry_subtract; ?></td>
                               <td class="text-right"><?php echo $entry_price; ?></td>
+                              <td class="text-right"><?php echo $entry_price_special; ?></td>
                               <td class="text-right"><?php echo $entry_option_points; ?></td>
                               <td class="text-right"><?php echo $entry_weight; ?></td>
+                              <td class="text-right"><?php echo $entry_default_selected; ?></td>
                               <td></td>
                             </tr>
                           </thead>
@@ -604,6 +652,10 @@
                                   <?php } ?>
                                 </select>
                                 <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][price]" value="<?php echo $product_option_value['price']; ?>" placeholder="<?php echo $entry_price; ?>" class="form-control" /></td>
+
+                              <td class="text-right">
+                                <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][price_special]" value="<?php echo $product_option_value['price_special']; ?>" placeholder="<?php echo $entry_price_special; ?>" class="form-control" /></td>
+                              </td>
                               <td class="text-right"><select name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][points_prefix]" class="form-control">
                                   <?php if ($product_option_value['points_prefix'] == '+') { ?>
                                   <option value="+" selected="selected">+</option>
@@ -630,6 +682,20 @@
                                   <?php } ?>
                                 </select>
                                 <input type="text" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][weight]" value="<?php echo $product_option_value['weight']; ?>" placeholder="<?php echo $entry_weight; ?>" class="form-control" /></td>
+
+                              <td class="text-right">
+
+                                <div class="checkbox">
+                                  <label>
+                                    <?php if ($product_option_value['default_selected']) { ?>
+                                    <input type="checkbox" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][default_selected]" value="1" checked="checked" id="input-default_selected" />
+                                    <?php } else { ?>
+                                    <input type="checkbox" name="product_option[<?php echo $option_row; ?>][product_option_value][<?php echo $option_value_row; ?>][default_selected]" value="1" id="input-default_selected" />
+                                    <?php } ?>
+                                    &nbsp; </label>
+                                </div>
+
+                              </td>
                               <td class="text-left"><button type="button" onclick="$(this).tooltip('destroy');$('#option-value-row<?php echo $option_value_row; ?>').remove();" data-toggle="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
                             </tr>
                             <?php $option_value_row++; ?>

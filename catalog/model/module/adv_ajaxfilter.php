@@ -41,6 +41,8 @@ class ModelModuleAdvajaxfilter extends Model {
             }
         }
 
+        $sql .= $this->getSqlCustomFlags($data['flags']);
+
 		$sql .= " AND pa.language_id = '" . (int)$this->config->get('config_language_id') . "'" .
 				" AND ad.language_id = '" . (int)$this->config->get('config_language_id') . "'" .
 				" AND agd.language_id = '" . (int)$this->config->get('config_language_id') . "'" .
@@ -80,6 +82,7 @@ class ModelModuleAdvajaxfilter extends Model {
 	}
 
 	public function getManufacturers($data) {
+
 		if($data['manufacturer_id']) {
 			return array();
 		}
@@ -102,6 +105,7 @@ class ModelModuleAdvajaxfilter extends Model {
                 $sql .= " AND pd.name LIKE '%" . $this->db->escape($word) . "%'";
             }
         }
+        $sql .= $this->getSqlCustomFlags($data['flags']);
 
 		$sql .= " ORDER BY m.sort_order, m.name";
 		$query = $this->db->query($sql);
@@ -131,6 +135,7 @@ class ModelModuleAdvajaxfilter extends Model {
                 $sql .= " AND pd.name LIKE '%" . $this->db->escape($word) . "%'";
             }
         }
+
 
 		$sql .= " GROUP BY p2t.`tag` ORDER BY p2t.`tag`";
 
@@ -190,6 +195,8 @@ class ModelModuleAdvajaxfilter extends Model {
             }
         }
 
+        $sql .= $this->getSqlCustomFlags($data['flags']);
+
 		$sql .= " ORDER BY o.sort_order, ov.sort_order, ovd.option_id ";
 		$query = $this->db->query($sql);
 		$options = array();
@@ -235,6 +242,8 @@ class ModelModuleAdvajaxfilter extends Model {
 		if($data['manufacturer_id']) {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['manufacturer_id'] . "'";
 		}
+
+        $sql .= $this->getSqlCustomFlags($data['flags']);
 
         if (isset($this->request->post['search']) and !empty($this->request->post['search'])) {
             $words = explode(' ', trim(preg_replace('/\s+/', ' ', $this->request->post['search'])));
@@ -288,6 +297,8 @@ class ModelModuleAdvajaxfilter extends Model {
 			$sql .= " AND p.quantity > 0 AND (pov.quantity is null OR pov.quantity > 0)";
 		}
 
+
+
         if (isset($this->request->post['search']) and !empty($this->request->post['search'])) {
             $words = explode(' ', trim(preg_replace('/\s+/', ' ', $this->request->post['search'])));
 
@@ -323,7 +334,7 @@ class ModelModuleAdvajaxfilter extends Model {
 		if($data['manufacturer']) {
 			$sql .= " AND p.manufacturer_id IN(" . implode(", ", $data['manufacturer']) . ")";
 		}
-
+        $sql .= $this->getSqlCustomFlags($data['flags']);
 		$d = $this->adv_ajaxfilter_setting['attr_delimeter'];
 
 		if($data['attribute_value']) {
@@ -471,6 +482,8 @@ class ModelModuleAdvajaxfilter extends Model {
 		if($data['instock']) {
 			$sql .= " AND p.quantity > 0 AND (pov.quantity is null OR pov.quantity > 0)";
 		}
+
+        $sql .= $this->getSqlCustomFlags($data['flags']);
 
 		if($data['categories']) {
 			$sql .= " AND p2c.category_id IN (" . implode(",", $data['categories']) . ")";
@@ -799,6 +812,8 @@ class ModelModuleAdvajaxfilter extends Model {
 			$sql .= " AND p.manufacturer_id IN(" . implode(", ", $data['manufacturer']) . ")";
 		}
 
+        $sql .= $this->getSqlCustomFlags($data['flags']);
+
         if (isset($this->request->post['search']) and !empty($this->request->post['search'])) {
             $words = explode(' ', trim(preg_replace('/\s+/', ' ', $this->request->post['search'])));
 
@@ -961,6 +976,8 @@ class ModelModuleAdvajaxfilter extends Model {
 			$sql .= " AND p.manufacturer_id IN(" . implode(", ", $data['manufacturer']) . ")";
 		}
 
+		$sql .= $this->getSqlCustomFlags($data['flags']);
+
         if (isset($this->request->post['search']) and !empty($this->request->post['search'])) {
             $words = explode(' ', trim(preg_replace('/\s+/', ' ', $this->request->post['search'])));
 
@@ -1117,6 +1134,8 @@ class ModelModuleAdvajaxfilter extends Model {
 			$sql .= " AND p.quantity > 0 AND (pov.quantity is null OR pov.quantity > 0)";
 		}
 
+        $sql .= $this->getSqlCustomFlags($data['flags']);
+
 		if($data['categories']) {
 			$sql .= " AND p2c.category_id IN (" . implode(",", $data['categories']) . ")";
 		}
@@ -1194,6 +1213,7 @@ class ModelModuleAdvajaxfilter extends Model {
 		}
 
 		$sql .= " AND p.status = '1' AND p.date_available <= NOW( ) AND p2s.store_id = " . (int)$this->config->get('config_store_id');
+
 		$sql .= ") as innertable WHERE 1 ";
 		if($data['min_price'] >= 0) {
 			$min_price = $this->currency->convert((int)$data['min_price'], $this->currency->getCode(), $this->config->get('config_currency'));
@@ -1252,6 +1272,8 @@ class ModelModuleAdvajaxfilter extends Model {
 		if($data['instock']) {
 			$sql .= " AND p.quantity > 0 AND (pov.quantity is null OR pov.quantity > 0)";
 		}
+
+		$sql .= $this->getSqlCustomFlags($data['flags']);
 
 		if($data['categories']) {
 			$sql .= " AND p2c.category_id IN (" . implode(",", $data['categories']) . ")";
@@ -1399,6 +1421,7 @@ class ModelModuleAdvajaxfilter extends Model {
 			$sql .= " AND realprice <=" . ($max_price);
 		}
 
+
         if(isset($this->request->post['old_route']) and $this->request->post['old_route'] == 'product/latest') {
             $sql .= " ORDER BY DATE(date_added) DESC ";
 		}
@@ -1450,5 +1473,17 @@ class ModelModuleAdvajaxfilter extends Model {
 								  "WHERE tr2.tax_class_id=" . (int)$tax_class_id . " ORDER BY tr2.priority");
 		return $query->rows;
 	}
+
+	private function getSqlCustomFlags($flags){
+        $sql = '';
+        if(!empty($flags)){
+            foreach ($flags as $flag=>$value) {
+                if($value) {
+                    $sql .= " AND p." . $flag . " = 1";
+                }
+            }
+        }
+        return $sql;
+    }
 
 }

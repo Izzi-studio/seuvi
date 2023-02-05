@@ -1,5 +1,5 @@
 deny from all
-allow from 37.57.176.211 91.226.254.101 178.133.64.39
+allow from 37.57.176.211 91.226.254.101 178.133.64.39 178.133.213.64
 # 1.To use URL Alias you need to be running apache with mod_rewrite enabled.
 
 # 2. In your opencart directory rename htaccess.txt to .htaccess.

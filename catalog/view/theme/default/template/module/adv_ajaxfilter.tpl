@@ -8,6 +8,11 @@
     <div class="bordered_content">
         
         <form id="adv_ajaxfilter">
+            <?php if(!$novelties_page){ ?>
+            Новинки<input type="checkbox" name="flag_new" value="1"  class="filtered">
+            <?php } ?>
+            Бестселлер<input type="checkbox" name="flag_bestseller" value="1" class="filtered">
+            Акции<input type="checkbox" name="flag_special" value="1" class="filtered">
             <div class="option_box" <?php if(!$instock_visible) echo 'style="display:none"'; ?>>
                 <div class="option_name contrast_font"><?php echo $text_instock; ?></div>
                 <div class="collapsible filters">
@@ -17,8 +22,8 @@
             <div class="option_box" <?php if(!$price_slider) { echo 'style="display:none"';}?>>
                 <div class="option_name contrast_font"><?php echo $text_price_range?></div>
                 <div class="price_slider collapsible">
-                <div class="price_range"><?php echo $text_range; ?>  
-                <?php if($symbol_left){ echo $symbol_left; } ?><span id="min_p_holder"></span><?php if($symbol_right){ echo $symbol_right; } ?> - 
+                <div class="price_range"><?php echo $text_range; ?>
+                <?php if($symbol_left){ echo $symbol_left; } ?><span id="min_p_holder"></span><?php if($symbol_right){ echo $symbol_right; } ?> -
                 <?php if($symbol_left){ echo $symbol_left; } ?><span id="max_p_holder"></span><?php if($symbol_right){ echo $symbol_right; } ?>
                 </div>
                    

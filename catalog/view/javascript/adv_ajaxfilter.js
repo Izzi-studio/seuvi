@@ -254,9 +254,9 @@ function filter(b, c ) {
         //window.location = url+ '#' + a;
     }
 
-    if (cache[h]){
-        adv_result(cache[h]);
-    } else {
+   // if (cache[h]){
+        //adv_result(cache[h]);
+   // } else {
         $(cont).advOverlay();
         $("#adv_ajaxfilter").advOverlay();
 
@@ -269,7 +269,7 @@ function filter(b, c ) {
                 $("#adv_ajaxfilter").advUnoverlay();
             }
 		});
-    }
+   // }
 }
 
 function adv_result(g, b) {

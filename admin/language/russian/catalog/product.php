@@ -41,6 +41,7 @@ $_ = array (
   'entry_minimum' => 'Минимальное количество',
   'entry_stock_status' => 'Отсутствие на складе',
   'entry_price' => 'Цена',
+  'entry_price_special' => 'Скидочная цена',
   'entry_tax_class' => 'Налог',
   'entry_points' => 'Баллы',
   'entry_option_points' => 'Баллы',

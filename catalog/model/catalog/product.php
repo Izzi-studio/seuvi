@@ -143,6 +143,10 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+		if(isset($data['flag_select'])){
+            $sql .= " AND p.".$data['flag_select']." = 1";
+        }
+
 		$sql .= " GROUP BY p.product_id";
 
 		$sort_data = array(
@@ -246,6 +250,71 @@ class ModelCatalogProduct extends Model {
 		return $product_data;
 	}
 
+	public function getProductSpecialsByCategory($data = array()) {
+		$sql = "SELECT DISTINCT ps.product_id, (SELECT AVG(rating) FROM " . DB_PREFIX . "review r1 WHERE r1.product_id = ps.product_id AND r1.status = '1' GROUP BY r1.product_id) AS rating
+		 FROM " . DB_PREFIX . "product_special ps
+		  LEFT JOIN " . DB_PREFIX . "product p ON (ps.product_id = p.product_id)
+		   LEFT JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id)
+		    LEFT JOIN " . DB_PREFIX . "product_to_store p2s ON (p.product_id = p2s.product_id)";
+
+		if($data['categories']){
+            $sql .=" left join " . DB_PREFIX . "product_to_category p2c on (p.product_id = p2c.product_id)";
+            $sql .=" WHERE p.status = '1' AND p2c.category_id in (".implode(",", $data['categories']).") AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
+
+        }else{
+            $sql .=" WHERE p.status = '1' AND p.date_available <= NOW() AND p2s.store_id = '" . (int)$this->config->get('config_store_id') . "' AND ps.customer_group_id = '" . (int)$this->config->get('config_customer_group_id') . "' AND ((ps.date_start = '0000-00-00' OR ps.date_start < NOW()) AND (ps.date_end = '0000-00-00' OR ps.date_end > NOW())) GROUP BY ps.product_id";
+        }
+
+
+
+
+		$sort_data = array(
+			'pd.name',
+			'p.model',
+			'ps.price',
+			'rating',
+			'p.sort_order'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			if ($data['sort'] == 'pd.name' || $data['sort'] == 'p.model') {
+				$sql .= " ORDER BY LCASE(" . $data['sort'] . ")";
+			} else {
+				$sql .= " ORDER BY " . $data['sort'];
+			}
+		} else {
+			$sql .= " ORDER BY p.sort_order";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC, LCASE(pd.name) DESC";
+		} else {
+			$sql .= " ASC, LCASE(pd.name) ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}
+
+		$product_data = array();
+
+		$query = $this->db->query($sql);
+
+		foreach ($query->rows as $result) {
+			$product_data[] = $result['product_id'];
+		}
+
+		return $product_data;
+	}
+
 	public function getLatestProducts($limit) {
 		$product_data = $this->cache->get('product.latest.' . (int)$this->config->get('config_language_id') . '.' . (int)$this->config->get('config_store_id') . '.' . $this->config->get('config_customer_group_id') . '.' . (int)$limit);
 
@@ -339,6 +408,8 @@ class ModelCatalogProduct extends Model {
 					'quantity'                => $product_option_value['quantity'],
 					'subtract'                => $product_option_value['subtract'],
 					'price'                   => $product_option_value['price'],
+					'price_special'                   => $product_option_value['price_special'],
+					'default_selected'                   => $product_option_value['default_selected'],
 					'price_prefix'            => $product_option_value['price_prefix'],
 					'weight'                  => $product_option_value['weight'],
 					'weight_prefix'           => $product_option_value['weight_prefix']
@@ -486,6 +557,8 @@ class ModelCatalogProduct extends Model {
 			$sql .= " AND p.manufacturer_id = '" . (int)$data['filter_manufacturer_id'] . "'";
 		}
 
+        $sql .= isset($data['flags']) ? $this->getSqlCustomFlags($data['flags']) : '' ;
+
 		$query = $this->db->query($sql);
 
 		return $query->row['total'];
@@ -508,4 +581,16 @@ class ModelCatalogProduct extends Model {
 			return 0;
 		}
 	}
+
+    private function getSqlCustomFlags($flags){
+        $sql = '';
+        if(!empty($flags)){
+            foreach ($flags as $flag=>$value) {
+                if($value) {
+                    $sql .= " AND p." . $flag . " = 1";
+                }
+            }
+        }
+        return $sql;
+    }
 }

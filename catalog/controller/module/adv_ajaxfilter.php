@@ -63,6 +63,7 @@ class ControllerModuleAdvajaxfilter extends Controller {
 			);
 		}
 
+
 		$this->load->model('catalog/product');
 		$product_total = $this->model_catalog_product->getTotalProducts($_data);
 		if($product_total < 2) {
@@ -72,6 +73,25 @@ class ControllerModuleAdvajaxfilter extends Controller {
         $data['category_id'] = $cat_id;
 
         $_data = array('category_id' => $cat_id, 'manufacturer_id' => $man_id);
+
+        //custom filter
+
+        $flags = [];
+        if(isset($this->request->post['flag_new']) || $this->request->get['route'] == 'product/new') {
+            $flags['flag_new'] = true;
+        }
+        if(isset($this->request->post['flag_special'])) {
+            $flags['flag_special'] = true;
+        }
+        if(isset($this->request->post['flag_bestseller'])) {
+            $flags['flag_bestseller'] = true;
+        }
+
+
+        //custom filte
+
+
+        $_data['flags'] = $flags;
 
 		$this->load->model('module/adv_ajaxfilter');
 		$this->load->model('tool/image');
@@ -159,7 +179,7 @@ class ControllerModuleAdvajaxfilter extends Controller {
                         'filter_category_id' => $cat_id,
                         'filter_filter'      => $filter['filter_id']
                     );
-
+                    $_data['flags'] = $flags;
                     $filter_data[] = array(
                         'filter_id' => $filter['filter_id'],
                         'name'      => $filter['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($_data) . ')' : '')
@@ -216,9 +236,13 @@ class ControllerModuleAdvajaxfilter extends Controller {
 			$data['route'] = $this->request->get['route'];
 		}
 
-		$data['url']   = $this->url->link('product/adv_ajaxfilter', '');
+		$data['url']   = $this->url->link('product/adv_ajaxfilter', '','SSL');
 
+        $data['novelties_page'] = false;
 
+        if($this->request->get['route'] == 'product/new'){
+            $data['novelties_page'] = true;
+        }
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/adv_ajaxfilter.tpl')) {
             return $this->load->view($this->config->get('config_template') . '/template/module/adv_ajaxfilter.tpl', $data);
@@ -306,7 +330,19 @@ class ControllerModuleAdvajaxfilter extends Controller {
 		if(isset($this->request->post['instock'])) {
 			$instock = true;
 		}
-
+//custom filter
+       // var_dump($this->request);
+		$flags = [];
+		if(isset($this->request->post['flag_new']) || $this->request->post['old_route'] == 'product/new') {
+            $flags['flag_new'] = true;
+		}
+		if(isset($this->request->post['flag_special'])) {
+            $flags['flag_special'] = true;
+		}
+		if(isset($this->request->post['flag_bestseller'])) {
+            $flags['flag_bestseller'] = true;
+		}
+//custom filter end
 
 		$cats = false;
 		if(isset($this->request->post['categories'])) {
@@ -335,6 +371,7 @@ class ControllerModuleAdvajaxfilter extends Controller {
 		}
 
 		$data = array(
+			'flags' => $flags,
 			'instock' => $instock,
 			'option_value' => $option_value,
 			'manufacturer' => $man,
@@ -384,7 +421,10 @@ class ControllerModuleAdvajaxfilter extends Controller {
 		$max_price = false;
 
 		if(isset($this->request->post['getPriceLimits']) && $this->request->post['getPriceLimits']) {
-			$priceLimits = $this->model_module_adv_ajaxfilter->getPriceLimits(array('category_id' => $cat_id, 'manufacturer_id' => $man_id));
+			$priceLimits = $this->model_module_adv_ajaxfilter->getPriceLimits(array(
+			    'category_id' => $cat_id,
+                 'manufacturer_id' => $man_id,'flags' => $flags)
+            );
 			$min_price = $priceLimits['min_price'];
 			$max_price = $priceLimits['max_price'];
 		}
@@ -397,7 +437,12 @@ class ControllerModuleAdvajaxfilter extends Controller {
         $pagination->total = $product_total;
         $pagination->page = $page;
         $pagination->limit = $limit;
-        $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&page={page}');
+        if($this->request->post['old_route'] == 'product/new'){
+            $pagination->url = $this->url->link('product/category','page={page}','SSL');
+        }else{
+            $pagination->url = $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&page={page}');
+        }
+
 
         $pagination_result = sprintf($this->language->get('text_pagination'), ($product_total) ? (($page - 1) * $limit) + 1 : 0, ((($page - 1) * $limit) > ($product_total - $limit)) ? $product_total : ((($page - 1) * $limit) + $limit), $product_total, ceil($product_total / $limit));
 

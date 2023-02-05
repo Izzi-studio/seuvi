@@ -23,7 +23,7 @@ class ControllerModuleFeaturedcategory extends Controller {
 
 		$this->load->model('tool/image');
 
-		$data['category'] = array();
+        $data['products'] = array();
 
 
 
@@ -34,14 +34,15 @@ class ControllerModuleFeaturedcategory extends Controller {
 	    
 		
 
-		if (!empty($setting['category'])) {
+		//if (!empty($setting['category'])) {
 			//$category = array_slice($setting['category'], 0, (int)$setting['limit']);
-			foreach ($setting['category'] as $c) {
+			//foreach ($setting['category'] as $c) {
 				//$category_info = $this->model_catalog_category->getCategory($c);
                 $filter_data = array(
-                    'filter_category_id' => $c,
+                    //'filter_category_id' => $c,
                     'limit' => $setting['limit'],
-                    'start' => 0
+                    'start' => 0,
+                    'flag_select' => 'flag_new'
                 );
                 $results = $this->model_catalog_product->getProducts($filter_data);
 
@@ -61,7 +62,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                         }
 
                         if ((float)$product_info['special']) {
-                            $percentSale = (((int)$product_info['price'] - (int)$product_info['special']) / (int)$product_info['price']) * 100  ;
+                            $percentSale = (((int)$product_info['price'] - (int)$product_info['special']) / (int)$product_info['price']) * 100;
 
                             $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
                         } else {
@@ -101,10 +102,10 @@ class ControllerModuleFeaturedcategory extends Controller {
                         );
                     }
                 }
-			}
+		//	}
 
-        $data["href"]= $this->url->link('product/category', 'category_id=' . $c);
-		}
+        $data["href"]= $this->url->link('product/new','','SSL');
+		//}
 
 	
 		

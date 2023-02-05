@@ -558,6 +558,8 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_quantity'] = $this->language->get('entry_quantity');
 		$data['entry_stock_status'] = $this->language->get('entry_stock_status');
 		$data['entry_price'] = $this->language->get('entry_price');
+		$data['entry_price_special'] = $this->language->get('entry_price_special');
+		$data['entry_default_selected'] = $this->language->get('entry_default_selected');
 		$data['entry_tax_class'] = $this->language->get('entry_tax_class');
 		$data['entry_points'] = $this->language->get('entry_points');
 		$data['entry_option_points'] = $this->language->get('entry_option_points');
@@ -591,6 +593,11 @@ class ControllerCatalogProduct extends Controller {
 		$data['entry_reward'] = $this->language->get('entry_reward');
 		$data['entry_layout'] = $this->language->get('entry_layout');
 		$data['entry_recurring'] = $this->language->get('entry_recurring');
+
+
+		$data['entry_flag_bestseller'] = 'Бестселлер';
+		$data['entry_flag_special'] = 'Акция';
+		$data['entry_flag_new'] = 'Новинка';
 
 		$data['help_keyword'] = $this->language->get('help_keyword');
 		$data['help_sku'] = $this->language->get('help_sku');
@@ -810,6 +817,32 @@ class ControllerCatalogProduct extends Controller {
 		} else {
 			$data['mpn'] = '';
 		}
+
+
+        if (isset($this->request->post['flag_bestseller'])) {
+            $data['flag_bestseller'] = $this->request->post['flag_bestseller'];
+        } elseif (!empty($product_info)) {
+            $data['flag_bestseller'] = $product_info['flag_bestseller'];
+        } else {
+            $data['flag_bestseller'] = 0;
+        }
+
+        if (isset($this->request->post['flag_special'])) {
+            $data['flag_special'] = $this->request->post['flag_special'];
+        } elseif (!empty($product_info)) {
+            $data['flag_special'] = $product_info['flag_special'];
+        } else {
+            $data['flag_special'] = 0;
+        }
+
+        if (isset($this->request->post['flag_new'])) {
+            $data['flag_new'] = $this->request->post['flag_new'];
+        } elseif (!empty($product_info)) {
+            $data['flag_new'] = $product_info['flag_new'];
+        } else {
+            $data['flag_new'] = 0;
+        }
+
 
 		if (isset($this->request->post['location'])) {
 			$data['location'] = $this->request->post['location'];
@@ -1116,6 +1149,8 @@ class ControllerCatalogProduct extends Controller {
 						'quantity'                => $product_option_value['quantity'],
 						'subtract'                => $product_option_value['subtract'],
 						'price'                   => $product_option_value['price'],
+						'price_special'           => $product_option_value['price_special'],
+						'default_selected'        => $product_option_value['default_selected'],
 						'price_prefix'            => $product_option_value['price_prefix'],
 						'points'                  => $product_option_value['points'],
 						'points_prefix'           => $product_option_value['points_prefix'],

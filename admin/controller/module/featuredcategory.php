@@ -113,7 +113,8 @@ class ControllerModuleFeaturedcategory extends Controller {
 		if (isset($this->request->post['category'])) {
 			$products = $this->request->post['category'];
 		} elseif (!empty($module_info)) {
-			$products = $module_info['category'];
+			//$products = $module_info['category'];
+			$products = array();
 		} else {
 			$products = array();
 		}
