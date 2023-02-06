@@ -120,6 +120,44 @@
                     <?php } ?>
                   </div>
                 </div>
+
+              <div class="form-group required">
+                  <label class="col-sm-2 control-label" for="input-address">Телефоны в футере</label>
+                  <div class="col-sm-10">
+                    <textarea name="config_telephone_footer" placeholder="Телефоны в футере" rows="2" id="input-config_telephone_footer" class="form-control"><?php echo $config_telephone_footer; ?></textarea>
+                  </div>
+                </div>
+
+
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-fb_link">Facebook</label>
+                <div class="col-sm-10">
+                  <input name="config_fb_link" placeholder="Facebook" id="input-fb_link" class="form-control"  value="<?php echo $config_fb_link; ?>"></input>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-inst_link">Instagram</label>
+                <div class="col-sm-10">
+                  <input name="config_inst_link"  placeholder="Instagram" id="input-inst_link" class="form-control"  value="<?php echo $config_inst_link; ?>"></input>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-tiktok_link">TikTok</label>
+                <div class="col-sm-10">
+                  <input name="config_tiktok_link"  placeholder="TikTok" id="input-tiktok_link" class="form-control" value="<?php echo $config_tiktok_link; ?>"></input>
+                </div>
+              </div>
+
+              <div class="form-group required">
+                <label class="col-sm-2 control-label" for="input-tg_link">Telegram</label>
+                <div class="col-sm-10">
+                  <input name="config_tg_link"  placeholder="Telegram" id="input-tg_link" class="form-control" value="<?php echo $config_tg_link; ?>"></input>
+                </div>
+              </div>
+
+
                 <div class="form-group">
                   <label class="col-sm-2 control-label" for="input-geocode"><span data-toggle="tooltip" data-container="#tab-general" title="<?php echo $help_geocode; ?>"><?php echo $entry_geocode; ?></span></label>
                   <div class="col-sm-10">

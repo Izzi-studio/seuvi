@@ -1318,6 +1318,36 @@ class ControllerSettingSetting extends Controller {
 			$data['config_error_filename'] = $this->config->get('config_error_filename');
 		}
 
+        if (isset($this->request->post['config_fb_link'])) {
+            $data['config_fb_link'] = $this->request->post['config_fb_link'];
+        } else {
+            $data['config_fb_link'] = $this->config->get('config_fb_link');
+        }
+
+        if (isset($this->request->post['config_inst_link'])) {
+            $data['config_inst_link'] = $this->request->post['config_inst_link'];
+        } else {
+            $data['config_inst_link'] = $this->config->get('config_inst_link');
+        }
+
+        if (isset($this->request->post['config_tiktok_link'])) {
+            $data['config_tiktok_link'] = $this->request->post['config_tiktok_link'];
+        } else {
+            $data['config_tiktok_link'] = $this->config->get('config_tiktok_link');
+        }
+
+        if (isset($this->request->post['config_tg_link'])) {
+            $data['config_tg_link'] = $this->request->post['config_tg_link'];
+        } else {
+            $data['config_tg_link'] = $this->config->get('config_tg_link');
+        }
+
+        if (isset($this->request->post['config_telephone_footer'])) {
+            $data['config_telephone_footer'] = $this->request->post['config_telephone_footer'];
+        } else {
+            $data['config_telephone_footer'] = $this->config->get('config_telephone_footer');
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

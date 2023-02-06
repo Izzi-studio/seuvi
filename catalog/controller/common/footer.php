@@ -24,16 +24,51 @@ class ControllerCommonFooter extends Controller {
 
 		$data['informations'] = array();
 
-		foreach ($this->model_catalog_information->getInformations() as $result) {
-			if ($result['bottom']) {
-				$data['informations'][] = array(
-					'title' => $result['title'],
-					'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
-				);
-			}
-		}
 
-		$data['contact'] = $this->url->link('information/contact');
+
+
+
+
+
+        $data['telephone'] = $this->config->get('config_telephone');
+        $data['telephone_footer'] = $this->config->get('config_telephone_footer');
+        $data['address'] = $this->config->get('config_address');
+        $data['fb_link'] = $this->config->get('config_fb_link');
+        $data['inst_link'] = $this->config->get('config_inst_link');
+        $data['tiktok_link'] = $this->config->get('config_tiktok_link');
+        $data['tg_link'] = $this->config->get('config_tg_link');
+
+        $data['heading_text_column_1'] = $this->language->get('heading_text_column_1');
+            $data['text_column_1_sitemap'] = $this->language->get('heading_text_column_1_sitemap');
+            $data['sitemap'] = $this->url->link('information/sitemap');
+            $data['text_column_1_contact_contact'] = $this->language->get('heading_text_column_1_contact');
+            $data['contact'] = $this->url->link('information/contact');
+
+        $data['heading_text_column_2'] = $this->language->get('heading_text_column_2');
+            foreach ($this->model_catalog_information->getInformations() as $result) {
+                if ($result['bottom']) {
+                    $data['informations'][] = array(
+                        'title' => $result['title'],
+                        'href'  => $this->url->link('information/information', 'information_id=' . $result['information_id'])
+                    );
+                }
+            }
+
+
+        $data['heading_text_column_3'] = $this->language->get('heading_text_column_3');
+            $data['text_column_3_account'] = $this->language->get('text_column_3_account');
+            $data['account'] = $this->url->link('account/account', '', 'SSL');
+            $data['text_column_3_text_order_history'] = $this->language->get('text_column_3_text_order_history');
+            $data['order'] = $this->url->link('account/order', '', 'SSL');
+            $data['text_column_3_wishlist'] = $this->language->get('text_column_3_wishlist');
+            $data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
+        $data['heading_text_column_4'] = $this->language->get('heading_text_column_4');
+
+
+        $data['text_copyright'] = $this->language->get('text_copyright');
+        $data['text_copyright_bottom'] = $this->language->get('text_copyright_bottom');
+
+
 		$data['return'] = $this->url->link('account/return/add', '', 'SSL');
 		$data['sitemap'] = $this->url->link('information/sitemap');
 		$data['manufacturer'] = $this->url->link('product/manufacturer');

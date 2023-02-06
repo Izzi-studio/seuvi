@@ -30,7 +30,7 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 		}
-
+        $tmpSpecialPriceOption = false;
 		if (isset($data['product_option'])) {
 			foreach ($data['product_option'] as $product_option) {
 				if ($product_option['type'] == 'select' || $product_option['type'] == 'radio' || $product_option['type'] == 'checkbox' || $product_option['type'] == 'image') {
@@ -41,6 +41,9 @@ class ModelCatalogProduct extends Model {
 
 						foreach ($product_option['product_option_value'] as $product_option_value) {
 							$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET default_selected = '" . (isset($product_option['default_selected']) ? (int)$product_option['default_selected'] : 0) . "' ,product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price_special = '" . (float)$product_option_value['price_special'] . "', price = '" . (float)$product_option_value['price'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+							if($product_option_value['price_special'] != 0 || $product_option_value['price_special'] != null){
+                                $tmpSpecialPriceOption = true;
+                            }
 						}
 					}
 				} else {
@@ -48,6 +51,10 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 		}
+
+        if(isset($data['product_special']) || $tmpSpecialPriceOption){
+            $this->db->query("UPDATE " . DB_PREFIX . "product SET `flag_special` = '" . (isset($data['flag_special']) ? (int)$data['flag_special'] : 0) . "'");
+        }
 
 		if (isset($data['product_discount'])) {
 			foreach ($data['product_discount'] as $product_discount) {
@@ -164,7 +171,7 @@ class ModelCatalogProduct extends Model {
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option WHERE product_id = '" . (int)$product_id . "'");
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_option_value WHERE product_id = '" . (int)$product_id . "'");
-
+        $tmpSpecialPriceOption = false;
 		if (isset($data['product_option'])) {
 			foreach ($data['product_option'] as $product_option) {
 				if ($product_option['type'] == 'select' || $product_option['type'] == 'radio' || $product_option['type'] == 'checkbox' || $product_option['type'] == 'image') {
@@ -175,6 +182,9 @@ class ModelCatalogProduct extends Model {
 
 						foreach ($product_option['product_option_value'] as $product_option_value) {
 							$this->db->query("INSERT INTO " . DB_PREFIX . "product_option_value SET default_selected = '" . (isset($product_option_value['default_selected']) ? (int)$product_option_value['default_selected'] : 0) . "' , product_option_value_id = '" . (int)$product_option_value['product_option_value_id'] . "', product_option_id = '" . (int)$product_option_id . "', product_id = '" . (int)$product_id . "', option_id = '" . (int)$product_option['option_id'] . "', option_value_id = '" . (int)$product_option_value['option_value_id'] . "', quantity = '" . (int)$product_option_value['quantity'] . "', subtract = '" . (int)$product_option_value['subtract'] . "', price = '" . (float)$product_option_value['price'] . "', price_special = '" . (float)$product_option_value['price_special'] . "', price_prefix = '" . $this->db->escape($product_option_value['price_prefix']) . "', points = '" . (int)$product_option_value['points'] . "', points_prefix = '" . $this->db->escape($product_option_value['points_prefix']) . "', weight = '" . (float)$product_option_value['weight'] . "', weight_prefix = '" . $this->db->escape($product_option_value['weight_prefix']) . "'");
+                        if($product_option_value['price_special'] != 0){
+                            $tmpSpecialPriceOption = true;
+                        }
 						}
 					}
 				} else {
@@ -182,6 +192,13 @@ class ModelCatalogProduct extends Model {
 				}
 			}
 		}
+
+
+        if(isset($data['product_special']) || $tmpSpecialPriceOption){
+            $this->db->query("UPDATE " . DB_PREFIX . "product SET `flag_special` = 1 WHERE product_id = '" . (int)$product_id . "'");
+        }else{
+            $this->db->query("UPDATE " . DB_PREFIX . "product SET `flag_special` = 0 WHERE product_id = '" . (int)$product_id . "'");
+        }
 
 		$this->db->query("DELETE FROM " . DB_PREFIX . "product_discount WHERE product_id = '" . (int)$product_id . "'");
 
@@ -274,7 +291,7 @@ class ModelCatalogProduct extends Model {
 				$this->db->query("INSERT INTO `" . DB_PREFIX . "product_recurring` SET `product_id` = " . (int)$product_id . ", customer_group_id = " . (int)$product_recurring['customer_group_id'] . ", `recurring_id` = " . (int)$product_recurring['recurring_id']);
 			}
 		}
-
+       // var_dump($tmpSpecialPriceOption); die();
 		$this->cache->delete('product');
 
 		$this->event->trigger('post.admin.product.edit', $product_id);

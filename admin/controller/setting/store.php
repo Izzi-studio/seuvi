@@ -992,6 +992,36 @@ class ControllerSettingStore extends Controller {
 			$data['config_secure'] = '';
 		}
 
+
+		if (isset($this->request->post['config_fb_link'])) {
+			$data['config_secure'] = $this->request->post['config_fb_link'];
+		} elseif (isset($store_info['config_fb_link'])) {
+			$data['config_fb_link'] = $store_info['config_fb_link'];
+		} else {
+			$data['config_fb_link'] = '';
+		}
+		if (isset($this->request->post['config_inst_link'])) {
+			$data['config_inst_link'] = $this->request->post['config_inst_link'];
+		} elseif (isset($store_info['config_inst_link'])) {
+			$data['config_inst_link'] = $store_info['config_inst_link'];
+		} else {
+			$data['config_inst_link'] = '';
+		}
+		if (isset($this->request->post['config_tiktiok_link'])) {
+			$data['config_tiktiok_link'] = $this->request->post['config_tiktiok_link'];
+		} elseif (isset($store_info['config_tiktiok_link'])) {
+			$data['config_tiktiok_link'] = $store_info['config_tiktiok_link'];
+		} else {
+			$data['config_tiktiok_link'] = '';
+		}
+		if (isset($this->request->post['config_tg_link'])) {
+			$data['config_tg_link'] = $this->request->post['config_tg_link'];
+		} elseif (isset($store_info['config_tg_link'])) {
+			$data['config_tg_link'] = $store_info['config_tg_link'];
+		} else {
+			$data['config_tg_link'] = '';
+		}
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
