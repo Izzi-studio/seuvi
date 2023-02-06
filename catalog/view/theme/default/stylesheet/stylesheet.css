@@ -691,5 +691,86 @@ button.addto img{
 	line-height: 136.87%;
 	color: #BDBDBD;
 }
+.consult{
+	margin-left: -40px;
+	margin-right: -40px;
+}
+.consult .girl_bg{
+	background: url('/image/seuvi/consult_girl.png')no-repeat center;
+	background-size: cover;
+}
+.consult .col-lg-7{
+	padding: 140px 50px;
+	background: #F9EDED;
+	position: relative;
+}
+.consult .stamp{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.consult h3{
+	font-weight: 400;
+	font-size: 60px;
+	line-height: 139.37%;
+	text-transform: uppercase;
+	color: #343F24;
+	margin-bottom: 4px;
+}
+.consult .desc{
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 136.87%;
+	margin-bottom: 50px;
+	color: #343F24;
+}
+.consult form input[type="text"]{
+	border: 1px solid #343F24;
+	border-radius: 3px;
+	background: rgba(255,255,255,.5);
+	padding: 17px 24px;
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 139.37%;
+	color: #BDBDBD;
+	margin-right: 10px;
+	width: 100%;
+}
+.consult form input[type="submit"]{
+	border: 1px solid #343F24;
+	border-radius: 3px;
+	background: #343F24;
+	padding: 17px 10px;
+	width: 320px;
+	text-align: center;
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 139.37%;
+	color: #FFFFFF;
+	transition: all .3s ease;
+	flex: none;
+}
+.consult form input[type="submit"]:hover{
+	color:#343F24;
+	background: none;
+}
+.consult form{
+	display: flex;
+	align-items: center;
+}
 
 /*End home*/
+
+
+/*Footer*/
+
+footer{
+	background: #343F24;
+	color:#fff;
+	padding-top: 50px;
+}
+footer a{
+	color: #fff;
+}
+
+/*End footer*/

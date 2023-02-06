@@ -38,8 +38,9 @@
         </ul>
       </div>
     </div>
-    <hr>
-    <p><?php echo $powered; ?></p>
+    <div class="copy">
+      <?php echo $powered; ?>
+    </div>
   </div>
 </footer>
 
