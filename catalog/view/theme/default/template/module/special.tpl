@@ -2,7 +2,7 @@
 <h3><?php echo $heading_title; ?></h3>
 <div class="owl-carousel prods_list">
   <?php foreach ($products as $product) { ?>
-  <div class="product-layout">
+  <div class="product-layout item">
     <div class="product-thumb transition">
       <div class="image">
         <button type="button" class="btn_wishlist" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><img src="/image/seuvi/wish_icon.svg"></button>
@@ -65,11 +65,17 @@
 
         <?php if ($option['type'] == 'radio') { ?>
         <div class="form-group<?php echo ($option['required'] ? ' required' : ''); ?>">
+          <!--<label class="control-label"><?php echo $option['name']; ?></label>-->
           <div id="input-option<?php echo $option['product_option_id']; ?>" class="radgroup">
             <?php foreach ($option['product_option_value'] as $option_value) { ?>
             <div class="radio">
-              <input id="prod_option_act_<?php echo $option_value['product_option_value_id']; ?>" type="radio" name="option[<?php echo $option['product_option_id']; ?>]" value="<?php echo $option_value['product_option_value_id']; ?>" data-opt-price = "<?php echo $option_value['price_only']; ?>"/>
-              <label for="prod_option_act_<?php echo $option_value['product_option_value_id']; ?>">
+              <input type="radio" id="prod_option_<?php echo $option_value['product_option_value_id']; ?>"
+                     name="option[<?php echo $option['product_option_id']; ?>]"
+                     value="<?php echo $option_value['product_option_value_id']; ?>"
+                     data-option-price = "<?php echo $option_value['price']; ?>"
+                     data-price-special = "<?php echo $option_value['price_special']; ?>"
+                     data-percent-sale = "<?php echo $option_value['percent_sale']; ?>" <?php if ($option_value['default_selected']) { ?> checked <?php } ?>/>
+              <label for="prod_option_<?php echo $option_value['product_option_value_id']; ?>">
                 <?php echo $option_value['name']; ?>
                 <!--<?php if ($option_value['price']) { ?>
                 (<?php echo $option_value['price_prefix']; ?><?php echo $option_value['price']; ?>)
