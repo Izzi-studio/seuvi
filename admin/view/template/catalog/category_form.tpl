@@ -101,6 +101,21 @@
                   </div>
                 </div>
               </div>
+
+              <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-filter"><span data-toggle="tooltip" title="Топ товары">Топ товары</span></label>
+                <div class="col-sm-10">
+                  <input type="text" name="product" value="" placeholder="Топ товары" id="input-filter" class="form-control" />
+                  <div id="category-products" class="well well-sm" style="height: 150px; overflow: auto;">
+                    <?php foreach ($top_products as $top_product) { ?>
+                    <div id="category-product<?php echo $top_product['product_id']; ?>"><i class="fa fa-minus-circle"></i> <?php echo $top_product['name']; ?>
+                      <input type="hidden" name="top_product[]" value="<?php echo $top_product['product_id']; ?>" />
+                    </div>
+                    <?php } ?>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label"><?php echo $entry_store; ?></label>
                 <div class="col-sm-10">
@@ -284,7 +299,43 @@ $('input[name=\'path\']').autocomplete({
 		$('input[name=\'parent_id\']').val(item['value']);
 	}
 });
-//--></script> 
+//--></script>
+
+  <script type="text/javascript"><!--
+    $('input[name=\'product\']').autocomplete({
+      source: function(request, response) {
+        $.ajax({
+          url: 'index.php?route=catalog/product/autocomplete&token=<?php echo $token; ?>&filter_name=' +  encodeURIComponent(request),
+          dataType: 'json',
+          success: function(json) {
+            response($.map(json, function(item) {
+              return {
+                label: item['name'],
+                value: item['product_id']
+              }
+            }));
+          }
+        });
+      },
+      select: function(item) {
+        $('input[name=\'product\']').val('');
+
+        $('#category-products' + item['value']).remove();
+
+        $('#category-products').append('<div id="category-product' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="top_product[]" value="' + item['value'] + '" /></div>');
+      }
+    });
+
+    $('#category-products').delegate('.fa-minus-circle', 'click', function() {
+      $(this).parent().remove();
+    });
+    //--></script></div>
+
+
+
+
+
+
   <script type="text/javascript"><!--
 $('input[name=\'filter\']').autocomplete({
 	'source': function(request, response) {

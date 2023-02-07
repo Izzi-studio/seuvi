@@ -23,14 +23,14 @@ class ControllerCommonFooter extends Controller {
 		$this->load->model('catalog/information');
 
 		$data['informations'] = array();
-
-
-
-
-
-
-
         $data['telephone'] = $this->config->get('config_telephone');
+
+
+
+
+//для футера
+
+
         $data['telephone_footer'] = $this->config->get('config_telephone_footer');
         $data['address'] = $this->config->get('config_address');
         $data['fb_link'] = $this->config->get('config_fb_link');
@@ -67,7 +67,7 @@ class ControllerCommonFooter extends Controller {
 
         $data['text_copyright'] = $this->language->get('text_copyright');
         $data['text_copyright_bottom'] = $this->language->get('text_copyright_bottom');
-
+//для футера конец
 
 		$data['return'] = $this->url->link('account/return/add', '', 'SSL');
 		$data['sitemap'] = $this->url->link('information/sitemap');
