@@ -7,7 +7,7 @@ class ControllerModuleReviews extends Controller {
 		$this->load->model('tool/image');
 
 
-
+        $data['reviews'] = array();
         $cat_id = false;
         $data['path'] = "";
         if(isset($this->request->get['path'])) {

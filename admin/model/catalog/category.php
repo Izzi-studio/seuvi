@@ -33,7 +33,11 @@ class ModelCatalogCategory extends Model {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
 			}
 		}
-
+        if (isset($data['top_product'])) {
+            foreach ($data['top_product'] as $product_id) {
+                $this->db->query("INSERT INTO " . DB_PREFIX . "top_product_in_category SET category_id = '" . (int)$category_id . "', product_id = '" . (int)$product_id . "'");
+            }
+        }
 		if (isset($data['category_store'])) {
 			foreach ($data['category_store'] as $store_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_to_store SET category_id = '" . (int)$category_id . "', store_id = '" . (int)$store_id . "'");
@@ -129,6 +133,13 @@ class ModelCatalogCategory extends Model {
 		if (isset($data['category_filter'])) {
 			foreach ($data['category_filter'] as $filter_id) {
 				$this->db->query("INSERT INTO " . DB_PREFIX . "category_filter SET category_id = '" . (int)$category_id . "', filter_id = '" . (int)$filter_id . "'");
+			}
+		}
+        $this->db->query("DELETE FROM " . DB_PREFIX . "top_product_in_category WHERE category_id = '" . (int)$category_id . "'");
+
+		if (isset($data['top_product'])) {
+			foreach ($data['top_product'] as $product_id) {
+				$this->db->query("INSERT INTO " . DB_PREFIX . "top_product_in_category SET category_id = '" . (int)$category_id . "', product_id = '" . (int)$product_id . "'");
 			}
 		}
 

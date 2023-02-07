@@ -529,6 +529,29 @@ class ControllerCatalogCategory extends Controller {
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
+        $this->load->model('catalog/product');
+        if (isset($this->request->post['top_products'])) {
+            $products = $this->request->post['top_products'];
+        } elseif (isset($this->request->get['category_id'])) {
+            $products = $this->model_catalog_product->getTopProduct($this->request->get['category_id']);
+        } else {
+            $products = array();
+        }
+
+        $data['top_products'] = array();
+
+        foreach ($products as $product_id) {
+            $related_info = $this->model_catalog_product->getProduct($product_id);
+
+            if ($related_info) {
+                $data['top_products'][] = array(
+                    'product_id' => $related_info['product_id'],
+                    'name'       => $related_info['name']
+                );
+            }
+        }
+
+
 		$this->response->setOutput($this->load->view('catalog/category_form.tpl', $data));
 	}
 

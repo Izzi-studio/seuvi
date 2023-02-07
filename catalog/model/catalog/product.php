@@ -581,7 +581,17 @@ class ModelCatalogProduct extends Model {
 			return 0;
 		}
 	}
+    public function getTopProduct($category_id) {
+        $product_related_data = array();
 
+        $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "top_product_in_category WHERE category_id = '" . (int)$category_id . "'");
+
+        foreach ($query->rows as $result) {
+            $product_related_data[] = $result['product_id'];
+        }
+
+        return $product_related_data;
+    }
     private function getSqlCustomFlags($flags){
         $sql = '';
         if(!empty($flags)){
