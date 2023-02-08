@@ -31,7 +31,7 @@
   <!--End subcats-->
 
 
-  <div class="row">
+  <div class="row cat_content">
     <?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
     <?php $class = 'col-sm-6'; ?>
@@ -43,18 +43,15 @@
     <div id="content" class="<?php echo $class; ?>">
 
       <?php if ($products) { ?>
-      <p><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>
+      <!--<p><a href="<?php echo $compare; ?>" id="compare-total"><?php echo $text_compare; ?></a></p>-->
       <div class="row">
-        <div class="col-md-4">
+        <!--<div class="col-md-4">
           <div class="btn-group hidden-xs">
             <button type="button" id="list-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_list; ?>"><i class="fa fa-th-list"></i></button>
             <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_grid; ?>"><i class="fa fa-th"></i></button>
           </div>
-        </div>
-        <div class="col-md-2 text-right">
-          <label class="control-label" for="input-sort"><?php echo $text_sort; ?></label>
-        </div>
-        <div class="col-md-3 text-right">
+        </div>-->
+        <div class="col-12">
           <select id="input-sort" class="form-control" onchange="location = this.value;">
             <?php foreach ($sorts as $sorts) { ?>
             <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
@@ -65,7 +62,7 @@
             <?php } ?>
           </select>
         </div>
-        <div class="col-md-1 text-right">
+        <!--<div class="col-md-1 text-right">
           <label class="control-label" for="input-limit"><?php echo $text_limit; ?></label>
         </div>
         <div class="col-md-2 text-right">
@@ -78,7 +75,7 @@
             <?php } ?>
             <?php } ?>
           </select>
-        </div>
+        </div>-->
       </div>
       <br />
       <div class="row">
@@ -103,12 +100,16 @@
     </div>
     </div>
   <div class="cat_bottom">
-    <?php echo $content_bottom; ?>
     <?php if ($description) { ?>
-      <div class="cat_desc">
-        <?php echo $description; ?>
+    <div class="cat_desc">
+      <div class="row justify-content-center">
+        <div class="col-lg-10">
+          <?php echo $description; ?>
+        </div>
       </div>
+    </div>
     <?php } ?>
+    <?php echo $content_bottom; ?>
   </div>
 </div>
 <?php echo $footer; ?>

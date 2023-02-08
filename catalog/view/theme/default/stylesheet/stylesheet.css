@@ -951,9 +951,217 @@ h1.cat_title{
 	line-height: 25px;
 	color: #343F24;
 }
-
-
-
+select#input-sort{
+	font-weight: 400;
+	height: auto;
+	width: auto;
+	font-size: 26px;
+	line-height: 35px;
+	color: #343F24;
+	border: 0;
+	padding-left: 45px;
+	background: url('/image/seuvi/sort.svg')no-repeat left;
+	display: inline-block;
+	padding-top: 0;
+	padding-bottom: 0;
+	appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+select#input-sort option{
+	font-size: 16px;
+	padding-left: 0;
+}
+.cat_content{
+	margin-bottom: 75px;
+}
+.cat_desc{
+	margin-bottom: 100px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+}
+.cat_desc h3{
+	font-weight: 600;
+	font-size: 24px;
+	line-height: 33px;
+	color: #000000;
+}
+.prod_revs .item{
+	padding: 5px;
+}
+.prod_revs .item .rev{
+	padding: 15px;
+	border: 1px solid #FFBBBB;
+	border-radius: 5px;
+}
+.prod_revs .item .image{
+	width: 40%;
+	flex:none;
+	background: #FFF8F8;
+	border-radius: 5px;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 15px;
+}
+.prod_revs .item .image img{
+	width: 100px;
+	max-width: 100%;
+}
+.prod_revs .flexed_info{
+	display: flex;
+	margin-bottom: 15px;
+}
+.prod_revs .flexed_info .info{
+	display: flex;
+	width: 100%;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.prod_revs .author_date{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 15px;
+}
+.prod_revs .author_date .author{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #000000;
+}
+.prod_revs .author_date .date{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #828282;
+}
+.prod_revs .name{
+	font-weight: 600;
+	font-size: 14px;
+	line-height: 140%;
+	color: #343F24;
+	margin-bottom: 4px;
+}
+.prod_revs .price{
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 140%;
+	margin-bottom: 8px;
+	color: #343F24;
+}
+.prod_revs .desc{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #000000;
+}
+.prod_revs_car{
+	padding: 0 30px;
+}
+.prod_revs .owl-carousel .owl-nav button.disabled{
+	opacity: .2;
+}
+.prod_revs .owl-carousel .owl-nav button{
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+}
+.prod_revs .owl-carousel .owl-nav button.owl-prev{
+	left: -2px;
+}
+.prod_revs .owl-carousel .owl-nav button.owl-next{
+	right: -2px;
+}
+.faqs h3,
+.top_prods h3,
+.prod_revs h3{
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 54px;
+	text-transform: uppercase;
+	color: #343F24;
+	margin-bottom: 30px;
+}
+.faqs,
+.prod_revs{
+	margin-bottom: 60px;
+}
+.top_prods{
+	margin-bottom: 100px;
+}
+.top_prods .row{
+	margin-top: 22px;
+	margin-bottom: 22px;
+	align-items: center;
+}
+.top_prods .row.hd{
+	margin-bottom: 14px;
+	margin-top: 0;
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	color: #828282;
+	text-transform: capitalize;
+}
+.top_prods a{
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 25px;
+	text-decoration: underline;
+	color: #000000;
+}
+.top_prods a:hover{
+	text-decoration: none;
+}
+.top_prods .price{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 25px;
+	color: #000000;
+}
+.faqs .item{
+	border-radius: 10px;
+	border: 1px solid #F9EDED;
+	margin-bottom: 24px;
+}
+.faqs .question{
+	border-radius: 10px;
+	background: #F9EDED;
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 38px;
+	color: #000000;
+	padding: 32px 190px 32px 90px;
+	position: relative;
+	cursor: pointer;
+}
+.faqs .question img{
+	position: absolute;
+	right: 90px;
+	top: 50%;
+	transform: translateY(-50%);
+	transition: all .3s ease;
+}
+.faqs .item.opened .question img{
+	transform: translateY(-50%) rotate(180deg);
+}
+.faqs .answer{
+	padding: 30px 90px;
+	display: none;
+}
+.cat_bottom{
+	display: flex;
+	flex-direction: column;
+}
+.cat_bottom .prod_revs{
+	order: -1;
+}
+.cat_bottom .cat_desc{
+	order: 0;
+}
 
 /*End category*/
 /*Footer*/
