@@ -33,16 +33,17 @@ class ControllerCommonFooter extends Controller {
 
         $data['telephone_footer'] = $this->config->get('config_telephone_footer');
         $data['address'] = $this->config->get('config_address');
+        $data['email_footer'] = $this->config->get('config_email');
         $data['fb_link'] = $this->config->get('config_fb_link');
         $data['inst_link'] = $this->config->get('config_inst_link');
         $data['tiktok_link'] = $this->config->get('config_tiktok_link');
         $data['tg_link'] = $this->config->get('config_tg_link');
 
         $data['heading_text_column_1'] = $this->language->get('heading_text_column_1');
-            $data['text_column_1_sitemap'] = $this->language->get('heading_text_column_1_sitemap');
-            $data['sitemap'] = $this->url->link('information/sitemap');
-            $data['text_column_1_contact_contact'] = $this->language->get('heading_text_column_1_contact');
-            $data['contact'] = $this->url->link('information/contact');
+        $data['text_column_1_sitemap'] = $this->language->get('heading_text_column_1_sitemap');
+        $data['sitemap'] = $this->url->link('information/sitemap');
+        $data['text_column_1_contact_contact'] = $this->language->get('heading_text_column_1_contact');
+        $data['contact'] = $this->url->link('information/contact');
 
         $data['heading_text_column_2'] = $this->language->get('heading_text_column_2');
             foreach ($this->model_catalog_information->getInformations() as $result) {

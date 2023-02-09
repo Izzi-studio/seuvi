@@ -1471,8 +1471,6 @@ select#input-sort option{
 .f_cat.prod_car .owl-carousel{
 	margin: 0 1px;
 }
-
-
 /*End product*/
 
 /*Footer*/
@@ -1485,5 +1483,91 @@ footer{
 footer a{
 	color: #fff;
 }
+.foot_cols{
+	display: flex;
+	justify-content: space-between;
+}
+.foot_cols .foot_col{
+	margin-right: 30px;
+}
+.foot_cols .foot_col:last-child{
+	margin-right: 0;
+}
+footer .container-fluid{
+	border-top:1px solid #46582B;
+	padding: 20px 40px;
+}
+footer .copyright{
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 17px;
+	color: #828282;
+}
+footer .foot_icons{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+footer .foot_icons img{
+	margin: 0 9px;
+}
+footer .container{
+	padding-bottom: 40px;
+}
+.social_footer .flexed{
+	justify-content: center;
+	margin-top: 40px;
+}
+.social_footer .flexed a{
+	display: flex;
+	margin: 0 15px;
+}
+.foot_heading{
+	font-weight: 400;
+	font-size: 21px;
+	line-height: 29px;
+	margin-bottom: 12px;
+	text-transform: uppercase;
+	color: #FDFFFC;
+}
+footer ul{
+	padding: 0;
+	margin: 0;
+}
+footer ul li{
+	display: block;
+	margin-bottom: 8px;
+}
+footer ul li a{
+	text-decoration: none;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #FDFFFC;
+}
+footer a:hover{
+	color:#fff;
+}
+footer .infos{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #FDFFFC;
+}
+footer .infos>div{
+	margin-bottom: 8px;
+	padding-left: 34px;
+}
+footer .infos>div.address{
+	background: url('/image/seuvi/foot_addr.svg')no-repeat left top;
+}
+footer .infos>div.phones{
+	background: url('/image/seuvi/foot_phone.svg')no-repeat left top;
+}
+footer .infos>div.email{
+	background: url('/image/seuvi/foot_mail.svg')no-repeat left top;
+}
+
+
 
 /*End footer*/
