@@ -65,6 +65,7 @@
                     <?php foreach ($product['options'] as $option) { ?>
 
                     <?php if ($option['type'] == 'radio') { ?>
+                    <form>
                     <div class="form-group<?php echo ($option['required'] ? ' required' : ''); ?>">
                         <!--<label class="control-label"><?php echo $option['name']; ?></label>-->
                         <div id="input-option<?php echo $option['product_option_id']; ?>" class="radgroup">
@@ -86,6 +87,7 @@
                             <?php } ?>
                         </div>
                     </div>
+                    </form>
                     <?php } ?>
                     <?php } ?>
                     <input type="hidden" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />

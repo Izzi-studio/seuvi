@@ -7,7 +7,7 @@
                 <img src="/image/seuvi/faq_drop.svg">
             </div>
             <div class="answer">
-                <?php echo $faq['description'] ?><br>
+                <?php echo $faq['description'] ?>
             </div>
         </div>
     <?php } ?>

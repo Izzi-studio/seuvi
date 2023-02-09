@@ -40,7 +40,8 @@
         <?php if (!$product['special']) { ?>
         <?php echo $product['price']; ?>
         <?php } else { ?>
-        <span class="price-old"><?php echo $product['price']; ?></span> <span class="price-new"><?php echo $product['special']; ?></span>
+            <span class="price-old"><?php echo $product['price']; ?></span>
+             <span class="price-new"><?php echo $product['special']; ?></span>
         <?php } ?>
         <?php if ($product['tax']) { ?>
         <br />
@@ -127,7 +128,8 @@
                     <?php if (!$product['special']) { ?>
                     <?php echo $product['price']; ?>
                     <?php } else { ?>
-                    <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
+                        <span class="price-old"><?php echo $product['price']; ?></span>
+                        <span class="price-new"><?php echo $product['special']; ?></span>
                     <?php } ?>
                     <!--<?php if ($product['tax']) { ?>
                     <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
@@ -140,6 +142,7 @@
                     <?php foreach ($product['options'] as $option) { ?>
 
                     <?php if ($option['type'] == 'radio') { ?>
+                    <form>
                     <div class="form-group<?php echo ($option['required'] ? ' required' : ''); ?>">
                         <!--<label class="control-label"><?php echo $option['name']; ?></label>-->
                         <div id="input-option<?php echo $option['product_option_id']; ?>" class="radgroup">
@@ -161,6 +164,7 @@
                             <?php } ?>
                         </div>
                     </div>
+                    </form>
                     <?php } ?>
                     <?php } ?>
                     <input type="hidden" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />

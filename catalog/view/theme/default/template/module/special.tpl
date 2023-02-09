@@ -51,7 +51,8 @@
           <?php if (!$product['special']) { ?>
           <?php echo $product['price']; ?>
           <?php } else { ?>
-          <span class="price-new"><?php echo $product['special']; ?></span> <span class="price-old"><?php echo $product['price']; ?></span>
+          <span class="price-old"><?php echo $product['price']; ?></span>
+          <span class="price-new"><?php echo $product['special']; ?></span>
           <?php } ?>
           <!--<?php if ($product['tax']) { ?>
           <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
@@ -64,18 +65,19 @@
         <?php foreach ($product['options'] as $option) { ?>
 
         <?php if ($option['type'] == 'radio') { ?>
+        <form>
         <div class="form-group<?php echo ($option['required'] ? ' required' : ''); ?>">
           <!--<label class="control-label"><?php echo $option['name']; ?></label>-->
           <div id="input-option<?php echo $option['product_option_id']; ?>" class="radgroup">
             <?php foreach ($option['product_option_value'] as $option_value) { ?>
             <div class="radio">
-              <input type="radio" id="prod_option_<?php echo $option_value['product_option_value_id']; ?>"
+              <input type="radio" id="spec_prod_option_<?php echo $option_value['product_option_value_id']; ?>"
                      name="option[<?php echo $option['product_option_id']; ?>]"
                      value="<?php echo $option_value['product_option_value_id']; ?>"
                      data-option-price = "<?php echo $option_value['price']; ?>"
                      data-price-special = "<?php echo $option_value['price_special']; ?>"
                      data-percent-sale = "<?php echo $option_value['percent_sale']; ?>" <?php if ($option_value['default_selected']) { ?> checked <?php } ?>/>
-              <label for="prod_option_<?php echo $option_value['product_option_value_id']; ?>">
+              <label for="spec_prod_option_<?php echo $option_value['product_option_value_id']; ?>">
                 <?php echo $option_value['name']; ?>
                 <!--<?php if ($option_value['price']) { ?>
                 (<?php echo $option_value['price_prefix']; ?><?php echo $option_value['price']; ?>)
@@ -85,6 +87,7 @@
             <?php } ?>
           </div>
         </div>
+        </form>
         <?php } ?>
         <?php } ?>
         <input type="hidden" name="quantity" value="1" size="2" id="input-quantity" class="form-control" />
