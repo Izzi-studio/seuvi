@@ -3,6 +3,9 @@ $_ = array (
   'text_items' => 'Товаров %s (%s)',
   'text_empty' => 'Ваша корзина пуста!',
   'text_cart' => 'Посмотреть корзину',
-  'text_checkout' => 'Оформление покупки',
+  'text_checkout' => 'Оформление',
   'text_recurring' => 'Платежный профиль',
+    'text_cart_name' => 'Корзина',
+    'text_continue_shopping' => 'Продолжить покупки',
+    'text_total' => 'Всего'
 );

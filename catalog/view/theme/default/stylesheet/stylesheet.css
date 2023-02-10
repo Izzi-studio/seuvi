@@ -30,6 +30,12 @@ button:focus{
 
 /*Header*/
 
+#main_header #cart{
+	width: auto;
+}
+#main_header #cart button.dropdown-toggle i{
+	display: none!important;
+}
 #topban{
 	font-weight: 400;
 	font-size: 18px;
@@ -1472,6 +1478,127 @@ select#input-sort option{
 	margin: 0 1px;
 }
 /*End product*/
+
+/*Minicart*/
+
+#minicart .modal-content{
+	padding: 25px;
+}
+#minicart ul.load_json{
+	padding: 0;
+	margin: 0;
+}
+#minicart ul.load_json li{
+	display: block;
+}
+#minicart .topper{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+#minicart .topper h3{
+	margin-bottom: 0;
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 38px;
+	text-transform: uppercase;
+	color: #343F24;
+}
+#minicart .topper a.closeme{
+	cursor: pointer;
+}
+.cart_prods a.image{
+	padding: 5px 20px;
+	display: block;
+	background: #FFF8F8;
+}
+.cart_prods .row{
+	padding-top: 24px;
+	padding-bottom: 24px;
+	border-bottom: 1px solid #F9EDED;
+}
+.cart_prods .row:last-child{
+	border-bottom: 0;
+}
+.cart_prods a.image img.img-thumbnail{
+	padding: 0;
+	background: none;
+	background-color: transparent;
+	border: 0;
+	border-radius: 0;
+}
+#main_header .flexed .cart_prods a.prod_name{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 140%;
+	color: #343F24;
+}
+.cart_prods .prod_option{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 140%;
+	color: #1F1F1F;
+	margin-top: 2px;
+}
+.cart_prods{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 140%;
+	color: #343F24;
+}
+.cart_prods button.remove_prod{
+	background: none;
+	border: 0;
+	padding: 0;
+	width:24px;
+	height: 24px;
+	background: #F9EDED;
+	border-radius: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+#minicart a.continue{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	padding-left: 30px;
+	background: url('/image/seuvi/continue_shopping.svg')no-repeat left;
+	color: #46582B;
+}
+#minicart .bbg{
+	background: #F7F8F5;
+	border-radius: 10px;
+	padding: 10px 30px;
+}
+#minicart .text_total{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 140%;
+	color: #343F24;
+}
+#minicart .val_total{
+	font-weight: 600;
+	font-size: 34px;
+	line-height: 140%;
+	color: #343F24;
+}
+#main_header .flexed #minicart a.checkout_btn{
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 140%;
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #FFFFFF;
+	background: #343F24;
+	border-radius: 3px;
+}
+
+
+/*End minicart*/
 
 /*Footer*/
 

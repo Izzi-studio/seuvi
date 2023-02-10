@@ -158,9 +158,9 @@
         <a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>">
             <?php echo $wishlist_count; ?>
         </a>
-        <a href="<?php echo $shopping_cart; ?>" title="<?php echo $text_shopping_cart; ?>">
+
           <?php echo $cart; ?>
-        </a>
+
       </div>
     </div>
   </div>
