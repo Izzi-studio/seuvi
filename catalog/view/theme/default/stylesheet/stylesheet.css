@@ -1647,6 +1647,61 @@ select#input-sort option{
 .information-contact #content form{
 	margin-bottom: 60px;
 }
+.account-register #column-left,
+.account-forgotten #column-left,
+.account-login #column-left{
+	display: none;
+}
+body[class^="account"] #content{
+	margin-bottom: 60px;
+}
+a{
+	color:#343F24;
+}
+a:hover{
+	color:#343F24;
+	opacity: .8;
+}
+.flexed.just{
+	justify-content: space-between;
+}
+.account-register .buttons{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+body[class^="account"] #content input[type="radio"],
+body[class^="account"] #content input[type="checkbox"]{
+	display:none;
+}
+body[class^="account"] #content input[type="radio"]+label,
+body[class^="account"] #content input[type="checkbox"]+label{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #1F1F1F;
+	padding-left: 30px;
+	cursor: pointer;
+	position: relative;
+	padding-right: 15px;
+}
+body[class^="account"] #content input[type="radio"]+label:before,
+body[class^="account"] #content input[type="checkbox"]+label:before{
+	width: 18px;
+	height: 18px;
+	background: url('/image/seuvi/uncheck.svg');
+	border: 0;
+	padding: 0;
+	content: '';
+	top: 50%;
+	margin-top: -9px;
+	position: absolute;
+	left: 0;
+}
+body[class^="account"] #content input[type="radio"]:checked+label:before,
+body[class^="account"] #content input[type="checkbox"]:checked+label:before{
+	background: url('/image/seuvi/check.svg');
+}
 
 /*End info pages*/
 

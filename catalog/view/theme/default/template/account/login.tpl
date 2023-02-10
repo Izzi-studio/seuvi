@@ -19,7 +19,7 @@
     <?php } else { ?>
     <?php $class = 'col-sm-12'; ?>
     <?php } ?>
-    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+    <div id="content" class="col-12"><?php echo $content_top; ?>
       <div class="row">
         <div class="col-sm-6">
           <div class="well">
@@ -31,7 +31,7 @@
         <div class="col-sm-6">
           <div class="well">
             <h2><?php echo $text_returning_customer; ?></h2>
-            <p><strong><?php echo $text_i_am_returning_customer; ?></strong></p>
+
             <form action="<?php echo $action; ?>" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label class="control-label" for="input-email"><?php echo $entry_email; ?></label>
@@ -40,8 +40,12 @@
               <div class="form-group">
                 <label class="control-label" for="input-password"><?php echo $entry_password; ?></label>
                 <input type="password" name="password" value="<?php echo $password; ?>" placeholder="<?php echo $entry_password; ?>" id="input-password" class="form-control" />
-                <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a></div>
-              <input type="submit" value="<?php echo $button_login; ?>" class="btn btn-primary" />
+
+              </div>
+              <div class="flexed just">
+                <a href="<?php echo $forgotten; ?>"><?php echo $text_forgotten; ?></a>
+                <input type="submit" value="<?php echo $button_login; ?>" class="btn btn-primary" />
+              </div>
               <?php if ($redirect) { ?>
               <input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
               <?php } ?>
