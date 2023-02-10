@@ -100,7 +100,8 @@ class ControllerQuickCheckoutShippingMethod extends Controller {
 		$data['text_shipping_method'] = $this->language->get('text_shipping_method');
 		$data['text_estimated_delivery'] = $this->language->get('text_estimated_delivery');
 		$data['text_delivery'] = $this->language->get('text_delivery');
-		
+		$data['entry_free'] = $this->language->get('entry_free');
+
 		if ($this->config->get('quickcheckout_delivery_time') == '2') {
 			$min = $this->config->get('quickcheckout_delivery_min');
 			$max = $this->config->get('quickcheckout_delivery_max');

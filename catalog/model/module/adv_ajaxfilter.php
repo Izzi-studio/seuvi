@@ -1486,4 +1486,26 @@ class ModelModuleAdvajaxfilter extends Model {
         return $sql;
     }
 
+    private function getSqlCustomFlagsCustom($flags){
+        $sql = '';
+        $index = 0;
+        if(!empty($flags)){
+            foreach ($flags as $flag=>$value) {
+                if(count($flags)>1){
+                    if ($index = 0) {
+                        $sql .= " AND p." . $flag . " = 1";
+                    }else{
+                        $sql .= " OR p." . $flag . " = 1";
+                    }
+                }else {
+                    if ($value) {
+                        $sql .= " AND p." . $flag . " = 1";
+                    }
+                }
+                $index++;
+            }
+        }
+        return $sql;
+    }
+
 }

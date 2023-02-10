@@ -25,14 +25,9 @@ class ControllerModuleFeaturedcategory extends Controller {
 
         $data['products'] = array();
 
-
-
 		if (!$setting['limit']) {
 			$setting['limit'] = 4;
 		}
-		
-	    
-		
 
 		//if (!empty($setting['category'])) {
 			//$category = array_slice($setting['category'], 0, (int)$setting['limit']);
@@ -45,7 +40,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                     'flag_select' => 'flag_new'
                 );
                 $results = $this->model_catalog_product->getProducts($filter_data);
-
+                $this->load->model('helper/helper');
                 foreach ($results as $product_info) {
 
                     if ($product_info) {
@@ -62,7 +57,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                         }
 
                         if ((float)$product_info['special']) {
-                            $percentSale = (((int)$product_info['price'] - (int)$product_info['special']) / (int)$product_info['price']) * 100;
+                            $percentSale = round((((int)$product_info['price'] - (int)$product_info['special']) / (int)$product_info['price']) * 100,0);
 
                             $special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
                         } else {
@@ -83,7 +78,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                         }
 
                         $manufacturer = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
-                        $this->load->model('helper/helper');
+
 
                         $data['products'][] = array(
                             'product_id'  => $product_info['product_id'],

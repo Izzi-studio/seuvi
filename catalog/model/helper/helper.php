@@ -23,8 +23,15 @@ class ModelHelperHelper extends Model {
                     }
 
                     if($option_value['price_special']){
-                        $priceSpecial = $this->currency->format($this->tax->calculate($option_value['price_special'], $product['tax_class_id'], $this->config->get('config_tax') ? 'P' : false));
-                        $percentSale = (((int)$option_value['price'] - (int)$option_value['price_special']) / (int)$option_value['price']) * 100;
+
+                        if($option_value['price_special'] != 0){
+                            $percentSale = (((int)$option_value['price'] - (int)$option_value['price_special']) / (int)$option_value['price']) * 100;
+                            $priceSpecial = $this->currency->format($this->tax->calculate($option_value['price_special'], $product['tax_class_id'], $this->config->get('config_tax') ? 'P' : false));
+                        }else{
+                            $percentSale = false;
+                            $priceSpecial = false;
+                        }
+
                     }else{
                         $priceSpecial = false;
                         $percentSale = false;

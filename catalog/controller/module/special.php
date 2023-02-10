@@ -43,7 +43,7 @@ class ControllerModuleSpecial extends Controller {
 				}
 
                 if ((float)$result['special']) {
-                    $percentSale = (((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100  ;
+                    $percentSale = round((((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100,0)  ;
 
                     $special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
                 } else {

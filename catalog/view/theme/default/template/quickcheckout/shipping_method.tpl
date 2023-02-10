@@ -31,7 +31,7 @@ foreach ($shipping_methods as $shipping_method) {
       <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
       <?php } ?></td>
     <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
-    <td style="text-align: right;" class="rtl-left"><label for="<?php echo $quote['code']; ?>"><span class="shipping-sum"><?php echo $quote['text']; ?></span></label></td>
+      <td style="text-align: right;" class="rtl-left"><label for="<?php echo $quote['code']; ?>"><?php if ($quote['code'] == 'pickup.pickup') { ?><span class="shipping-sum "><?php echo $entry_free; ?></span> <?php } ?><!--<span class="shipping-sum "><?php echo $quote['text']; ?></span> --></label></td>
   </tr>
   <?php } ?>
   <?php } else { ?>
@@ -89,9 +89,43 @@ foreach ($shipping_methods as $shipping_method) {
   <?php echo $estimated_delivery; ?><br />
   <?php echo $estimated_delivery_time; ?>
 <?php } else { ?>
+
+<div id="custom_fields_shipping"></div>
+
+
+
+<div id="ukr_post">
+
+</div>
+
+<div id="ukr_post_int">
+
+</div>
   <input type="text" name="delivery_date" value="" class="hide" />
   <select name="delivery_time" class="hide"><option value=""></option></select>
 <?php } ?>
+
+
+<script>
+    function loadFields(methodName) {
+        $.ajax({
+            url: 'index.php?route=quickcheckout/shippingdata/'+methodName,
+            type: 'post',
+            data: '',
+            dataType: 'html',
+            cache: false,
+            success: function(data) {
+                $('#custom_fields_shipping').html('');
+                var html= '';
+                dataFields = JSON.parse(data)
+                $('#custom_fields_shipping').html(dataFields.html);
+
+            }
+
+        });
+    }
+</script>
+
 
 <script type="text/javascript"><!--
 $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[name=\'shipping_method\']').on('change', function() {
@@ -101,6 +135,14 @@ $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[nam
 		} else {
 			var post_data = $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address input[type=\'hidden\'], #shipping-address select, #shipping-method input[type=\'text\'], #shipping-method input[type=\'checkbox\']:checked, #shipping-method input[type=\'radio\']:checked, #shipping-method input[type=\'hidden\'], #shipping-method select');
 		}
+        $('#custom_fields_shipping').html('');
+
+		if($(this).val() == 'novaposhta.warehouse'){
+            loadFields('getTplNpFields')
+        }
+		if($(this).val() == 'ukrposhta.ukrposhta'){
+            loadFields('getTplUkrposhtaFields')
+        }
 
 		$.ajax({
 			url: 'index.php?route=quickcheckout/shipping_method/set',

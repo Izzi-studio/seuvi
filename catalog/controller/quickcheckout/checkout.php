@@ -1,7 +1,9 @@
 <?php  
 class ControllerQuickCheckoutCheckout extends Controller { 
 	public function index() {
-
+//unset( $this->session->data['shipping_address']);
+//unset( $this->session->data['payment_address']);
+//var_dump( $this->session->data);
 		/*if (!$this->customer->isLogged() && !$this->config->get('config_checkout_guest')) {
 		$this->response->redirect($this->url->link('account/login', '', 'SSL'));
 		}*/

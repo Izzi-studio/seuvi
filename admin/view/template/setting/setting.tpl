@@ -39,8 +39,47 @@
             <li><a href="#tab-ftp" data-toggle="tab"><?php echo $tab_ftp; ?></a></li>
             <li><a href="#tab-mail" data-toggle="tab"><?php echo $tab_mail; ?></a></li>
             <li><a href="#tab-server" data-toggle="tab"><?php echo $tab_server; ?></a></li>
+            <li><a href="#tab-additional" data-toggle="tab">Дополниетельные поля</a></li>
           </ul>
           <div class="tab-content">
+            <div class="tab-pane" id="tab-additional">
+              <div class="tab-pane " id="tab-additional">
+                <ul class="nav nav-tabs" id="language">
+                  <?php foreach ($languages as $language) { ?>
+                  <li><a href="#language<?php echo $language['language_id']; ?>" data-toggle="tab"><img src="view/image/flags/<?php echo $language['image']; ?>" title="<?php echo $language['name']; ?>" /> <?php echo $language['name']; ?></a></li>
+                  <?php } ?>
+                </ul>
+                <div class="tab-content">
+                  <?php foreach ($languages as $language) { ?>
+                  <div class="tab-pane" id="language<?php echo $language['language_id']; ?>">
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-meta-description<?php echo $language['language_id']; ?>">Текст доставки в товаре</label>
+                      <div class="col-sm-10">
+                        <textarea name="config_shipping_text<?php echo $language['code']; ?>" rows="5" placeholder="Текст доставки в товаре" id="input-shipping-in-product<?php echo $language['language_id']; ?>" class="form-control"><?php echo $config_shipping_text[$language['code']]; ?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-meta-description<?php echo $language['language_id']; ?>">Текст оплаты в товаре</label>
+                      <div class="col-sm-10">
+                        <textarea name="config_pay_text<?php echo $language['code']; ?>" rows="5" placeholder="Текст оплаты в товаре" id="input-pay-in-product<?php echo $language['language_id']; ?>" class="form-control"><?php echo $config_pay_text[$language['code']]; ?></textarea>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-meta-description<?php echo $language['language_id']; ?>">Текст возврата в товаре</label>
+                      <div class="col-sm-10">
+                        <textarea name="config_return_text<?php echo $language['code']; ?>" rows="5" placeholder="Текст возврата в товаре" id="input-return-in-product<?php echo $language['language_id']; ?>" class="form-control"><?php echo $config_return_text[$language['code']]; ?></textarea>
+                      </div>
+                    </div>
+
+                  </div>
+                  <?php } ?>
+                </div>
+              </div>
+            </div>
+
             <div class="tab-pane active" id="tab-general">
                 <div class="form-group required">
                   <label class="col-sm-2 control-label" for="input-meta-title"><?php echo $entry_meta_title; ?></label>
@@ -250,6 +289,7 @@
                   </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-language"><?php echo $entry_language; ?></label>
                 <div class="col-sm-10">
@@ -264,6 +304,7 @@
                   </select>
                 </div>
               </div>
+
               <div class="form-group">
                 <label class="col-sm-2 control-label" for="input-admin-language"><?php echo $entry_admin_language; ?></label>
                 <div class="col-sm-10">
@@ -1692,4 +1733,8 @@ $('select[name=\'config_country_id\']').on('change', function() {
 
 $('select[name=\'config_country_id\']').trigger('change');
 //--></script></div>
+
+<script type="text/javascript"><!--
+  $('#language a:first').tab('show');
+  //--></script>
 <?php echo $footer; ?>
