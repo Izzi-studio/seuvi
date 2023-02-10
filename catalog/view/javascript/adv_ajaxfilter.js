@@ -290,7 +290,7 @@ function adv_result(g, b) {
             g.pagination = '<ul class="pagination"></ul>';
         }
 
-        $(".pagination_holder.row .text-right").html(g.pagination_result);
+        //$(".pagination_holder.row .text-right").html(g.pagination_result);
 		$(".pagination_holder.row .text-left").html(g.pagination);
 
 		if (b && g.min_price == g.max_price) {

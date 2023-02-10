@@ -262,14 +262,34 @@ class ControllerProductProduct extends Controller {
 			$data['tab_description'] = $this->language->get('tab_description');
 			$data['tab_attribute'] = $this->language->get('tab_attribute');
 			$data['tab_review'] = sprintf($this->language->get('tab_review'), $product_info['reviews']);
+			$data['tab_beautician_comment'] = $this->language->get('tab_beautician_comment');
+			$data['text_get_free_consultation'] = $this->language->get('text_get_free_consultation');
+
+			$data['text_shipping'] = $this->language->get('text_shipping');
+			$data['text_pay'] = $this->language->get('text_pay');
+			$data['text_return'] = $this->language->get('text_return');
 
 			$data['product_id'] = (int)$this->request->get['product_id'];
 			$data['manufacturer'] = $product_info['manufacturer'];
 			$data['manufacturers'] = $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $product_info['manufacturer_id']);
+
+
+
 			$data['model'] = $product_info['model'];
+			$data['sku'] = $product_info['sku'];
+			$data['text_sku'] = $this->language->get('text_sku');
 			$data['reward'] = $product_info['reward'];
 			$data['points'] = $product_info['points'];
 			$data['description'] = html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8');
+			$data['beautician_comment'] = html_entity_decode($product_info['beautician_comment'], ENT_QUOTES, 'UTF-8');
+
+			$this->load->model('localisation/language');
+			$language = $this->model_localisation_language->getLanguage($this->config->get('config_language_id'));
+			$data['description_pay'] = html_entity_decode($this->config->get('config_pay_text'.$language['code']), ENT_QUOTES, 'UTF-8');
+			$data['description_shipping'] = html_entity_decode($this->config->get('config_shipping_text'.$language['code']), ENT_QUOTES, 'UTF-8');
+			$data['description_return'] = html_entity_decode($this->config->get('config_return_text'.$language['code']), ENT_QUOTES, 'UTF-8');
+
+
 
 			if ($product_info['quantity'] <= 0) {
 				$data['stock'] = $product_info['stock_status'];
@@ -291,6 +311,12 @@ class ControllerProductProduct extends Controller {
 				$data['thumb'] = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_thumb_width'), $this->config->get('config_image_thumb_height'));
 			} else {
 				$data['thumb'] = '';
+			}
+
+			if ($product_info['manufacturer_image']) {
+				$data['manufacturer_image'] = $this->model_tool_image->resize($product_info['manufacturer_image'], 100, 100);
+			} else {
+				$data['manufacturer_image'] = '';
 			}
 
 			$data['images'] = array();
@@ -357,6 +383,8 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$data['reviews'] = sprintf($this->language->get('text_reviews'), (int)$product_info['reviews']);
+			$data['reviews_count'] = $product_info['reviews'];
+
 			$data['rating'] = (int)$product_info['rating'];
 
 			// Captcha
@@ -386,8 +414,10 @@ class ControllerProductProduct extends Controller {
 				}
 
 				if ((float)$result['special']) {
+                    $percentSale = round((((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100,0);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
+                    $percentSale = false;
 					$special = false;
 				}
 
@@ -402,13 +432,15 @@ class ControllerProductProduct extends Controller {
 				} else {
 					$rating = false;
 				}
-
+                $manufacturer = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
 					'reviews'       => $result['reviews'],
 					'thumb'       => $image,
                     'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'        => $result['name'],
+                    'manufacturer'        => $manufacturer['name'],
+                    'percent_sale'     => $percentSale,
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,
 					'special'     => $special,
@@ -442,6 +474,10 @@ class ControllerProductProduct extends Controller {
 			$data['content_bottom'] = $this->load->controller('common/content_bottom');
 			$data['footer'] = $this->load->controller('common/footer');
 			$data['header'] = $this->load->controller('common/header');
+
+			if(isset($this->request->get['dd'])){
+			    var_dump($data);
+            }
 
 			if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/product/product.tpl')) {
 				$this->response->setOutput($this->load->view($this->config->get('config_template') . '/template/product/product.tpl', $data));

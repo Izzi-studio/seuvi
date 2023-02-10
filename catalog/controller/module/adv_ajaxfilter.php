@@ -512,7 +512,8 @@ class ControllerModuleAdvajaxfilter extends Controller {
 			$data['cosyone_default_view'] = $this->config->get('cosyone_default_view');
 
 		$data['products'] = array();
-
+        $this->load->model('helper/helper');
+        $this->load->model('catalog/manufacturer');
 		foreach ($results as $result) {
 			if ($result['image']) {
 				$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
@@ -543,11 +544,14 @@ class ControllerModuleAdvajaxfilter extends Controller {
 			} else {
 				$rating = false;
 			}
+            $manufacturer = $this->model_catalog_manufacturer->getManufacturer($result['manufacturer_id']);
 
 			// Cosyone custom code starts
 			  if ((float)$result['special']) {
+                  $percentSale = round((((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100,0);
 				$sales_percantage = ((($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')))-($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax'))))/(($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')))/100));
 				} else {
+                  $percentSale = false;
 				$sales_percantage = false;
 				}
 				if ((float)$result['special']) {
@@ -571,19 +575,13 @@ class ControllerModuleAdvajaxfilter extends Controller {
 				'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',
 				'price'       => $price,
 				'special'     => $special,
-
-				// Cosyone custom code starts
-			  'sales_percantage' => number_format($sales_percantage, 0, ',', '.'),
-			  'special_date_end' => $special_date_end,
-			  'thumb_hover'  => $this->model_tool_image->resize($images, $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height')),
-			  'brand_name'		=> $result['manufacturer'],
-			  'quickview'        => $this->url->link('product/quickview', 'product_id=' . $result['product_id'], '', 'SSL'),
-			  'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
-			  // Cosyone custom code ends
-
+				'thumb_hover'     => '',
+                'options'        => $this->model_helper_helper->getProductOptions($result),
+                'manufacturer'        => isset($manufacturer['name']) ? $manufacturer['name'] : null,
+                'percent_sale'     => $percentSale,
 				'tax'         => $tax,
 				'rating'      => $result['rating'],
-				'reviews'     => sprintf($this->language->get('text_reviews'), (int)$result['reviews']),
+                'reviews'        => $result['reviews'],
 				'href'        => $this->url->link('product/product', 'path=' . $this->request->get['path'] . '&product_id=' . $result['product_id'])
 			);
 		}

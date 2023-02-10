@@ -31,8 +31,8 @@ class ControllerModuleTopproducts extends Controller {
                 $data['top_products'][] = array(
                     'product_id' => $related_info['product_id'],
                     'price' => $price,
-                    'name'       => $this->url->link('product/product', 'product_id=' . $related_info['product_id']),
-                    'href'       => $related_info['name']
+                    'href'       => $this->url->link('product/product', 'product_id=' . $related_info['product_id']),
+                    'name'       => $related_info['name']
                 );
             }
         }

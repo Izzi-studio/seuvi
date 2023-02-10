@@ -1348,6 +1348,29 @@ class ControllerSettingSetting extends Controller {
             $data['config_telephone_footer'] = $this->config->get('config_telephone_footer');
         }
 
+        foreach ($data['languages'] as $language) {
+
+            if (isset($this->request->post['config_shipping_text'.$language['code']])) {
+                $data['config_shipping_text'][$language['code']]  = $this->request->post['config_shipping_text'.$language['code']];
+            } else {
+                $data['config_shipping_text'][$language['code']]  = $this->config->get('config_shipping_text'.$language['code']);
+            }
+
+            if (isset($this->request->post['config_pay_text'.$language['code']])) {
+                $data['config_pay_text'][$language['code']]  = $this->request->post['config_pay_text'.$language['code']];
+            } else {
+                $data['config_pay_text'][$language['code']]  = $this->config->get('config_pay_text'.$language['code']);
+            }
+
+            if (isset($this->request->post['config_return_text'.$language['code']])) {
+                $data['config_return_text'][$language['code']]  = $this->request->post['config_return_text'.$language['code']];
+            } else {
+                $data['config_return_text'][$language['code']] = $this->config->get('config_return_text'.$language['code']);
+            }
+
+
+        }
+
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

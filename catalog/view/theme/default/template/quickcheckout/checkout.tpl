@@ -308,7 +308,7 @@ function validateGuestAddress() {
 	$.ajax({
 		url: 'index.php?route=quickcheckout/guest/validate',
 		type: 'post',
-		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select'),
+		data: $('#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select, #custom_fields_shipping > #np_fields > select, #custom_fields_shipping > #np_fields > input[type=\'text\']'),
 		dataType: 'json',
 		cache: false,
 		success: function(json) {		
