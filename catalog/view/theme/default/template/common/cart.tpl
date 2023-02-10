@@ -1,52 +1,87 @@
 <div id="cart" class="btn-group btn-block">
-  <button type="button" data-toggle="dropdown" data-loading-text="<?php echo $text_loading; ?>" class="dropdown-toggle"><span id="cart-total"><?php echo $text_items; ?></span></button>
-  <ul class="dropdown-menu pull-right">
+  <button type="button" data-toggle="modal" data-target="#minicart" class="dropdown-toggle">
+    <span id="cart-total"><?php echo $text_items; ?></span>
+  </button>
+  <div id="minicart" class="modal fade">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="topper">
+          <h3><?php echo $text_cart_name;?></h3>
+          <a class="closemodal_cart"><img src="/image/seuvi/close.svg"></a>
+        </div>
+    <ul class="load_json">
     <?php if ($products || $vouchers) { ?>
     <li>
-      <table class="table table-striped">
+      <div class="cart_prods">
         <?php foreach ($products as $product) { ?>
-        <tr>
-          <td class="text-center"><?php if ($product['thumb']) { ?>
-            <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" /></a>
-            <?php } ?></td>
-          <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+        <div class="row align-items-center">
+          <div class="col-md-2">
+            <?php if ($product['thumb']) { ?>
+            <a href="<?php echo $product['href']; ?>" class="image">
+              <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" />
+            </a>
+            <?php } ?>
+          </div>
+          <div class="col-md-5">
+            <a href="<?php echo $product['href']; ?>" class="prod_name">
+              <?php echo $product['name']; ?>
+            </a>
             <?php if ($product['option']) { ?>
             <?php foreach ($product['option'] as $option) { ?>
-            <br />
-            - <small><?php echo $option['name']; ?> <?php echo $option['value']; ?></small>
+            <div class="prod_option">
+              <?php echo $option['value']; ?>
+            </div>
             <?php } ?>
             <?php } ?>
             <?php if ($product['recurring']) { ?>
             <br />
             - <small><?php echo $text_recurring; ?> <?php echo $product['recurring']; ?></small>
-            <?php } ?></td>
-          <td class="text-right">x <?php echo $product['quantity']; ?></td>
-          <td class="text-right"><?php echo $product['total']; ?></td>
-          <td class="text-center"><button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
-        </tr>
+            <?php } ?>
+          </div>
+          <div class="col-md-2 quant">x <?php echo $product['quantity']; ?></div>
+          <div class="col-md-2 total"><?php echo $product['total']; ?></div>
+          <div class="col-md-1">
+            <button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="remove_prod">
+              <img src="/image/seuvi/remove.svg">
+            </button>
+          </div>
+        </div>
         <?php } ?>
         <?php foreach ($vouchers as $voucher) { ?>
-        <tr>
+        <div class="row">
           <td class="text-center"></td>
           <td class="text-left"><?php echo $voucher['description']; ?></td>
           <td class="text-right">x&nbsp;1</td>
           <td class="text-right"><?php echo $voucher['amount']; ?></td>
           <td class="text-center text-danger"><button type="button" onclick="voucher.remove('<?php echo $voucher['key']; ?>');" title="<?php echo $button_remove; ?>" class="btn btn-danger btn-xs"><i class="fa fa-times"></i></button></td>
-        </tr>
+        </div>
         <?php } ?>
-      </table>
+      </div>
     </li>
     <li>
-      <div>
-        <table class="table table-bordered">
-          <?php foreach ($totals as $total) { ?>
-          <tr>
-            <td class="text-right"><strong><?php echo $total['title']; ?></strong></td>
-            <td class="text-right"><?php echo $total['text']; ?></td>
-          </tr>
-          <?php } ?>
-        </table>
-        <p class="text-right"><a href="<?php echo $cart; ?>"><strong><i class="fa fa-shopping-cart"></i> <?php echo $text_cart; ?></strong></a>&nbsp;&nbsp;&nbsp;<a href="<?php echo $checkout; ?>"><strong><i class="fa fa-share"></i> <?php echo $text_checkout; ?></strong></a></p>
+      <div class="tots">
+        <div class="row align-items-center">
+          <div class="col-lg-4">
+            <a class="continue">
+              <?php echo $text_continue_shopping;?>
+            </a>
+          </div>
+          <div class="col-lg-8">
+            <div class="bbg">
+            <div class="row align-items-center">
+              <div class="col-lg-6">
+                  <div class="text_total"><?php echo $text_total;?></div>
+                  <div class="val_total"><?php echo $totals[1]['text']; ?></div>
+              </div>
+              <div class="col-lg-6">
+                <a href="<?php echo $checkout; ?>" class="checkout_btn">
+                  <?php echo $text_checkout; ?>
+                </a>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
       </div>
     </li>
     <?php } else { ?>
@@ -55,4 +90,14 @@
     </li>
     <?php } ?>
   </ul>
+      </div>
+    </div>
+  </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function (){
+    $('a.closemodal_cart,#minicart a.continue').click(function (){
+      $('#minicart').modal('toggle');
+    })
+  })
+</script>

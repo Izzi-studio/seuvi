@@ -15,4 +15,16 @@ $_ = array (
   'text_wishlist' => 'Закладки',
   'text_newsletter' => 'Рассылка',
   'text_powered' => 'Работает на сборке от <a href="http://www.opencart.ru">opencart.ru</a><br /> %s &copy; %s',
+
+'heading_text_column_1' => 'Про магазин',
+'heading_text_column_2' => 'Клиентам',
+'heading_text_column_3' => 'Личный Кабинет',
+'heading_text_column_4' => 'Связаться с нами',
+'heading_text_column_1_sitemap' => 'Карта сайта',
+'heading_text_column_1_contact' => 'Связаться с нами',
+'text_column_3_account' => 'Личный кабинет',
+'text_column_3_text_order_history' => 'История заказов',
+'text_column_3_wishlist' => 'Закладки',
+'text_copyright' => 'Seuvi © 2022. Все права защищены.',
+'text_copyright_bottom' => 'Доставляем корейскую косметику в такие города: Киев, Харьков, Днепр, Львов, Ивано-Франковск, Черновцы, Тернополь, Хмельницкий, Винница, Чернигов, Житомир, Черкасы, Кропивницкий, Одесса, Николаев, Запорожье, Сумы, Ровно, Полтава, Ужгород и в другие города Украины.'
 );

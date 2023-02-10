@@ -21,11 +21,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
   <link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
 <script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+
 <link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Open+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+  <link href="catalog/view/theme/default/stylesheet/stylesheet.css" rel="stylesheet">
+
 <?php foreach ($styles as $style) { ?>
 <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
 <?php } ?>
@@ -38,8 +40,9 @@
 <?php } ?>
 <?php foreach ($analytics as $analytic) { ?>
 <?php echo $analytic; ?>
-<?php } ?>
+<?php } ?><link href="catalog/view/javascript/jquery/owl-carousel/owl.carousel.css" type="text/css" rel="stylesheet" media="screen">
 
+  <script src="catalog/view/javascript/jquery/owl-carousel/owl.carousel.min.js" type="text/javascript"></script>
   <script src="catalog/view/theme/default/js/functions.js" type="text/javascript"></script>
 </head>
 <body class="<?php echo $class; ?>">
@@ -107,7 +110,7 @@
         <div class="topmenu">
           <ul>
             <li>
-              <a href="#">
+              <a href="/newest">
                 <?php echo $text_menu_new;?>
               </a>
             </li>
@@ -155,9 +158,7 @@
         <a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>">
             <?php echo $wishlist_count; ?>
         </a>
-        <a href="<?php echo $shopping_cart; ?>" title="<?php echo $text_shopping_cart; ?>">
-          <?php echo $cart; ?>
-        </a>
+        <?php echo $cart; ?>
       </div>
     </div>
   </div>
