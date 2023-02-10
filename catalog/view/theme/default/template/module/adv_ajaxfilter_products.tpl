@@ -180,8 +180,33 @@
                 </div>
             </div>
         </div>
+        <script>
+            $('.product-layout.item .radgroup input').change(function (){
+                let curprod = $(this).closest('.product-layout');
+                let price = $(this).data('price-special');
+                let old_price = $(this).data('option-price');
+                if(price!==''){
+                    curprod.find('.price').html('<span class="price-old">'+old_price+'</span><span class="price-new">'+price+'</span>');
+                }else{
+                    curprod.find('.price').html(old_price);
+                }
+            });
+            $('.product-layout.item').each(function (){
+                if($(this).find('.radgroup input:checked').length>0){
+                    let curprod = $(this);
+                    let price = $(this).find('.radgroup input:checked').data('price-special');
+                    let old_price = $(this).find('.radgroup input:checked').data('option-price');
+                    if(price!==''){
+                        curprod.find('.price').html('<span class="price-old">'+old_price+'</span><span class="price-new">'+price+'</span>');
+                    }else{
+                        curprod.find('.price').html(old_price);
+                    }
+                }
+            });
+        </script>
     </div>
     </div>
     <?php } ?>
+
     </div>
 </div>
