@@ -12,6 +12,12 @@ body {
 img{
 	max-width: 100%;
 }
+.btn-primary:hover,
+.btn-primary,
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active, .show>.btn-primary.dropdown-toggle{
+	background: #343F24;
+	border: 0;
+}
 input:focus,
 textarea:focus,
 select:focus,
@@ -1505,7 +1511,11 @@ select#input-sort option{
 	text-transform: uppercase;
 	color: #343F24;
 }
+#minicart a.continue,
 #minicart .topper a.closeme{
+	cursor: pointer;
+}
+#minicart .closemodal_cart{
 	cursor: pointer;
 }
 .cart_prods a.image{

@@ -94,3 +94,10 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function (){
+    $('a.closemodal_cart,#minicart a.continue').click(function (){
+      $('#minicart').modal('toggle');
+    })
+  })
+</script>

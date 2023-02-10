@@ -110,7 +110,7 @@
         <div class="topmenu">
           <ul>
             <li>
-              <a href="#">
+              <a href="/newest">
                 <?php echo $text_menu_new;?>
               </a>
             </li>
@@ -158,9 +158,7 @@
         <a href="<?php echo $wishlist; ?>" id="wishlist-total" title="<?php echo $text_wishlist; ?>">
             <?php echo $wishlist_count; ?>
         </a>
-
-          <?php echo $cart; ?>
-
+        <?php echo $cart; ?>
       </div>
     </div>
   </div>
