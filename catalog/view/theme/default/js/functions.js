@@ -12,4 +12,16 @@ $(document).ready(function (){
         $(this).closest('.owl-carousel').css('z-index','1');
     }
     ).mouseleave();
+
+    $('.product-layout .radgroup input').change(function (){
+        let curprod = $(this).closest('.product-layout');
+        let price = $(this).data('price-special');
+        let old_price = $(this).data('option-price');
+        console.log(price,old_price);
+        if(price!==''){
+            curprod.find('.price').html('<span class="price-old">'+old_price+'</span><span class="price-new">'+price+'</span>');
+        }else{
+            curprod.find('.price').html(old_price);
+        }
+    })
 })
