@@ -1610,6 +1610,29 @@ select#input-sort option{
 
 /*End minicart*/
 
+/*Info pages*/
+
+.information-sitemap #content h1{
+	margin-bottom: 30px;
+}
+.information-sitemap #content ul{
+	margin-bottom: 60px;
+}
+.information-sitemap #content ul ul{
+	margin-bottom: 0;
+	margin-top: 10px;
+}
+.information-sitemap #content ul li{
+	margin-bottom: 10px;
+	font-size: 18px;
+}
+.information-sitemap #content ul li a{
+	color:#000;
+	font-size: 18px;
+}
+
+/*End info pages*/
+
 /*Footer*/
 
 footer{
