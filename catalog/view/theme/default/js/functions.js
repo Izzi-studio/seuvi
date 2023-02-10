@@ -23,5 +23,16 @@ $(document).ready(function (){
         }else{
             curprod.find('.price').html(old_price);
         }
-    })
+    });
+    $('.prod_main .radgroup input').change(function (){
+        let curprod = $(this).closest('.prod_main');
+        let price = $(this).data('price-special');
+        let old_price = $(this).data('option-price');
+        console.log(price,old_price);
+        if(price!==''){
+            curprod.find('.price').html('<span class="price-old">'+old_price+'</span><span class="price-new">'+price+'</span>');
+        }else{
+            curprod.find('.price').html(old_price);
+        }
+    });
 })
