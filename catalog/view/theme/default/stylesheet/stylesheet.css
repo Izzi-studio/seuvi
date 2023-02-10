@@ -1658,10 +1658,6 @@ body[class^="account"] #content{
 a{
 	color:#343F24;
 }
-a:hover{
-	color:#343F24;
-	opacity: .8;
-}
 .flexed.just{
 	justify-content: space-between;
 }

@@ -32,7 +32,7 @@
                 </div>
 				<?php } ?>
                 <div class="blog_summary">
-                <div class="left contrast_font">
+                <!--<div class="left contrast_font">
                 <?php if($date_added_status){ ?>
             	<div class="date_added secondary_background">
 				<span class="day"><?php echo date("d",strtotime($blog['date_added_full']));?></span>
@@ -42,7 +42,7 @@
                 <?php if($comments_count_status){ ?>
         		<a href="<?php echo $blog['href'];?>" title="<?php echo $blog['title'];?>"><span class="comment_count"><i class="fa fa-comments"></i> <?php echo $blog['comment_total'];?></span></a>
 				<?php } ?>
-                </div> <!-- left ends -->
+                </div>--> <!-- left ends -->
                 <div class="right">
                 <h2 class="blog_title"><a href="<?php echo $blog['href']; ?>"><?php echo $blog['title']; ?></a></h2>
                 <div class="blog_stats">
