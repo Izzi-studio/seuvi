@@ -4,6 +4,7 @@ class ControllerCheckoutSuccess extends Controller {
 		$this->load->language('checkout/success');
 
 		if (isset($this->session->data['order_id'])) {
+		//s    var_dump($this->session->data['order_id']);
 			$this->cart->clear();
 
 			// Add to activity log
@@ -30,6 +31,8 @@ class ControllerCheckoutSuccess extends Controller {
 			unset($this->session->data['shipping_methods']);
 			unset($this->session->data['payment_method']);
 			unset($this->session->data['payment_methods']);
+			unset($this->session->data['payment_address']);
+			unset($this->session->data['shipping_address']);
 			unset($this->session->data['guest']);
 			unset($this->session->data['comment']);
 			unset($this->session->data['order_id']);

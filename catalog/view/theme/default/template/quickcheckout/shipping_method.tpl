@@ -130,19 +130,23 @@ foreach ($shipping_methods as $shipping_method) {
 <script type="text/javascript"><!--
 $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[name=\'shipping_method\']').on('change', function() {
 	<?php if (!$logged) { ?>
+
+        $('#custom_fields_shipping').html('');
+
+        if($(this).val() == 'novaposhta.warehouse'){
+            loadFields('getTplNpFields')
+        }
+        if($(this).val() == 'ukrposhta.ukrposhta'){
+            loadFields('getTplUkrposhtaFields')
+        }
+
+
 		if ($('#payment-address input[name=\'shipping_address\']:checked').val()) {
 			var post_data = $('#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address input[type=\'hidden\'], #payment-address select, #shipping-method input[type=\'text\'], #shipping-method input[type=\'checkbox\']:checked, #shipping-method input[type=\'radio\']:checked, #shipping-method input[type=\'hidden\'], #shipping-method select');
 		} else {
 			var post_data = $('#shipping-address input[type=\'text\'], #shipping-address input[type=\'checkbox\']:checked, #shipping-address input[type=\'radio\']:checked, #shipping-address input[type=\'hidden\'], #shipping-address select, #shipping-method input[type=\'text\'], #shipping-method input[type=\'checkbox\']:checked, #shipping-method input[type=\'radio\']:checked, #shipping-method input[type=\'hidden\'], #shipping-method select');
 		}
-        $('#custom_fields_shipping').html('');
 
-		if($(this).val() == 'novaposhta.warehouse'){
-            loadFields('getTplNpFields')
-        }
-		if($(this).val() == 'ukrposhta.ukrposhta'){
-            loadFields('getTplUkrposhtaFields')
-        }
 
 		$.ajax({
 			url: 'index.php?route=quickcheckout/shipping_method/set',
@@ -154,12 +158,7 @@ $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[nam
 				<?php if ($cart) { ?>
 				loadCart();
 				<?php } ?>
-			},
-			<?php if ($debug) { ?>
-			error: function(xhr, ajaxOptions, thrownError) {
-				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
 			}
-			<?php } ?>
 		});
 
 		<?php if ($shipping_reload) { ?>

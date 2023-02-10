@@ -1,15 +1,17 @@
 <div id="np_fields">
-    <input name="city" type="text"/>
-    <select id="result_np_city_api" name="additional[city]"></select>
+    <?php echo $entry_city; ?>
+    <input name="cityapi" type="text"/>
+    <select id="result_np_city_api" name="city"></select>
+    <?php echo $entry_warehouse; ?>
     <input name="warehouses" type="text"/>
-    <select id="result_np_warehouse_api" name="additional[warehouse]"></select>
+    <select id="result_np_warehouse_api" name="address_1"></select>
 </div>
 
 
 <script type="text/javascript">
     var timer;
 
-    $('#np_fields input[name="city"]').on('keyup', function() {
+    $('#np_fields input[name="cityapi"]').on('keyup', function() {
         var  findString = $(this).val();
         window.clearTimeout(timer);
         timer = setTimeout(function () {
@@ -45,14 +47,15 @@
         $.ajax({
             url: 'index.php?route=quickcheckout/shippingdata&method=getWarehouse',
             type: 'post',
-            data: 'findString='+findString+'&ref='+$('#np_fields select[name="additional[city]"]').find(":selected").attr('ref'),
+            data: 'findString='+findString+'&ref='+$('#np_fields select[name="city"]').find(":selected").attr('ref'),
             dataType: 'html',
             cache: false,
             success: function(data) {
                 $('#result_np_warehouse_api').html('');
                 var html= '';
                 $.each(JSON.parse(data), function (i,v) {
-                    html += "<option value="+v.warehouse+" ref="+v.ref+">"+v.warehouse+"</option>"
+                    console.log(v.warehouse)
+                    html += '<option value="'+v.warehouse+'">'+v.warehouse+'</option>'
                 })
                 $('#result_np_warehouse_api').html(html);
 

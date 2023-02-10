@@ -199,6 +199,10 @@ class ControllerQuickCheckoutGuest extends Controller {
   	}
 
 	public function validate() {
+
+
+
+
     	$this->language->load('quickcheckout/checkout');
 
 		$json = array();
@@ -397,7 +401,18 @@ class ControllerQuickCheckoutGuest extends Controller {
 				$this->session->data['shipping_address']['firstname'] = $this->request->post['firstname'];
 				$this->session->data['shipping_address']['lastname'] = $this->request->post['lastname'];
 				$this->session->data['shipping_address']['company'] = $this->request->post['company'];
-				$this->session->data['shipping_address']['address_1'] = $this->request->post['address_1'];
+				//if(isset($this->request->post['additional']['warehouse'])){
+                  //  $addressCustom = $this->request->post['additional']['warehouse'];
+                    //$tmp = [];
+                    //foreach ($this->request->post['additional'] as $key=>$value) {
+                        //$tmp[] = $value;
+				    //}
+                    //$addressCustom = implode(',',$tmp);
+                  //  $this->session->data['shipping_address']['address_1'] = $addressCustom;
+              //  }else{
+                    $this->session->data['shipping_address']['address_1'] = $this->request->post['address_1'];
+              //  }
+
 				$this->session->data['shipping_address']['address_2'] = $this->request->post['address_2'];
 				$this->session->data['shipping_address']['postcode'] = $this->request->post['postcode'];
 				$this->session->data['shipping_address']['city'] = $this->request->post['city'];
