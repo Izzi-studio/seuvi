@@ -136,7 +136,7 @@ $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[nam
         if($(this).val() == 'novaposhta.warehouse'){
             loadFields('getTplNpFields')
         }
-        if($(this).val() == 'ukrposhta.ukrposhta'){
+        if($(this).val() == 'ukrposhta.warehouse'){
             loadFields('getTplUkrposhtaFields')
         }
 

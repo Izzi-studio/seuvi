@@ -308,7 +308,7 @@ function validateGuestAddress() {
 	$.ajax({
 		url: 'index.php?route=quickcheckout/guest/validate',
 		type: 'post',
-		data: $('#shipping-method input[type=\'radio\']:checked,#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select, #custom_fields_shipping > #np_fields > select, #custom_fields_shipping > #np_fields > input[type=\'text\']'),
+		data: $('#shipping-method input[type=\'radio\']:checked,#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select, #custom_fields_shipping > #np_fields > select, #custom_fields_shipping > #np_fields > input[type=\'text\'], #custom_fields_shipping > #ukrpost_fields > select, #custom_fields_shipping > #ukrpost_fields > input[type=\'text\']'),
 		dataType: 'json',
 		cache: false,
 		success: function(json) {		
@@ -1154,15 +1154,7 @@ $(document).on('click', '#button-reward', function() {
 });
 <?php } ?>
 
-<?php if ($shipping_required) { ?>
-$(document).on('focusout', 'input[name=\'postcode\']', function(){
-	if ($('#payment-address input[name=\'shipping_address\']:checked').val()) {
-		reloadShippingMethod('payment');
-	} else {
-		reloadShippingMethod('shipping');
-	}
-});
-<?php } ?>
+
 
 
 

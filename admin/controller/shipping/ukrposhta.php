@@ -107,7 +107,7 @@ class ControllerShippingUkrposhta extends Controller {
     }
 
     private function validate() {
-        if (!$this->user->hasPermission('modify', 'shipping/novaposhta')) {
+        if (!$this->user->hasPermission('modify', 'shipping/ukrposhta')) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 

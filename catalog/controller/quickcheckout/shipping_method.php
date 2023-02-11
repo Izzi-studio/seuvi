@@ -306,10 +306,12 @@ class ControllerQuickCheckoutShippingMethod extends Controller {
 			$shipping = explode('.', $this->request->post['shipping_method']);
 
 			if (!isset($shipping[0]) || !isset($shipping[1]) || !isset($this->session->data['shipping_methods'][$shipping[0]]['quote'][$shipping[1]])) {
+
 				$json['error']['warning'] = $this->language->get('error_shipping');
 			}
 		}
-		
+
+
 		if ($this->config->get('quickcheckout_delivery_required')) {
 			if (empty($this->request->post['delivery_date'])) {
 				$json['error']['warning'] = $this->language->get('error_delivery');

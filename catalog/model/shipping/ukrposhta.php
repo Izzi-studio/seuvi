@@ -9,7 +9,7 @@ class ModelShippingUkrposhta extends Model {
 		$cost = 0;
 		$quote_data = array();
 		$quote_data['warehouse'] = array(
-            'code' => 'ukrposhta.ukrposhta',
+            'code' => 'ukrposhta.warehouse',
             'title' => $this->language->get('text_description'),
             'cost' => $cost,
             'tax_class_id' => 0,
