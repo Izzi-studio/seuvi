@@ -6,7 +6,9 @@
                 <div class="rev">
                     <div class="flexed_info">
                         <div class="image">
-                            <img src="<?php echo $rev['product_image']; ?>">
+                            <a href="<?php echo $rev['product_link']; ?>">
+                                <img src="<?php echo $rev['product_image']; ?>">
+                            </a>
                         </div>
                         <div class="info">
                             <div class="author_date">

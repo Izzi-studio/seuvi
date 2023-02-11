@@ -1,3 +1,8 @@
+<script>
+  function closemodal(){
+    $('#minicart').modal('toggle');
+  }
+</script>
 <div id="cart" class="btn-group btn-block">
   <button type="button" data-toggle="modal" data-target="#minicart" class="dropdown-toggle">
     <span id="cart-total"><?php echo $text_items; ?></span>
@@ -62,7 +67,7 @@
       <div class="tots">
         <div class="row align-items-center">
           <div class="col-lg-4">
-            <a class="continue">
+            <a class="continue" onclick="closemodal()">
               <?php echo $text_continue_shopping;?>
             </a>
           </div>
@@ -96,8 +101,8 @@
 </div>
 <script type="text/javascript">
   $(document).ready(function (){
-    $('a.closemodal_cart,#minicart a.continue').click(function (){
-      $('#minicart').modal('toggle');
-    })
+    $('a.closemodal_cart').click(function (){
+      closemodal();
+    });
   })
 </script>
