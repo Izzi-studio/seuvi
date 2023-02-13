@@ -11,27 +11,26 @@ foreach ($payment_methods as $payment_method) {
 	}
 }
 ?>
-<p><?php echo $text_payment_method; ?></p>
+
 <?php if ($payment) { ?>
-<table class="table payment">
+<div class="table payment">
   <?php foreach ($payment_methods as $payment_method) { ?>
-  <tr class="highlight">
-    <td style="width:22px">
+  <div class="highlight">
     <?php if ($payment_method['code'] == $code || !$code || !$exists) { ?>
       <?php $code = $payment_method['code']; ?>
 	  <?php $exists = true; ?>
       <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" checked="checked" />
       <?php } else { ?>
       <input type="radio" name="payment_method" value="<?php echo $payment_method['code']; ?>" id="<?php echo $payment_method['code']; ?>" />
-      <?php } ?></td>
-    <td valign="middle">
+      <?php } ?>
+
     <label for="<?php echo $payment_method['code']; ?>"><?php if (($payment_logo) && file_exists(DIR_APPLICATION . 'view/theme/default/image/payment/' . $payment_method['code'] . '.png')) { ?>
 	<img style="vertical-align:middle;display:inline-block" src="<?php echo HTTPS_SERVER . 'catalog/view/theme/default/image/payment/' . $payment_method['code'] . '.png'; ?>" alt="<?php echo $payment_method['title']; ?>" />&nbsp;
-	<?php } ?><?php echo $payment_method['title']; ?></label></td>
+	<?php } ?><?php echo $payment_method['title']; ?></label>
 	
-  </tr>
+  </div>
   <?php } ?>
-</table>
+</div>
 <?php } else { ?>
   <select name="payment_method" class="form-control">
   <?php foreach ($payment_methods as $payment_method) { ?>
@@ -68,8 +67,8 @@ foreach ($payment_methods as $payment_method) {
 <?php } else { ?>
 <textarea name="survey" class="hide"><?php echo $survey; ?></textarea>
 <?php } ?>
-<span class="contrast_font input_heading"><?php echo $text_comments; ?></span>
-<textarea name="comment" rows="5" class="form-control"><?php echo $comment; ?></textarea>
+<span class="comment_label input_heading"><?php echo $text_comments; ?></span>
+<textarea name="comment" rows="3" class="form-control"><?php echo $comment; ?></textarea>
 
 <script type="text/javascript"><!--
 $('#payment-method input[name=\'payment_method\'], #payment-method select[name=\'payment_method\']').on('change', function() {

@@ -1,19 +1,14 @@
 <?php echo $header; ?>
-<div class="container">
+<div class="container-fluid">
   <ul class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
     <?php } ?>
   </ul>
   <div class="row"><?php echo $column_left; ?>
-    <?php if ($column_left && $column_right) { ?>
-    <?php $class = 'col-sm-6'; ?>
-    <?php } elseif ($column_left || $column_right) { ?>
-    <?php $class = 'col-sm-9'; ?>
-    <?php } else { ?>
-    <?php $class = 'col-sm-12'; ?>
-    <?php } ?>
-    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+
+    <div id="content" class="col-12">
+		<?php echo $content_top; ?>
     <div id="social_login_content_holder"></div>
       <h1><?php echo $heading_title; ?></h1>
 	  <!-- Start -->
@@ -34,26 +29,35 @@
 
 	  <div id="quickcheckoutconfirm">
 
-	  <?php if (!$logged && $login_module) { ?>
+
       
-      <p class="contrast_font"><a class="login_trigger" data-toggle="collapse" href="#login-box" aria-expanded="false"><?php echo $text_already_have_account; ?></a></p>
-  <div class="quickcheckoutmid collapse" id="login-box">
-    <div id="checkout">
-	  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_option; ?></div>
-      <div class="quickcheckout-content"></div>
-    </div>
-  </div>
-  
-  		
-  
-	  <?php } ?>
+      <div class="grid_holder row">
       
-      <div class="grid_holder">
-      
-	  <div class="checkout-column">
+	  <div class="checkout-column col-lg-6">
+
+		  <div class="checkout_inner">
+
+			  <?php if (!$logged && $login_module) { ?>
+
+			  <div class="quickcheckoutmid collapse" id="login-box">
+				  <div id="checkout">
+					  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_option; ?></div>
+					  <div class="quickcheckout-content"></div>
+				  </div>
+			  </div>
+
+			  <?php } ?>
+
 		<?php if (!$logged) { ?>
 		<div id="payment-address">
-		  <div class="quickcheckout-heading box-heading"><span><?php echo $text_checkout_account; ?></span></div>
+		  <div class="quickcheckout-heading box-heading">
+			  <span><?php echo $text_checkout_account; ?></span>
+			  <?php if (!$logged && $login_module) { ?>
+				  <a class="login_trigger" data-toggle="collapse" href="#login-box" aria-expanded="false"><?php echo $text_already_have_account; ?></a>
+			  <?php } ?>
+		  </div>
+
+
 		  <div class="quickcheckout-content"></div>
 		</div>
 		<?php } else { ?>
@@ -68,27 +72,29 @@
 		  <div class="quickcheckout-content"></div>
 		</div>
 		<?php } ?>
+		  <?php if ($shipping_required) { ?>
+		  <?php if ($shipping_module) { ?>
+		  <div id="shipping-method">
+			  <?php } else { ?>
+			  <div id="shipping-method" style="display:none;">
+				  <?php } ?>
+				  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_shipping_method; ?></div>
+				  <div class="quickcheckout-content"></div>
+			  </div>
+			  <?php } ?>
+		  </div>
 	  </div>
       
-	  <div class="checkout-column">
-		<?php if ($shipping_required) { ?>
-		<?php if ($shipping_module) { ?>
-		<div id="shipping-method">
-		<?php } else { ?>
-		<div id="shipping-method" style="display:none;">
-		<?php } ?>
-		  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_shipping_method; ?></div>
-		  <div class="quickcheckout-content"></div>
-		</div>
-		<?php } ?>
-		<?php if ($payment_module) { ?>
-		<div id="payment-method">
-		<?php } else { ?>
-		<div id="payment-method" style="display:none;">
-		<?php } ?>
-		  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_payment_method; ?></div>
-		  <div class="quickcheckout-content"></div>
-		</div>
+	  <div class="checkout-column col-lg-6">
+		  <div class="checkout_inner">
+			<?php if ($payment_module) { ?>
+			<div id="payment-method">
+			<?php } else { ?>
+			<div id="payment-method" style="display:none;">
+			<?php } ?>
+			  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_payment_method; ?></div>
+			  <div class="quickcheckout-content"></div>
+			</div>
       
       <?php if ($layout != '2') { ?>
   		</div> <!-- not if 2 columns -->
@@ -122,7 +128,7 @@
 	  </div>
 
 </div> <!-- grid_holder ends -->
-
+	  </div>
 	  <?php if ($html_footer) { ?>
 	  <?php echo $html_footer; ?>
 	  <?php } ?>
@@ -1184,7 +1190,9 @@ $(document).on('click', '.button-update', function() {
 		},
 		success: function(json) {
 			if (json['redirect']) {
-				location = json['redirect'];
+				//location = json['redirect'];
+				$('html, body').animate({ scrollTop: 0 }, 'slow');
+				$('#content').parent().before('<div class="alert alert-danger"><i class="fa fa-check-circle"></i><?php echo $error_quantity;?><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
 			} else {
 				<?php if (!$logged) { ?>
 					if ($('#payment-address input[name=\'shipping_address\']:checked').val()) {

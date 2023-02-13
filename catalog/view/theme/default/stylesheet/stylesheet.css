@@ -1317,10 +1317,15 @@ select#input-sort option{
 	align-items: center;
 	margin-bottom: 24px;
 }
+#quickcheckoutconfirm .quickcheckout-cart .quant,
 .prod_main .addtocart .quant{
 	position: relative;
 	margin-right: 18px;
 }
+#quickcheckoutconfirm .quickcheckout-cart .quant{
+	display: inline-block;
+}
+#quickcheckoutconfirm .quickcheckout-cart .quant input[type="text"],
 .prod_main .addtocart .quant input{
 	display: block;
 	padding: 10px;
@@ -1334,7 +1339,10 @@ select#input-sort option{
 	font-size: 21px;
 	line-height: 29px;
 	color: #343F24;
+	margin-bottom: 0;
 }
+.quickcheckout-cart .quant .plus,
+.quickcheckout-cart .quant .minus,
 .prod_main .addtocart .quant .plus,
 .prod_main .addtocart .quant .minus {
 	font-weight: 400;
@@ -1351,9 +1359,11 @@ select#input-sort option{
 	justify-content: center;
 	padding: 0 5px;
 }
+.quickcheckout-cart .quant .minus,
 .prod_main .addtocart .quant .minus{
 	left: 25px;
 }
+.quickcheckout-cart .quant .plus,
 .prod_main .addtocart .quant .plus{
 	right: 25px;
 }
@@ -1557,6 +1567,7 @@ select#input-sort option{
 	line-height: 140%;
 	color: #343F24;
 }
+.quickcheckout-cart a.remove_prod,
 .cart_prods button.remove_prod{
 	background: none;
 	border: 0;
@@ -1800,6 +1811,314 @@ footer .infos>div.email{
 
 /*End footer*/
 
+/*Quick checkout*/
+
+.quickcheckout-checkout h1{
+	font-weight: 400;
+	font-size: 40px;
+	line-height: 54px;
+	text-transform: uppercase;
+	color: #343F24;
+	margin-bottom: 18px;
+}
+.checkout_inner{
+	padding: 20px;
+	border: 1px solid #F9EDED;
+}
+.checkout-heading.box-heading:before,
+.quickcheckout-heading.box-heading:before{
+	display: none!important;
+}
+.checkout-heading.box-heading,
+.quickcheckout-heading.box-heading{
+	font-weight: 400;
+	font-size: 28px;
+	line-height: 38px;
+	margin-bottom: 14px;
+	color: #343F24;
+	padding: 0!important;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.quickcheckout-heading.box-heading a.login_trigger{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 19px;
+	color: #66833B;
+}
+#quickcheckoutconfirm input[type="text"],
+#quickcheckoutconfirm input[type="password"]{
+	border: 1px solid #BDBDBD;
+	border-radius: 3px;
+	padding: 13px 10px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 160.19%;
+	margin-bottom: 14px;
+}
+#quickcheckoutconfirm input[type="text"]::placeholder,
+#quickcheckoutconfirm input[type="password"]::placeholder{
+	color: #828282;
+}
+#quickcheckoutconfirm input[type="checkbox"]{
+	display:none;
+}
+#quickcheckoutconfirm input[type="checkbox"]+label{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 160.19%;
+	color: #66833B;
+	padding-left: 30px;
+	position: relative;
+}
+#quickcheckoutconfirm input[type="checkbox"]+label:before{
+	width: 18px;
+	height: 18px;
+	background: url('/image/seuvi/uncheck.svg');
+	border: 0;
+	padding: 0;
+	content: '';
+	top: 50%;
+	margin-top: -9px;
+	position: absolute;
+	left: 0;
+}
+#quickcheckoutconfirm input[type="checkbox"]:checked+label:before {
+	background: url('/image/seuvi/check.svg');
+}
+#quickcheckoutconfirm #shipping-method{
+	margin-top: 45px;
+}
+#quickcheckoutconfirm p.yel_box{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 25px;
+	text-align: center;
+	color: #1F1F1F;
+	background: #FEFAED;
+	border-radius: 10px;
+	padding: 20px 60px;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]{
+	display: none;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]:checked+label{
+	border: 1px solid #66833B;
+	background: url('/image/seuvi/radio_checked.svg')no-repeat left 15px top 15px;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]+label{
+	border-radius: 10px;
+	border: 1px solid transparent;
+	display: block;
+	width: 100%;
+	padding: 15px 15px 15px 52px;
+	cursor: pointer;
+	background: url('/image/seuvi/radio.svg')no-repeat left 15px top 15px;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]+label .ship_name{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 25px;
+	color: #1F1F1F;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]:checked+label .ship_name{
+	color: #66833B;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]+label .shipping-sum{
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 22px;
+	color: #66833B;
+}
+#quickcheckoutconfirm #shipping-method input[type="radio"]+label .ship_desc{
+	margin-top: 5px;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #828282;
+}
+#quickcheckoutconfirm #payment-method input[type="radio"]{
+	display: none;
+}
+#quickcheckoutconfirm #payment-method input[type="radio"]+label{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 25px;
+	padding-left: 37px;
+	color: #1F1F1F;
+	background: url('/image/seuvi/radio.svg')no-repeat left;
+	margin-bottom: 16px;
+}
+#quickcheckoutconfirm #payment-method input[type="radio"]:checked+label{
+	background: url('/image/seuvi/radio_checked.svg')no-repeat left;
+}
+#quickcheckoutconfirm #payment-method .comment_label{
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 25px;
+	margin-bottom: 10px;
+	color: #1F1F1F;
+	display: block;
+}
+#quickcheckoutconfirm textarea {
+	border: 1px solid #BDBDBD;
+	border-radius: 3px;
+	padding: 13px 10px;
+	font-weight: 400;
+	font-size: 16px;
+	line-height: 160.19%;
+	margin-bottom: 14px;
+	resize: none;
+}
+.entry_label{
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 25px;
+	margin-bottom: 10px;
+	color: #1F1F1F;
+	display: block;
+}
+#np_fields .select2{
+	margin-bottom: 15px;
+}
+.quickcheckout-cart .item{
+	padding-bottom: 14px;
+	padding-top: 14px;
+	border-bottom: 1px solid #F9EDED;
+}
+.quickcheckout-cart .image{
+	padding: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FFF8F8;
+}
+.quickcheckout-cart .name a{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 140%;
+	color: #343F24;
+}
+.quickcheckout-cart .quant{
+	margin-top: 14px;
+}
+.quickcheckout-cart .quant input{
+	cursor: default;
+}
+.quickcheckout-cart .name small{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 140%;
+	margin-bottom: 4px;
+	color: #1F1F1F;
+	padding-right: 10px;
+	display: inline-block;
+}
+.quickcheckout-cart .flexed_col{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-end;
+	justify-content: space-between;
+	height: 100%;
+}
+.quickcheckout-cart .flexed_col .total{
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 140%;
+	color: #343F24;
+	margin-bottom: 11px;
+}
+.quickcheckout-cart .total_cost{
+	display: flex;
+	padding: 30px;
+	align-items: center;
+	justify-content: space-between;
+	background: #F7F8F5;
+	border-radius: 10px;
+	margin-bottom: 14px;
+}
+.quickcheckout-cart .total_cost .name{
+	font-weight: 400;
+	font-size: 24px;
+	line-height: 33px;
+	color: #343F24;
+}
+.quickcheckout-cart .total_cost .total_sum{
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 140%;
+	color: #343F24;
+}
+.quickcheckout-cart .bottom_border{
+	border-bottom: 1px solid #F9EDED;
+	margin-bottom: 14px;
+	padding-bottom: 14px;
+}
+#quickcheckoutconfirm #terms .quickcheckout-content{
+	border: 0;
+	padding: 0;
+}
+#quickcheckoutconfirm #terms .quickcheckout-content .confirm{
+	border-top: 0;
+	padding: 0;
+}
+#quickcheckoutconfirm #terms a#button-payment-method{
+	font-weight: 400;
+	font-size: 20px;
+	line-height: 140%;
+	color: #FFFFFF;
+	cursor: pointer;
+	padding: 17px 0;
+	background: #343F24;
+	border-radius: 3px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+}
+#quickcheckoutconfirm #terms input#agreement+label {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 140%;
+	color: #000000;
+}
+#quickcheckoutconfirm #voucher #voucher-heading,
+#quickcheckoutconfirm #voucher #coupon-heading{
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 160.19%;
+	color: #66833B;
+	background: none;
+	border: 0;
+	padding: 10px 10px 10px 40px;
+}
+#quickcheckoutconfirm #voucher #coupon-heading{
+	background: url('/image/seuvi/coupon.svg')no-repeat center left;
+}
+#quickcheckoutconfirm #voucher #voucher-heading{
+	background: url('/image/seuvi/voucher.svg')no-repeat center left;
+}
+#quickcheckoutconfirm #voucher #voucher-content,
+#quickcheckoutconfirm #voucher #coupon-content{
+	align-items: center;
+}
+#quickcheckoutconfirm #voucher #voucher-content input,
+#quickcheckoutconfirm #voucher #coupon-content input{
+	padding: 0 10px;
+	line-height: 28px;
+}
+#quickcheckoutconfirm #voucher #voucher-content button,
+#quickcheckoutconfirm #voucher #coupon-content button{
+	padding: 4px 30px;
+	background: #343F24;
+	color:#fff;
+	border-radius: 3px;
+	border: 0;
+	margin-left: 10px;
+}
+
+	/*End quick checkout*/
 
 /*Other*/
 

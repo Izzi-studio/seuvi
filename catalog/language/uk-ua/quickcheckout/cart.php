@@ -1,6 +1,6 @@
 <?php
 // Text
-$_['text_cart']	= 'Shopping cart';
+$_['text_cart']	= 'Ваше замовлення';
 $_['text_image']	= 'Image';
 $_['text_name']		= 'Product';
 $_['text_quantity']	= 'Quantity';

@@ -122,6 +122,8 @@ class ControllerQuickCheckoutCheckout extends Controller {
 		$data['text_modify'] = $this->language->get('text_modify');
 		$data['text_or'] = $this->language->get('text_or');
 		$data['text_please_wait'] = $this->language->get('text_please_wait');
+
+        $data['error_quantity'] = $this->language->get('error_quantity');
 		
 		$data['text_already_have_account'] = $this->language->get('text_already_have_account');
 		
