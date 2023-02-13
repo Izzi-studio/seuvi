@@ -139,6 +139,9 @@ $('#shipping-method input[name=\'shipping_method\'], #shipping-method select[nam
         if($(this).val() == 'ukrposhta.warehouse'){
             loadFields('getTplUkrposhtaFields')
         }
+        if($(this).val() == 'ukrposhtaint.warehouse'){
+            loadFields('getTplUkrposhtaintFields')
+        }
 
 
 		if ($('#payment-address input[name=\'shipping_address\']:checked').val()) {

@@ -66,7 +66,7 @@
             </tr>
             <tr>
               <td><button data-toggle="tooltip" title="<?php echo $text_telephone; ?>" class="btn btn-info btn-xs"><i class="fa fa-phone fa-fw"></i></button></td>
-              <td><?php echo $telephone; ?></td>
+              <td><?php echo $telephone; ?> <?php if($callme){ ?> <b>Перезвонить для уточнения</b><?php }else{ ?> <b>Не перезванивать</b><?php } ?></td>
             </tr>
           </table>
         </div>

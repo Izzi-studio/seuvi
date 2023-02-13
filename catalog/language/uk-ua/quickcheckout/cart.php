@@ -6,6 +6,8 @@ $_['text_name']		= 'Product';
 $_['text_quantity']	= 'Quantity';
 $_['text_price']	= 'Price';
 $_['text_total']	= 'Total';
+$_['entry_total']	= 'Вартість замовлення';
+$_['entry_call_me']	= 'Не дзвоніть мені, я впевнений в замовлені';
 
 $_['text_recurring_item']            = 'Recurring Item';
 $_['text_payment_recurring']         = 'Payment Profile';

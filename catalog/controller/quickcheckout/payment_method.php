@@ -295,7 +295,12 @@ class ControllerQuickCheckoutPaymentMethod extends Controller {
 		  
 			$this->session->data['comment'] = strip_tags($this->request->post['comment']);
 			
-			$this->session->data['survey'] = strip_tags($this->request->post['survey']);						
+			$this->session->data['survey'] = strip_tags($this->request->post['survey']);
+            if (isset($this->request->post['callme'])) {
+                $this->session->data['callme'] = $this->request->post['callme'];
+            } else {
+                $this->session->data['callme'] = true;
+            }
 		}
 		
 		$this->response->addHeader('Content-Type: application/json');

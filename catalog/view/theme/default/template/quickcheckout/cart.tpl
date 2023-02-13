@@ -66,3 +66,7 @@
     </table>
     <?php } ?>
 </table>
+<?php echo $entry_total; ?>
+<?php echo $total_order_sum; ?>
+<?php echo $entry_call_me; ?>
+<input type="checkbox" name="callme"  value="0" checked/>
