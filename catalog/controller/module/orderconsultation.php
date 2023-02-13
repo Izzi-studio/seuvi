@@ -8,6 +8,8 @@ class ControllerModuleOrderconsultation extends Controller {
 		$data['text_get_consultation'] = $this->language->get('text_get_consultation');
 		$data['text_description'] = $this->language->get('text_description');
 
+        $data['text_thanks'] = $this->language->get('text_thanks');
+
         $data['action'] = $this->url->link('information/contact/orderConsultation','',true);
 
         if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/module/orderconsultation.tpl')) {
