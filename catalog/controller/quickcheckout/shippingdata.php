@@ -40,6 +40,17 @@ class ControllerQuickCheckoutShippingdata extends Controller
         $this->response->setOutput(json_encode($result));
     }
 
+    public function getTplUkrposhtaintFields(){
+        $this->load->language('shipping/ukrposhta');
+        $data['entry_city'] = $this->language->get('entry_city');
+        $data['entry_warehouse'] = $this->language->get('entry_warehouse');
+        $data['entry_postcode'] = $this->language->get('entry_postcode');
+
+        $result['html'] = $this->load->view('default/template/quickcheckout/tpls/ukrposhta_fields.tpl',$data);
+        $this->response->addHeader('Content-Type: application/json');
+        $this->response->setOutput(json_encode($result));
+    }
+
 
     private function find_city_id_by_name($api_key, $city, $langCode = 'uk-ua') {
         $get_cities = curl_init();

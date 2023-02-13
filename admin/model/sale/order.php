@@ -80,6 +80,7 @@ class ModelSaleOrder extends Model {
 
 			return array(
 				'order_id'                => $order_query->row['order_id'],
+				'callme'                => $order_query->row['callme'],
 				'invoice_no'              => $order_query->row['invoice_no'],
 				'invoice_prefix'          => $order_query->row['invoice_prefix'],
 				'store_id'                => $order_query->row['store_id'],

@@ -848,6 +848,7 @@ class ControllerSaleOrder extends Controller {
 			$data['cancel'] = $this->url->link('sale/order', 'token=' . $this->session->data['token'] . $url, 'SSL');
 
 			$data['order_id'] = $this->request->get['order_id'];
+			$data['callme'] = $order_info['callme'] == 1 ? true : false;
 
 			$data['store_name'] = $order_info['store_name'];
 			$data['store_url'] = $order_info['store_url'];

@@ -58,6 +58,7 @@ class ControllerQuickCheckoutCart extends Controller {
 				'text'  => $this->currency->format($total['value'])
 			);
 		}
+		$data['total_order_sum'] = end($data['totals'])['text'];
 		
 		$data['text_cart'] = $this->language->get('text_cart');
 		$data['text_image'] = $this->language->get('text_image');
@@ -65,7 +66,9 @@ class ControllerQuickCheckoutCart extends Controller {
 		$data['text_quantity'] = $this->language->get('text_quantity');
 		$data['text_price'] = $this->language->get('text_price');
 		$data['text_total'] = $this->language->get('text_total');
-		
+		$data['entry_call_me'] = $this->language->get('entry_call_me');
+		$data['entry_total'] = $this->language->get('entry_total');
+
 		$data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$data['text_payment_recurring'] = $this->language->get('text_payment_recurring');
 		

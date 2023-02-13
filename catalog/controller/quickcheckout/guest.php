@@ -328,6 +328,12 @@ class ControllerQuickCheckoutGuest extends Controller {
 					$json['error']['custom_field' . $custom_field['custom_field_id']] = sprintf($this->language->get('error_custom_field'), $custom_field['name']);
 				}
 			}
+
+            if (isset($this->request->post['callme'])) {
+                $this->session->data['callme'] = $this->request->post['callme'];
+            } else {
+                $this->session->data['callme'] = true;
+            }
 		}
 
 		if (!$json) {
@@ -394,6 +400,12 @@ class ControllerQuickCheckoutGuest extends Controller {
 				$this->session->data['guest']['shipping_address'] = $this->request->post['shipping_address'];
 			} else {
 				$this->session->data['guest']['shipping_address'] = false;
+			}
+
+			if (isset($this->request->post['callme'])) {
+				$this->session->data['guest']['callme'] = $this->request->post['callme'];
+			} else {
+				$this->session->data['guest']['callme'] = true;
 			}
 
 			// Default Payment Address

@@ -308,7 +308,7 @@ function validateGuestAddress() {
 	$.ajax({
 		url: 'index.php?route=quickcheckout/guest/validate',
 		type: 'post',
-		data: $('#shipping-method input[type=\'radio\']:checked,#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select, #custom_fields_shipping > #np_fields > select, #custom_fields_shipping > #np_fields > input[type=\'text\'], #custom_fields_shipping > #ukrpost_fields > select, #custom_fields_shipping > #ukrpost_fields > input[type=\'text\']'),
+		data: $('input[name=\'callme\']:checked ,#shipping-method input[type=\'radio\']:checked,#payment-address input[type=\'text\'], #payment-address input[type=\'checkbox\']:checked, #payment-address input[type=\'radio\']:checked, #payment-address select, #custom_fields_shipping > #np_fields > select, #custom_fields_shipping > #np_fields > input[type=\'text\'], #custom_fields_shipping > #ukrpost_fields > select, #custom_fields_shipping > #ukrpost_fields > input[type=\'text\']'),
 		dataType: 'json',
 		cache: false,
 		success: function(json) {		
@@ -668,7 +668,7 @@ function validatePaymentMethod() {
 	$.ajax({
 		url: 'index.php?route=quickcheckout/payment_method/validate',
 		type: 'post',
-		data: $('#payment-method select, #payment-method input[type=\'radio\']:checked, #payment-method input[type=\'checkbox\']:checked, #payment-method textarea'),
+		data: $('input[name=\'callme\']:checked ,#payment-method select, #payment-method input[type=\'radio\']:checked, #payment-method input[type=\'checkbox\']:checked, #payment-method textarea'),
 		dataType: 'json',
 		cache: false,
 		success: function(json) {

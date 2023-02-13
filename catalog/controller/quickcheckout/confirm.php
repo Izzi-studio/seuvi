@@ -106,6 +106,7 @@ class ControllerQuickCheckoutConfirm extends Controller {
 				$customer_info = $this->model_account_customer->getCustomer($this->customer->getId());
 
 				$order_data['customer_id'] = $this->customer->getId();
+				$order_data['callme'] = $this->session->data['callme'];
 				$order_data['customer_group_id'] = $customer_info['customer_group_id'];
 				$order_data['firstname'] = $customer_info['firstname'];
 				$order_data['lastname'] = $customer_info['lastname'];
@@ -121,6 +122,7 @@ class ControllerQuickCheckoutConfirm extends Controller {
 				$order_data['email'] = $this->session->data['guest']['email'];
 				$order_data['telephone'] = $this->session->data['guest']['telephone'];
 				$order_data['fax'] = $this->session->data['guest']['fax'];
+				$order_data['callme'] = $this->session->data['guest']['callme'];
 				$order_data['custom_field'] = $this->session->data['guest']['custom_field'];
 			}
 
@@ -338,6 +340,7 @@ class ControllerQuickCheckoutConfirm extends Controller {
 			}
 
 			$this->load->model('checkout/order');
+
 
 			$this->session->data['order_id'] = $this->model_checkout_order->addOrder($order_data);
 
