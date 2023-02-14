@@ -53,22 +53,22 @@
     <div class="social_footer">
       <div class="flexed">
         <?php if(!empty($fb_link)){ ?>
-          <a href="<?php echo $fb_link;?>">
+          <a href="<?php echo $fb_link;?>" target="_blank">
             <img src="/image/seuvi/fb_white.svg">
           </a>
         <?php }?>
         <?php if(!empty($inst_link)){ ?>
-        <a href="<?php echo $inst_link;?>">
+        <a href="<?php echo $inst_link;?>" target="_blank">
           <img src="/image/seuvi/inst_white.svg">
         </a>
         <?php }?>
         <?php if(!empty($tiktok_link)){ ?>
-        <a href="<?php echo $tiktok_link;?>">
+        <a href="<?php echo $tiktok_link;?>" target="_blank">
           <img src="/image/seuvi/tiktok_white.svg">
         </a>
         <?php }?>
         <?php if(!empty($tg_link)){ ?>
-        <a href="<?php echo $tg_link;?>">
+        <a href="<?php echo $tg_link;?>" target="_blank">
           <img src="/image/seuvi/tg_white.svg">
         </a>
         <?php }?>

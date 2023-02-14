@@ -9,7 +9,7 @@
         <div class="row no-gutters">
             <div class="col-lg-4">
                 <div class="item">
-                    <a href="<?php echo $inst_link;?>">
+                    <a href="<?php echo $inst_link;?>" target="_blank">
                         <img src="/image/seuvi/inst.svg">
                     </a>
                     <div class="count">
@@ -22,7 +22,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="item">
-                    <a href="<?php echo $tiktok_link;?>">
+                    <a href="<?php echo $tiktok_link;?>" target="_blank">
                         <img src="/image/seuvi/tik_tok.svg">
                     </a>
                     <div class="count">
@@ -35,7 +35,7 @@
             </div>
             <div class="col-lg-4">
                 <div class="item">
-                    <a href="<?php echo $fb_link;?>">
+                    <a href="<?php echo $fb_link;?>" target="_blank">
                         <img src="/image/seuvi/fb.svg">
                     </a>
                     <div class="count">
