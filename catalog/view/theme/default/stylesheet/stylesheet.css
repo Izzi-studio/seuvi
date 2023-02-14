@@ -592,6 +592,7 @@ a#wishlist-total{
 	padding-right: 30px;
 	font-weight: 400;
 }
+a.btn_wishlist,
 button.btn_wishlist{
 	border: 0;
 	background: none;
@@ -602,6 +603,10 @@ button.btn_wishlist{
 	height: 30px;
 	right: 13px;
 	top:13px;
+}
+a.btn_wishlist.remove_wish img,
+button.btn_wishlist.remove_wish img{
+	filter:drop-shadow(0px 0px 2px red);
 }
 button.addto{
 	display: flex;
@@ -2512,8 +2517,9 @@ body[class^="account"] h2{
 		height: auto;
 	}
 	.f_cats .item .thumb img{
-		max-width: 100%;
+		max-width: 60px;
 		width: auto;
+		margin: 0 auto;
 	}
 	.f_cats .item a{
 		padding: 10px;
@@ -2681,6 +2687,10 @@ body[class^="account"] h2{
 	}
 	.quickcheckout-cart .total_cost{
 		padding: 15px;
+		margin-top: 15px;
+	}
+	.quickcheckout-cart .alert-danger.vis+.alert-danger{
+		display: none!important;
 	}
 	.quickcheckout-cart .total_cost .total_sum,
 	#minicart .val_total{
@@ -2890,6 +2900,18 @@ body[class^="account"] h2{
 		padding: 0;
 		border: 0;
 	}
+	.quickcheckout-cart .item{
+		position: relative;
+	}
+	.quickcheckout-cart .item>div{
+		position: static;
+	}
+	.mobflexed{
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
 	#quickcheckoutconfirm p.yel_box{
 		padding: 10px;
 	}
@@ -2907,6 +2929,9 @@ body[class^="account"] h2{
 	#quickcheckoutconfirm #voucher #voucher-content input, #quickcheckoutconfirm #voucher #coupon-content input{
 		width: 100%;
 		margin-left: 0;
+	}
+	.quickcheckout-cart a.remove_prod{
+		top: 15px;
 	}
 
 }

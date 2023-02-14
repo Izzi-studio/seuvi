@@ -1185,13 +1185,12 @@ $(document).on('click', '.button-update', function() {
 		dataType: 'json',
 		cache: false,
 		beforeSend: function() {
-			$('#cart1 .button-update').prop('disabled', true);
+			//$('#cart1 .button-update').prop('disabled', true);
 		},
 		success: function(json) {
 			if (json['redirect']) {
 				//location = json['redirect'];
-				$('html, body').animate({ scrollTop: 0 }, 'slow');
-				$('#content').parent().before('<div class="alert alert-danger"><i class="fa fa-check-circle"></i><?php echo $error_quantity;?><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+				$('.quickcheckout-cart .alert-danger:first-child').show();
 			} else {
 				<?php if (!$logged) { ?>
 					if ($('#payment-address input[name=\'shipping_address\']:checked').val()) {
