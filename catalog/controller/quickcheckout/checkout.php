@@ -69,7 +69,7 @@ class ControllerQuickCheckoutCheckout extends Controller {
 		
 		// Validate cart has products and has stock.
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
-	  		$this->response->redirect($this->url->link('checkout/cart'));
+	  		//$this->response->redirect($this->url->link('checkout/cart'));
     	}	
 		
 		// Validate minimum quantity requirements.			

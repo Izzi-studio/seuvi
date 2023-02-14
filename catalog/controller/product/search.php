@@ -212,7 +212,14 @@ class ControllerProductSearch extends Controller {
 			$product_total = $this->model_catalog_product->getTotalProducts($filter_data);
 
 			$results = $this->model_catalog_product->getProducts($filter_data);
+            $this->load->model('helper/helper');
+            $this->load->model('catalog/manufacturer');
 
+            $this->load->model('account/wishlist');
+            $wishListIds = [];
+            foreach ($this->model_account_wishlist->getWishlist() as $wishItem) {
+                $wishListIds[] = $wishItem['product_id'];
+            }
 			foreach ($results as $result) {
 				if ($result['image']) {
 					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
@@ -222,14 +229,18 @@ class ControllerProductSearch extends Controller {
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
 					$price = $this->currency->format($this->tax->calculate($result['price'], $result['tax_class_id'], $this->config->get('config_tax')));
+
 				} else {
+
 					$price = false;
 				}
 
 				if ((float)$result['special']) {
+                    $percentSale = round((((int)$result['price'] - (int)$result['special']) / (int)$result['price']) * 100,0);
 					$special = $this->currency->format($this->tax->calculate($result['special'], $result['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special = false;
+                    $percentSale = false;
 				}
 
 				if ($this->config->get('config_tax')) {
@@ -243,9 +254,12 @@ class ControllerProductSearch extends Controller {
 				} else {
 					$rating = false;
 				}
-
+                $manufacturer = $this->model_catalog_manufacturer->getManufacturer($result['manufacturer_id']);
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+                    'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
+                    'options'        => $this->model_helper_helper->getProductOptions($result),
+                    'reviews'        => $result['reviews'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
@@ -254,7 +268,9 @@ class ControllerProductSearch extends Controller {
 					'tax'         => $tax,
 					'minimum'     => $result['minimum'] > 0 ? $result['minimum'] : 1,
 					'rating'      => $result['rating'],
-					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url)
+					'href'        => $this->url->link('product/product', 'product_id=' . $result['product_id'] . $url),
+                    'manufacturer'        => isset($manufacturer['name']) ? $manufacturer['name'] : null,
+                    'percent_sale'     => $percentSale,
 				);
 			}
 

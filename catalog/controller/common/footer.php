@@ -41,7 +41,7 @@ class ControllerCommonFooter extends Controller {
 
         $data['heading_text_column_1'] = $this->language->get('heading_text_column_1');
         $data['text_column_1_sitemap'] = $this->language->get('heading_text_column_1_sitemap');
-        $data['sitemap'] = $this->url->link('information/sitemap');
+        $data['sitemap'] = $this->url->link('feed/google_sitemap');
         $data['text_column_1_contact_contact'] = $this->language->get('heading_text_column_1_contact');
         $data['contact'] = $this->url->link('information/contact');
 

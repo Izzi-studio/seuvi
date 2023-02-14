@@ -206,10 +206,10 @@ class ControllerQuickCheckoutCart extends Controller {
 				$this->cart->update($key, $value);
 			}
 			
-			unset($this->session->data['shipping_method']);
-			unset($this->session->data['shipping_methods']);
-			unset($this->session->data['payment_method']);
-			unset($this->session->data['payment_methods']); 
+			//unset($this->session->data['shipping_method']);
+			//unset($this->session->data['shipping_methods']);
+			//unset($this->session->data['payment_method']);
+			//unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);	
 		}
 		
@@ -217,16 +217,17 @@ class ControllerQuickCheckoutCart extends Controller {
 			$this->cart->remove($this->request->get['remove']);
 			
 			unset($this->session->data['vouchers'][$this->request->get['remove']]);		
-			unset($this->session->data['shipping_method']);
-			unset($this->session->data['shipping_methods']);
-			unset($this->session->data['payment_method']);
-			unset($this->session->data['payment_methods']); 
+			//unset($this->session->data['shipping_method']);
+			//unset($this->session->data['shipping_methods']);
+			//unset($this->session->data['payment_method']);
+			//unset($this->session->data['payment_methods']);
 			unset($this->session->data['reward']);  
 		}
 		
 		
 		
 		if ((!$this->cart->hasProducts() && empty($this->session->data['vouchers'])) || (!$this->cart->hasStock() && !$this->config->get('config_stock_checkout'))) {
+            //$json['error'] = '';
 			$json['redirect'] = $this->url->link('checkout/cart');
 		}
 		

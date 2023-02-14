@@ -608,6 +608,8 @@ class ControllerAccountReturn extends Controller {
 	}
 
 	public function success() {
+
+        $this->response->redirect($this->url->link('account/return', '', 'SSL'));
 		$this->load->language('account/return');
 
 		$this->document->setTitle($this->language->get('heading_title'));

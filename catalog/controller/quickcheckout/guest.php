@@ -427,7 +427,11 @@ class ControllerQuickCheckoutGuest extends Controller {
 
 				$this->session->data['shipping_address']['address_2'] = $this->request->post['address_2'];
 				$this->session->data['shipping_address']['postcode'] = $this->request->post['postcode'];
-				$this->session->data['shipping_address']['city'] = $this->request->post['city'];
+
+				$expValCity = explode('^', $this->request->post['city']);
+
+				$this->session->data['shipping_address']['city'] = $expValCity[0];
+
 				$this->session->data['shipping_address']['country_id'] = $this->request->post['country_id'];
 				$this->session->data['shipping_address']['zone_id'] = $this->request->post['zone_id'];
 

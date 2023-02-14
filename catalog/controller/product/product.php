@@ -399,12 +399,16 @@ class ControllerProductProduct extends Controller {
 			$data['products'] = array();
 
 			$results = $this->model_catalog_product->getProductRelated($this->request->get['product_id']);
-
+            $this->load->model('account/wishlist');
+            $wishListIds = [];
+            foreach ($this->model_account_wishlist->getWishlist() as $wishItem) {
+                $wishListIds[] = $wishItem['product_id'];
+            }
 			foreach ($results as $result) {
 				if ($result['image']) {
-					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+					$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				} else {
-					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_related_width'), $this->config->get('config_image_related_height'));
+					$image = $this->model_tool_image->resize('placeholder.png', $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				}
 
 				if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
@@ -435,6 +439,7 @@ class ControllerProductProduct extends Controller {
                 $manufacturer = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+                    'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
 					'reviews'       => $result['reviews'],
 					'thumb'       => $image,
                     'options'        => $this->model_helper_helper->getProductOptions($product_info),

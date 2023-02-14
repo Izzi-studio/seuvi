@@ -12,10 +12,11 @@ class ControllerModuleFeaturedmanufacturer extends Controller {
 
 		$data['manufacturers'] = array();
 
-        $manufacturers = $this->model_catalog_manufacturer->getManufacturers([],true);
+        $manufacturers = $this->model_catalog_manufacturer->getManufacturers(['limit'=> 9,'start'=>0,'sort'=>'name'],true);
+        $manufacturersCount = $this->model_catalog_manufacturer->getManufacturers();
 
 		if (!empty($manufacturers)) {
-            $data['manufacturers_count'] = count($manufacturers);
+            $data['manufacturers_count'] = count($manufacturersCount);
 			foreach ($manufacturers as $manufacturer_info) {
 
 				if ($manufacturer_info) {
