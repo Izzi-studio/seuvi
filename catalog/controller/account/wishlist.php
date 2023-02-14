@@ -69,13 +69,19 @@ class ControllerAccountWishList extends Controller {
 		$data['products'] = array();
 
 		$results = $this->model_account_wishlist->getWishlist();
+        $this->load->model('helper/helper');
+        $this->load->model('catalog/manufacturer');
 
+        $wishListIds = [];
+        foreach ($results as $wishItem) {
+            $wishListIds[] = $wishItem['product_id'];
+        }
 		foreach ($results as $result) {
 			$product_info = $this->model_catalog_product->getProduct($result['product_id']);
 
 			if ($product_info) {
 				if ($product_info['image']) {
-					$image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_wishlist_width'), $this->config->get('config_image_wishlist_height'));
+					$image = $this->model_tool_image->resize($product_info['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
 				} else {
 					$image = false;
 				}
@@ -95,19 +101,32 @@ class ControllerAccountWishList extends Controller {
 				}
 
 				if ((float)$product_info['special']) {
+                    $percentSale = round((((int)$product_info['price'] - (int)$product_info['special']) / (int)$product_info['price']) * 100,0);
 					$special = $this->currency->format($this->tax->calculate($product_info['special'], $product_info['tax_class_id'], $this->config->get('config_tax')));
 				} else {
 					$special = false;
+                    $percentSale = false;
 				}
-
+                if ($this->config->get('config_review_status')) {
+                    $rating = (int)$product_info['rating'];
+                } else {
+                    $rating = false;
+                }
+                $manufacturer = $this->model_catalog_manufacturer->getManufacturer($product_info['manufacturer_id']);
 				$data['products'][] = array(
+					'rating' => $rating,
+                    'on_wishlist'=> in_array($product_info['product_id'],$wishListIds) ? true : false,
 					'product_id' => $product_info['product_id'],
 					'thumb'      => $image,
+                    'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'       => $product_info['name'],
 					'model'      => $product_info['model'],
 					'stock'      => $stock,
 					'price'      => $price,
 					'special'    => $special,
+                    'reviews'        => $product_info['reviews'],
+                    'manufacturer'        => isset($manufacturer['name']) ? $manufacturer['name'] : null,
+                    'percent_sale'     => $percentSale,
 					'href'       => $this->url->link('product/product', 'product_id=' . $product_info['product_id']),
 					'remove'     => $this->url->link('account/wishlist', 'remove=' . $product_info['product_id'])
 				);

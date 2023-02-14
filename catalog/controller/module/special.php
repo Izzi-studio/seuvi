@@ -27,7 +27,11 @@ class ControllerModuleSpecial extends Controller {
 		);
 
 		$results = $this->model_catalog_product->getProductSpecials($filter_data);
-
+        $this->load->model('account/wishlist');
+        $wishListIds = [];
+        foreach ($this->model_account_wishlist->getWishlist() as $wishItem) {
+            $wishListIds[] = $wishItem['product_id'];
+        }
 		if ($results) {
 			foreach ($results as $result) {
 				if ($result['image']) {
@@ -68,6 +72,7 @@ class ControllerModuleSpecial extends Controller {
 
 				$data['products'][] = array(
 					'product_id'  => $result['product_id'],
+                    'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
                     'options'        => $this->model_helper_helper->getProductOptions($result),
                     'reviews'        => $result['reviews'],
 					'thumb'       => $image,

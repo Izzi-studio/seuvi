@@ -3,16 +3,20 @@ class ControllerQuickCheckoutShippingdata extends Controller
 {
     public function index()
     {
+
+        $inputs = json_decode(file_get_contents('php://input'));
+
         $this->load->model('localisation/language');
 
         $language = $this->model_localisation_language->getLanguage($this->config->get('config_language_id'));
+
         $apiKey = $this->config->get('novaposhta_api_key');
 
-        if($this->request->get['method'] == 'getCity'){
-            $response =  $this->find_city_id_by_name($apiKey, $this->request->post['findString'], $language['code']);
+        if($this->request->get['method'] == 'getCity' && isset($inputs->findString)){
+            $response =  $this->find_city_id_by_name($apiKey, $inputs->findString, $language['code']);
         }
-        if($this->request->get['method'] == 'getWarehouse') {
-            $response =  $this->find_warehouses($apiKey, $this->request->post['findString'],$this->request->post['ref'], $language['code']);
+        if($this->request->get['method'] == 'getWarehouse' && isset($inputs->ref) && isset($inputs->findString)) {
+            $response =  $this->find_warehouses($apiKey, $inputs->findString, $inputs->ref, $language['code']);
         }
 
         $this->response->addHeader('Content-Type: application/json');
@@ -52,7 +56,7 @@ class ControllerQuickCheckoutShippingdata extends Controller
     }
 
 
-    private function find_city_id_by_name($api_key, $city, $langCode = 'uk-ua') {
+    private function find_city_id_by_name($api_key, $city, $langCode = 'ua') {
         $get_cities = curl_init();
         curl_setopt($get_cities, CURLOPT_URL, $this->config->get('novaposhta_api_url'));
         curl_setopt($get_cities, CURLOPT_RETURNTRANSFER, 1);
@@ -70,7 +74,7 @@ class ControllerQuickCheckoutShippingdata extends Controller
         if ($cities['success'] == 1) {
             foreach ($cities['data'] as $key=>$item) {
                 $returnData[] = [
-                    'city'=> $langCode == 'uk-ua' ? $item['Description'] : $item['DescriptionRu'],
+                    'city'=> $langCode == 'ua' ? $item['Description'] : $item['DescriptionRu'],
                     'ref'=>$item['Ref']
                 ];
             }
@@ -81,7 +85,7 @@ class ControllerQuickCheckoutShippingdata extends Controller
     }
 
 
-    private function find_warehouses($api_key, $findString,$ref, $langCode = 'uk-ua') {
+    private function find_warehouses($api_key, $findString,$ref, $langCode = 'ua') {
         $get_cities = curl_init();
         curl_setopt($get_cities, CURLOPT_URL, $this->config->get('novaposhta_api_url'));
         curl_setopt($get_cities, CURLOPT_RETURNTRANSFER, 1);
@@ -99,10 +103,10 @@ class ControllerQuickCheckoutShippingdata extends Controller
         if ($cities['success'] == 1) {
             foreach ($cities['data'] as $key=>$item) {
                 $returnData[] = [
-                    'warehouse'=> $langCode == 'uk-ua' ? str_replace('"','',$item['Description']) : str_replace('"','',$item['DescriptionRu']),
+                    'warehouse'=> $langCode == 'ua' ? str_replace('"','',$item['Description']) : str_replace('"','',$item['DescriptionRu']),
                     'ref'=>$item['Ref'],
                     'cityRef'=>$item['CityRef'],
-                    'CityDescription'=>$langCode == 'uk-ua' ? $item['CityDescription'] : $item['CityDescriptionRu']
+                    'CityDescription'=>$langCode == 'ua' ? $item['CityDescription'] : $item['CityDescriptionRu']
                 ];
             }
             return $returnData;

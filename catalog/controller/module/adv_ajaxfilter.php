@@ -514,6 +514,12 @@ class ControllerModuleAdvajaxfilter extends Controller {
 		$data['products'] = array();
         $this->load->model('helper/helper');
         $this->load->model('catalog/manufacturer');
+
+        $this->load->model('account/wishlist');
+        $wishListIds = [];
+        foreach ($this->model_account_wishlist->getWishlist() as $wishItem) {
+            $wishListIds[] = $wishItem['product_id'];
+        }
 		foreach ($results as $result) {
 			if ($result['image']) {
 				$image = $this->model_tool_image->resize($result['image'], $this->config->get('config_image_product_width'), $this->config->get('config_image_product_height'));
@@ -570,6 +576,7 @@ class ControllerModuleAdvajaxfilter extends Controller {
 
 			$data['products'][] = array(
 				'product_id'  => $result['product_id'],
+                'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
 				'thumb'       => $image,
 				'name'        => $result['name'],
 				'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, 100) . '..',

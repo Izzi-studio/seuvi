@@ -40,6 +40,13 @@ class ControllerModuleFeaturedcategory extends Controller {
                     'flag_select' => 'flag_new'
                 );
                 $results = $this->model_catalog_product->getProducts($filter_data);
+
+                $this->load->model('account/wishlist');
+                $wishListIds = [];
+                foreach ($this->model_account_wishlist->getWishlist() as $wishItem) {
+                    $wishListIds[] = $wishItem['product_id'];
+                }
+
                 $this->load->model('helper/helper');
                 foreach ($results as $product_info) {
 
@@ -81,6 +88,7 @@ class ControllerModuleFeaturedcategory extends Controller {
 
 
                         $data['products'][] = array(
+                            'on_wishlist'=> in_array($product_info['product_id'],$wishListIds) ? true : false,
                             'product_id'  => $product_info['product_id'],
                             'thumb'       => $image,
                             'name'        => $product_info['name'],

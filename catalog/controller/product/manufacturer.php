@@ -42,9 +42,14 @@ class ControllerProductManufacturer extends Controller {
 			if (!isset($data['categories'][$key])) {
 				$data['categories'][$key]['name'] = $key;
 			}
-
+            if ($result['image']) {
+                $image = $this->model_tool_image->resize($result['image'], 270, 270);
+            } else {
+                $image = $this->model_tool_image->resize('placeholder.png', 270, 270);
+            }
 			$data['categories'][$key]['manufacturer'][] = array(
 				'name' => $result['name'],
+				'image' => $image,
 				'href' => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $result['manufacturer_id'])
 			);
 		}

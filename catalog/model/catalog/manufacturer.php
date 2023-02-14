@@ -16,7 +16,7 @@ class ModelCatalogManufacturer extends Model {
 			);
 
 			if($favorites){
-                $sql .= " where favorites = '1' ";
+                $sql .= " and favorites = '1' ";
             }
 
 			if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -48,9 +48,9 @@ class ModelCatalogManufacturer extends Model {
 			return $query->rows;
 		} else {
 
-			$manufacturer_data = $this->cache->get('manufacturer.' . (int)$this->config->get('config_store_id'));
+			//$manufacturer_data = $this->cache->get('manufacturer.' . (int)$this->config->get('config_store_id'));
 
-			if (!$manufacturer_data) {
+			//if (!$manufacturer_data) {
 				$sql = "SELECT * FROM " . DB_PREFIX . "manufacturer m LEFT JOIN " . DB_PREFIX . "manufacturer_to_store m2s ON (m.manufacturer_id = m2s.manufacturer_id) WHERE m2s.store_id = '" . (int)$this->config->get('config_store_id') . "'";
 
                 if($favorites) {
@@ -58,13 +58,13 @@ class ModelCatalogManufacturer extends Model {
                 }
 
                 $sql .= "  ORDER BY name";
-
+               // $sql .= " LIMIT 0,9";
                 $query = $this->db->query($sql);
 
 				$manufacturer_data = $query->rows;
 
 				$this->cache->set('manufacturer.' . (int)$this->config->get('config_store_id'), $manufacturer_data);
-			}
+			//}
 
 			return $manufacturer_data;
 		}

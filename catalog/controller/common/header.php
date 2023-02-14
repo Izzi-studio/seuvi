@@ -91,8 +91,8 @@ class ControllerCommonHeader extends Controller {
         $data['text_blog']    =  $blog_title[$this->language->get('code')];
 
 
-		
 
+        $data["newest_link"]= $this->url->link('product/new','','SSL');
 		$data['home'] = $this->url->link('common/home');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
 		$data['logged'] = $this->customer->isLogged();
@@ -176,14 +176,16 @@ class ControllerCommonHeader extends Controller {
                 foreach($childrenNested as $childNested) {
                     $nestedCategory[] = array(
                         'category_id' => $childNested['category_id'],
-                        'name' => $childNested['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                        //'name' => $childNested['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                        'name' => $childNested['name'],
                         'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']. '_' . $childNested['category_id'])
                     );
                 }
 
                 $children_data[] = array(
                     'category_id' => $child['category_id'],
-                    'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                    //'name' => $child['name'] . ($this->config->get('config_product_count') ? ' (' . $this->model_catalog_product->getTotalProducts($filter_data) . ')' : ''),
+                    'name' => $child['name'],
                     'href' => $this->url->link('product/category', 'path=' . $category['category_id'] . '_' . $child['category_id']),
                     'children' =>$nestedCategory
                 );
