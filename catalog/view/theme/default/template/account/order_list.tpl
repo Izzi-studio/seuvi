@@ -1,5 +1,5 @@
 <?php echo $header; ?>
-<div class="container">
+<div class="container-fluid">
   <ul class="breadcrumb">
     <?php foreach ($breadcrumbs as $breadcrumb) { ?>
     <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
@@ -38,7 +38,7 @@
               <td class="text-right"><?php echo $order['products']; ?></td>
               <td class="text-left"><?php echo $order['name']; ?></td>
               <td class="text-right"><?php echo $order['total']; ?></td>
-              <td class="text-right"><a href="<?php echo $order['href']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-info"><i class="fa fa-eye"></i></a></td>
+              <td class="text-right"><a href="<?php echo $order['href']; ?>" data-toggle="tooltip" title="<?php echo $button_view; ?>" class="btn btn-primary"><i class="fa fa-eye"></i></a></td>
             </tr>
             <?php } ?>
           </tbody>

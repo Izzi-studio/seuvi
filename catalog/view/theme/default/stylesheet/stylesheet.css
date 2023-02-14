@@ -2126,6 +2126,41 @@ footer .infos>div.email{
 body[class^="account"] footer{
 	margin-top: 60px;
 }
+body[class^="account"] .buttons{
+	margin-top: 30px;
+}
+#column-left .list-group a{
+	border:2px solid #F9EDED;
+	transition: all .3s ease;
+	text-decoration: none;
+}
+#column-left .list-group a.active,
+#column-left .list-group a:hover{
+	background: #343F24;
+	border:2px solid #343F24;
+	color:#fff;
+}
+body[class^="account"] #content .radgroup input[type="radio"]+label{
+	padding-left: 15px;
+}
+body[class^="account"] #content .radgroup input[type="radio"]+label:before{
+	display: none;
+}
+body[class^="account"] .product-layout .remove_prod{
+	position: absolute;
+	right: 13px;
+	top: 13px;
+	border: 0;
+	padding: 0;
+	width: 24px;
+	height: 24px;
+	background: #F9EDED;
+	border-radius: 100%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
 
 /*End account*/
 
@@ -2138,6 +2173,7 @@ body[class^="account"] footer{
 	font-weight: bold;
 	line-height: 26px;
 }
+body[class^="account"] h2,
 h1{
 	font-weight: 400;
 	font-size: 40px;
@@ -2145,4 +2181,7 @@ h1{
 	text-transform: uppercase;
 	color: #343F24;
 	margin-bottom: 38px;
+}
+body[class^="account"] h2{
+	margin-bottom: 15px;
 }
