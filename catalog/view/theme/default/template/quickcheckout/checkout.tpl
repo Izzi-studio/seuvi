@@ -82,19 +82,22 @@
 				  <div class="quickcheckout-content"></div>
 			  </div>
 			  <?php } ?>
+
+			  <?php if ($payment_module) { ?>
+			  <div id="payment-method">
+				  <?php } else { ?>
+				  <div id="payment-method" style="display:none;">
+					  <?php } ?>
+					  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_payment_method; ?></div>
+					  <div class="quickcheckout-content"></div>
+				  </div>
 		  </div>
+
 	  </div>
       
 	  <div class="checkout-column col-lg-6">
 		  <div class="checkout_inner">
-			<?php if ($payment_module) { ?>
-			<div id="payment-method">
-			<?php } else { ?>
-			<div id="payment-method" style="display:none;">
-			<?php } ?>
-			  <div class="quickcheckout-heading box-heading"><?php echo $text_checkout_payment_method; ?></div>
-			  <div class="quickcheckout-content"></div>
-			</div>
+
       
       <?php if ($layout != '2') { ?>
   		</div> <!-- not if 2 columns -->
