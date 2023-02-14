@@ -3,7 +3,11 @@
         <div class="col-lg-5 girl_bg"></div>
         <div class="col-lg-7">
             <img class="stamp" src="/image/seuvi/consult_stamp.svg" />
-            <h3><?php echo $heading_title; ?></h3>
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3><?php echo $heading_title; ?></h3>
+                </div>
+            </div>
             <div class="desc">
                 <?php echo $text_description; ?>
             </div>

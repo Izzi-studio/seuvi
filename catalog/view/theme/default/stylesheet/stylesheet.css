@@ -2121,6 +2121,14 @@ footer .infos>div.email{
 
 /*End quick checkout*/
 
+/*Account*/
+
+body[class^="account"] footer{
+	margin-top: 60px;
+}
+
+/*End account*/
+
 /*Other*/
 
 #consult_thanks .modal-content{

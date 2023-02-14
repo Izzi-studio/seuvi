@@ -113,7 +113,7 @@
         <div class="topmenu">
           <ul>
             <li>
-              <a href="/newest">
+              <a href="<?php echo $newest_link;?>">
                 <?php echo $text_menu_new;?>
               </a>
             </li>
@@ -128,7 +128,7 @@
               </a>
             </li>
             <li>
-              <a href="#">
+              <a href="<?php echo $review_link;?>">
                 <?php echo $text_menu_otzivi;?>
               </a>
             </li>
