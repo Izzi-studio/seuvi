@@ -218,26 +218,29 @@ button:focus{
 .lang ul.dropdown-menu li a:hover{
 	color: #D72848;
 }
-.mega_level{
-	display: none;
-}
+
+
+
+
+
 .topcats{
 	padding: 14px 0;
 	border-top: 2px solid #F9EDED;
 	border-bottom: 2px solid #F9EDED;
 	margin-bottom: 24px;
 }
-.topcats ul{
+.topcats ul.mainmenu{
 	display: flex;
 	margin: 0;
 	padding: 0;
 	align-items: center;
 	justify-content: space-around;
+	position: relative;
 }
-.topcats ul li{
+.topcats ul.mainmenu>li{
 	display: inline-block;
 }
-.topcats ul li a{
+.topcats ul.mainmenu>li>a{
 	display: block;
 	padding: 10px;
 	transition: all .3s ease;
@@ -248,9 +251,75 @@ button:focus{
 	color: #343F24;
 	text-decoration: none;
 }
-.topcats ul li a:hover{
+.topcats ul.mainmenu>li:hover>a{
 	background: #F9EDED;
 }
+.topcats ul.mainmenu>li:hover .mega_level{
+	display: block;
+}
+.mega_level{
+	position: absolute;
+	width:100%;
+	left:0;
+	top: 100%;
+	z-index: 3;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 5px;
+	padding: 30px;
+	display: none;
+	transition: all .3s ease;
+}
+.mega_level ul.first_level{
+	columns:5;
+	-moz-columns: 5;
+	-webkit-columns:5;
+}
+.mega_level ul.first_level li {
+	break-inside: avoid-column;
+}
+.mega_level ul.first_level{
+	padding: 0;
+	margin: 0;
+}
+.mega_level ul.first_level>li{
+	margin-bottom: 24px;
+	display: block;
+}
+.mega_level ul.first_level>li>a{
+	font-weight: 600;
+	font-size: 16px;
+	line-height: 22px;
+	color: #343F24;
+	text-decoration: none;
+	transition: all .3s ease;
+}
+.mega_level ul.first_level>li>a:hover{
+	color: #66833B;
+}
+.mega_level ul.second_level{
+	padding: 0;
+	margin: 8px 0 0;
+}
+.mega_level ul.second_level>li{
+	margin-bottom: 6px;
+	display: block;
+}
+.mega_level ul.second_level>li:last-child{
+	margin-bottom: 0;
+}
+.mega_level ul.second_level>li>a{
+	text-decoration: none;
+	transition: all .3s ease;
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #1F1F1F;
+}
+.mega_level ul.second_level>li>a:hover{
+	color: #66833B;
+}
+
 #cart .dropdown-toggle::after{
 	display: none;
 }

@@ -168,32 +168,36 @@
 </div>
 <div class="topcats">
   <div class="container-fluid">
-  <ul>
+  <ul class="mainmenu">
   <?php foreach ($categories as $category) { ?>
   <?php if ($category['children']) { ?>
-  <li class="mega_parent">
-    <a href="<?php echo $category['href']; ?>">
-      <?php echo $category['name']; ?>
-    </a>
-    <div class="mega_level">
-        <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
-        <ul class="list-unstyled">
-          <?php foreach ($children as $child) { ?>
-          <li>
-            <a href="<?php echo $child['href']; ?>">
-              <?php echo $child['name']; ?>
-            </a>
-            <ul>
-
-            </ul>
-          </li>
+    <li class="mega_parent">
+      <a href="<?php echo $category['href']; ?>">
+        <?php echo $category['name']; ?>
+      </a>
+      <div class="mega_level">
+          <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
+          <ul class="first_level">
+            <?php foreach ($children as $child) { ?>
+            <li>
+              <a href="<?php echo $child['href']; ?>">
+                <?php echo $child['name']; ?>
+              </a>
+              <?php if($child['children']){ ?>
+                <ul class="second_level">
+                  <?php foreach($child['children'] as $ch){ ?>
+                   <li><a href="<?php echo $ch['href'];?>"><?php echo $ch['name'];?></a></li>
+                  <?php }?>
+                </ul>
+              <?php }?>
+            </li>
+            <?php } ?>
+          </ul>
           <?php } ?>
-        </ul>
-        <?php } ?>
-    </div>
-  </li>
+      </div>
+    </li>
   <?php } else { ?>
-  <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+    <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
   <?php } ?>
   <?php } ?>
   </ul>

@@ -9,25 +9,15 @@
   <h1 class="cat_title"><?php echo $heading_title; ?></h1>
 
   <!--Subcats-->
+  <?php if ($categories) { ?>
   <div class="subcats">
-    <?php if ($categories) { ?>
-      <?php if (count($categories) <= 5) { ?>
           <ul>
             <?php foreach ($categories as $category) { ?>
-            <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+              <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
             <?php } ?>
           </ul>
-      <?php } else { ?>
-        <?php foreach (array_chunk($categories, ceil(count($categories) / 4)) as $categories) { ?>
-          <ul>
-            <?php foreach ($categories as $category) { ?>
-            <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
-            <?php } ?>
-          </ul>
-        <?php } ?>
-      <?php } ?>
-    <?php } ?>
   </div>
+  <?php } ?>
   <!--End subcats-->
 
 
