@@ -297,7 +297,7 @@ a#wishlist-total{
 	border: 0;
 	border-bottom: 1px solid #BDBDBD;
 	border-radius: 0;
-	margin-bottom: 8px;
+	margin-bottom: 0px;
 }
 .form-control:focus{
 	box-shadow: none;
