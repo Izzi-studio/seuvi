@@ -13,34 +13,50 @@ foreach ($shipping_methods as $shipping_method) {
 	}
 }
 ?>
-<p><?php echo $text_shipping_method; ?></p>
+<p class="yel_box"><?php echo $text_shipping_method; ?></p>
 <?php if ($shipping) { ?>
-<table class="table">
+<div class="table">
   <?php foreach ($shipping_methods as $shipping_method) { ?>
-  <tr>
-    <td colspan="3"><b><?php echo $shipping_method['title']; ?></b></td>
-  </tr>
   <?php if (!$shipping_method['error']) { ?>
   <?php foreach ($shipping_method['quote'] as $quote) { ?>
-  <tr class="options-list">
-    <td style="width:22px"><?php if ($quote['code'] == $code || !$code || !$exists) { ?>
+  <div class="options-list">
+        <?php if ($quote['code'] == $code || !$code || !$exists) { ?>
 	  <?php $code = $quote['code']; ?>
 	  <?php $exists = true; ?>
       <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" checked="checked" />
       <?php } else { ?>
       <input type="radio" name="shipping_method" value="<?php echo $quote['code']; ?>" id="<?php echo $quote['code']; ?>" />
-      <?php } ?></td>
-    <td><label for="<?php echo $quote['code']; ?>"><?php echo $quote['title']; ?></label></td>
-      <td style="text-align: right;" class="rtl-left"><label for="<?php echo $quote['code']; ?>"><?php if ($quote['code'] == 'pickup.pickup') { ?><span class="shipping-sum "><?php echo $entry_free; ?></span> <?php } ?><!--<span class="shipping-sum "><?php echo $quote['text']; ?></span> --></label></td>
-  </tr>
+      <?php } ?>
+    <label for="<?php echo $quote['code']; ?>">
+        <div class="flexed justify-content-between">
+            <div class="ship_name">
+                <?php echo $shipping_method['title']; ?>
+            </div>
+            <?php if ($quote['code'] == 'pickup.pickup') { ?>
+                <span class="shipping-sum "><?php echo $entry_free; ?></span>
+            <?php } ?>
+        </div>
+        <div class="ship_desc">
+            <?php echo $quote['title']; ?>
+        </div>
+    </label>
+      <!--<div style="text-align: right;" class="rtl-left">
+          <label for="<?php echo $quote['code']; ?>">
+              <?php if ($quote['code'] == 'pickup.pickup') { ?>
+                 <span class="shipping-sum "><?php echo $entry_free; ?></span>
+              <?php } ?>
+
+          </label>
+      </div>-->
+  </div>
   <?php } ?>
   <?php } else { ?>
-  <tr>
-    <td colspan="3"><div class="error"><?php echo $shipping_method['error']; ?></div></td>
-  </tr>
+  <div>
+    <div colspan="3"><div class="error"><?php echo $shipping_method['error']; ?></div></div>
+  </div>
   <?php } ?>
   <?php } ?>
-</table>
+</div>
 <?php } else { ?>
   <select class="form-control" name="shipping_method">
    <?php foreach ($shipping_methods as $shipping_method) { ?>

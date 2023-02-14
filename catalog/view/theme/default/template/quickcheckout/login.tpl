@@ -1,13 +1,11 @@
 <div id="login">
 <div class="row">
   <div class="col-sm-6">
-	<label class="control-label" for="input-login-email"><?php echo $entry_email; ?></label>
-	  <input type="text" name="email" value="" class="form-control" id="input-login-email" />
+	  <input placeholder="<?php echo $entry_email; ?>" type="text" name="email" value="" class="form-control" id="input-login-email" />
   </div>
   
   <div class="col-sm-6">
-	<label class="control-label" for="input-login-password"><?php echo $entry_password; ?></label>
-	  <input type="password" name="password" value="" class="form-control" />
+	  <input placeholder="<?php echo $entry_password; ?>" type="password" name="password" value="" class="form-control" />
   </div>
   </div>
   <div class="text-right">

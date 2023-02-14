@@ -5,18 +5,30 @@
     <li> <a href="<?php echo $breadcrumb['href']; ?>"> <?php echo $breadcrumb['text']; ?> </a> </li>
     <?php } ?>
   </ul>
-  <div class="row"><?php echo $column_left; ?>
-    <?php if ($column_left && $column_right) { ?>
-    <?php $class = 'col-sm-6'; ?>
-    <?php } elseif ($column_left || $column_right) { ?>
-    <?php $class = 'col-sm-9'; ?>
-    <?php } else { ?>
-    <?php $class = 'col-sm-12'; ?>
-    <?php } ?>
-    <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
+  <div class="row">
+    <div id="content" class="col-12">
+      <?php echo $content_top; ?>
       <h1><?php echo $heading_title; ?></h1>
       <?php if ($categories) { ?>
-      <p><strong><?php echo $text_index; ?></strong>
+
+      <div class="brands">
+          <div class="row no-gutters">
+            <?php foreach($categories as $category){ ?>
+            <?php foreach (array_chunk($category['manufacturer'], 1) as $manufacturers) { ?>
+            <?php foreach ($manufacturers as $brand) { ?>
+            <div class="col-lg-20">
+              <a class="item" href="<?php echo $brand['href']; ?>">
+                <img src="<?php echo $brand['image']; ?>" title="<?php echo $brand['name']; ?>">
+              </a>
+            </div>
+            <?php }
+            }
+            }?>
+          </div>
+      </div>
+
+
+      <!--<p><strong><?php echo $text_index; ?></strong>
         <?php foreach ($categories as $category) { ?>
         &nbsp;&nbsp;&nbsp;<a href="index.php?route=product/manufacturer#<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a>
         <?php } ?>
@@ -32,7 +44,7 @@
       </div>
       <?php } ?>
       <?php } ?>
-      <?php } ?>
+      <?php } ?>-->
       <?php } else { ?>
       <p><?php echo $text_empty; ?></p>
       <div class="buttons clearfix">

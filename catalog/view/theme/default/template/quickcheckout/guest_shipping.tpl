@@ -37,8 +37,7 @@
   <?php } else { ?>
 	<?php if (!empty(${'field_' . $field}['display'])) { ?>
 	<div<?php echo $field == 'postcode' ? ' id="shipping-postcode-required"' : ''; ?> class="col-sm-6<?php echo !empty(${'field_' . $field}['required']) ? ' required' : ''; ?>">
-	  <label class="control-label"><?php echo ${'entry_' . $field}; ?></label>
-	  <input type="text" name="<?php echo $field; ?>" value="<?php echo ${$field} ? ${$field} : ${'field_' . $field}['default']; ?>" class="form-control" id="input-shipping-<?php echo str_replace('_', '-', $field); ?>" />
+	  <input placeholder="<?php echo ${'entry_' . $field}; ?>" type="text" name="<?php echo $field; ?>" value="<?php echo ${$field} ? ${$field} : ${'field_' . $field}['default']; ?>" class="form-control" id="input-shipping-<?php echo str_replace('_', '-', $field); ?>" />
 	</div>
 	<?php } else { ?>
 	<input type="text" name="<?php echo $field; ?>" value="<?php echo ${$field} ? ${$field} : ${'field_' . $field}['default']; ?>" class="hide" />

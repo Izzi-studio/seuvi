@@ -1,16 +1,16 @@
 <?php
 // Heading 
-$_['heading_title']                  = 'Checkout';
+$_['heading_title']                  = 'Оформлення замовлення ';
 
 // Text
-$_['text_cart']                      = 'Shopping Cart';
-$_['text_checkout_option']           = 'Login';
-$_['text_already_have_account']      = 'Already have an account? Login';
-$_['text_checkout_account']          = 'Account &amp; Billing Details';
+$_['text_cart']                      = 'Ваше замовлення';
+$_['text_checkout_option']           = 'Увійти';
+$_['text_already_have_account']      = 'У Вас вже є профіль? Увійти';
+$_['text_checkout_account']          = 'Контактні дані';
 $_['text_checkout_payment_address']  = 'Billing Details';
-$_['text_checkout_shipping_address'] = 'Delivery Details';
-$_['text_checkout_shipping_method']  = 'Delivery Method';
-$_['text_checkout_payment_method']   = 'Payment Method';
+$_['text_checkout_shipping_address'] = 'Дані отримувача';
+$_['text_checkout_shipping_method']  = 'Доставка';
+$_['text_checkout_payment_method']   = 'Оплата';
 $_['text_checkout_confirm']          = 'Confirm Order';
 $_['text_new_customer']              = 'New Customer';
 $_['text_returning_customer']        = 'Returning Customer';
@@ -23,20 +23,20 @@ $_['text_forgotten']                 = 'Forgotten Password';
 $_['text_your_details']              = 'Your Personal Details';
 $_['text_your_address']              = 'Your Address';
 $_['text_your_password']             = 'Your Password';
-$_['text_agree']                     = 'I have read and agree to the <a class="agree" href="%s" alt="%s"><b>%s</b></a>';
+$_['text_agree']                     = '* Підтверджую замовлення, я приймаю умови положення про обробку персональних данних, правила проведення конкурсів, угоди користувача та умови використання сайту.';
 $_['text_address_new']               = 'I want to use a new address';
 $_['text_address_existing']          = 'I want to use an existing address';
-$_['text_shipping_method']           = 'Please select the preferred shipping method to use on this order.';
+$_['text_shipping_method']           = 'Срок доставки орієнтовний і залежить від ситуації у вашому регіоні.';
 $_['text_payment_method']            = 'Please select the preferred payment method to use on this order.';
-$_['text_comments']                  = 'Add Comments About Your Order';
+$_['text_comments']                  = 'Коментар до замовлення';
 $_['text_create_account']			 = 'Also create an account for future use.';
 $_['text_or']						 = '-- OR --';
-$_['text_please_wait']				 = 'Please wait...';
+$_['text_please_wait']				 = 'Зачекайте будь ласка...';
 $_['text_coupon']        		     = 'Success: Your coupon discount has been applied!';
 $_['text_voucher']        		     = 'Success: Your gift voucher discount has been applied!';
 $_['text_reward']         		     = 'Success: Your reward points discount has been applied!';
-$_['text_use_coupon']      		     = 'Use Coupon Code';
-$_['text_use_voucher']    		     = 'Use Gift Voucher';
+$_['text_use_coupon']      		     = 'Застосувати';
+$_['text_use_voucher']    		     = 'Застосувати';
 $_['text_use_reward']    		     = 'Use Reward Points';
 $_['text_estimated_delivery']		 = 'Estimated Delivery:';
 $_['text_delivery']					 = 'Delivery Date:';
@@ -51,12 +51,12 @@ $_['column_total']                   = 'Total';
 
 // Entry
 $_['entry_email_address']            = 'E-Mail Address:';
-$_['entry_email']                    = 'E-Mail:';
-$_['entry_password']                 = 'Password:';
+$_['entry_email']                    = 'Електронна пошта';
+$_['entry_password']                 = 'Пароль';
 $_['entry_confirm']                  = 'Password Confirm:';
-$_['entry_firstname']                = 'First Name:';
-$_['entry_lastname']                 = 'Last Name:';
-$_['entry_telephone']                = 'Telephone:';
+$_['entry_firstname']                = 'Ім\'я';
+$_['entry_lastname']                 = 'Прізвище';
+$_['entry_telephone']                = 'Номер телефону';
 $_['entry_fax']                      = 'Fax:';
 $_['entry_customer_group']           = 'Customer Group:';
 $_['entry_company']                  = 'Company:';
@@ -67,9 +67,9 @@ $_['entry_city']                     = 'City:';
 $_['entry_country']                  = 'Country:';
 $_['entry_zone']                     = 'Region / State:';
 $_['entry_newsletter']               = 'I wish to subscribe to the %s newsletter.';
-$_['entry_shipping'] 	             = 'My delivery and billing addresses are the same.';
-$_['entry_coupon']        		     = 'Enter your coupon here:';
-$_['entry_voucher']      		     = 'Enter your gift voucher code here:';
+$_['entry_shipping'] 	             = 'Той самий отримувач';
+$_['entry_coupon']        		     = 'Застосувати код на знижку';
+$_['entry_voucher']      		     = 'Застосувати код подарункової карти';
 $_['entry_reward']          		 = 'Enter reward points to use (Max %s, Available %s):';
 $_['entry_free']          		 = 'Безкоштовно';
 
@@ -107,3 +107,4 @@ $_['error_maximum']      		     = 'Warning: The maximum number of points that ca
 $_['error_reward']        		     = 'Warning: Please enter the amount of reward points to use!';	
 $_['error_points']           		 = 'Warning: You don\'t have %s reward points!';
 $_['error_custom_field']             = '%s required!';
+$_['error_quantity']                 = 'Обраної кількості товарів немає в наявності!';
