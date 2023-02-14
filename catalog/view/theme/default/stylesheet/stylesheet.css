@@ -2182,6 +2182,9 @@ h1{
 	color: #343F24;
 	margin-bottom: 38px;
 }
+.product-search footer{
+	margin-top: 60px;
+}
 body[class^="account"] h2{
 	margin-bottom: 15px;
 }
