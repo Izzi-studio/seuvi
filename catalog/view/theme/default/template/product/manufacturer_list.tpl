@@ -28,7 +28,7 @@
       </div>
 
 
-      <p><strong><?php echo $text_index; ?></strong>
+      <!--<p><strong><?php echo $text_index; ?></strong>
         <?php foreach ($categories as $category) { ?>
         &nbsp;&nbsp;&nbsp;<a href="index.php?route=product/manufacturer#<?php echo $category['name']; ?>"><?php echo $category['name']; ?></a>
         <?php } ?>
@@ -44,7 +44,7 @@
       </div>
       <?php } ?>
       <?php } ?>
-      <?php } ?>
+      <?php } ?>-->
       <?php } else { ?>
       <p><?php echo $text_empty; ?></p>
       <div class="buttons clearfix">
