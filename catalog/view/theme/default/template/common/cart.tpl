@@ -19,7 +19,7 @@
     <li>
       <div class="cart_prods">
         <?php foreach ($products as $product) { ?>
-        <div class="row align-items-center">
+        <div class="row align-items-center mobnone">
           <div class="col-md-2">
             <?php if ($product['thumb']) { ?>
             <a href="<?php echo $product['href']; ?>" class="image">
@@ -46,6 +46,38 @@
           <div class="col-md-2 quant">x <?php echo $product['quantity']; ?></div>
           <div class="col-md-2 total"><?php echo $product['total']; ?></div>
           <div class="col-md-1">
+            <button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="remove_prod">
+              <img src="/image/seuvi/remove.svg">
+            </button>
+          </div>
+        </div>
+        <div class="row align-items-center mobonly">
+          <div class="col-4">
+            <?php if ($product['thumb']) { ?>
+            <a href="<?php echo $product['href']; ?>" class="image">
+              <img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-thumbnail" />
+            </a>
+            <?php } ?>
+          </div>
+          <div class="col-8">
+            <a href="<?php echo $product['href']; ?>" class="prod_name">
+              <?php echo $product['name']; ?>
+            </a>
+            <?php if ($product['option']) { ?>
+            <?php foreach ($product['option'] as $option) { ?>
+            <div class="prod_option">
+              <?php echo $option['value']; ?>
+            </div>
+            <?php } ?>
+            <?php } ?>
+            <?php if ($product['recurring']) { ?>
+            <br />
+            - <small><?php echo $text_recurring; ?> <?php echo $product['recurring']; ?></small>
+            <?php } ?>
+            <div class="flexed just">
+              <div>x <?php echo $product['quantity']; ?></div>
+              <div><?php echo $product['total']; ?></div>
+            </div>
             <button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="remove_prod">
               <img src="/image/seuvi/remove.svg">
             </button>

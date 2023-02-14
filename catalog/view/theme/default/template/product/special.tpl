@@ -52,7 +52,10 @@
             <button type="button" id="grid-view" class="btn btn-default" data-toggle="tooltip" title="<?php echo $button_grid; ?>"><i class="fa fa-th"></i></button>
           </div>
         </div>-->
-        <div class="col-12">
+        <div class="col-12 mobflex">
+          <a class="filter mobonly">
+            <img src="/image/seuvi/filter.svg">
+          </a>
           <select id="input-sort" class="form-control" onchange="location = this.value;">
             <?php foreach ($sorts as $sorts) { ?>
             <?php if ($sorts['value'] == $sort . '-' . $order) { ?>

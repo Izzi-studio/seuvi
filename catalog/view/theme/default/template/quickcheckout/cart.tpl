@@ -7,6 +7,7 @@
   <div class="quickcheckout-cart contrast_font">
     <?php if ($products || $vouchers) { ?>
 	<div>
+        <div class="mobnone">
         <?php foreach ($products as $product) { ?>
         <div class="item row">
             <div class="col-lg-3">
@@ -54,8 +55,58 @@
             </div>
         </div>
         <?php } ?>
+        </div>
+        <div class="mobonly_block">
+            <?php foreach ($products as $product) { ?>
+            <div class="item row">
+                <div class="col-4">
+                    <div class="image mobile_hide"><?php if ($product['thumb']) { ?>
+                        <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
+                        <?php } ?>
+                    </div>
+                </div>
+                <div class="col-8">
+                    <div class="name">
+                        <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+                        <?php if (!$product['stock']) { ?>
+                        <span class="text-danger">***</span>
+                        <?php } ?>
+                        <div>
+                            <?php foreach ($product['option'] as $option) { ?>
+                            <small><?php echo $option['value']; ?></small>
+                            <?php } ?>
+
+                            <?php if ($product['recurring']) { ?>
+                            <small><?php echo $text_recurring_item; ?>: <?php echo $product['recurring']; ?></small>
+                            <?php } ?>
+                        </div>
+                    </div>
+                    <div class="flexed just">
+                        <div class="quant">
+                            <?php if ($edit_cart) { ?>
+                            <div class="minus">-</div>
+                            <input type="text" readonly name="quantity[<?php echo $product['cart_id']; ?>]" value="<?php echo $product['quantity']; ?>" />
+                            <div class="plus">+</div>
+
+                            <a style="display:none;" data-tooltip="<?php echo $button_update; ?>" class="button-update sq_icon"><i class="fa fa-refresh"></i></a>
+                            <?php } else { ?>
+                            x&nbsp;<?php echo $product['quantity']; ?>
+                            <?php } ?>
+                        </div>
+                        <!--<div class="unit-price mobile_hide"><?php echo $product['price']; ?></div>-->
+
+                        <div class="total"><?php echo $product['total']; ?></div>
+                    </div>
+                    <a href="<?php echo $product['cart_id']; ?>" data-tooltip="<?php echo $button_remove; ?>" class="button-remove sq_icon remove_prod" data-remove="<?php echo $product['cart_id']; ?>">
+                        <img src="/image/seuvi/remove.svg">
+                    </a>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
         <?php foreach ($vouchers as $voucher) { ?>
         <div>
+
           <div class="image mobile_hide"></div>
           <div class="name"><?php echo $voucher['description']; ?></div>
           <div class="quantity">x&nbsp;1</div>

@@ -58,4 +58,12 @@ $(document).ready(function (){
         }
     });
 
+    $('a.filter').click(function (){
+        $('aside#column-left').addClass('vis');
+    })
+
+    $('a.close_filter').click(function (){
+        $('aside#column-left').removeClass('vis');
+    })
+
 })

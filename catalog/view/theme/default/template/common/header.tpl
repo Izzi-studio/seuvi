@@ -109,7 +109,17 @@
 <div id="main_header">
   <div class="container-fluid">
     <div class="row align-items-center justify-content-between">
-      <div class="col-lg-5">
+      <div class="col-lg-5 col-4">
+        <div class="mobonly flexed start">
+          <div class="burger mobonly">
+            <img src="/image/seuvi/burger.svg">
+          </div>
+          <div class="my_acc mobonly">
+            <a href="<?php echo $account; ?>">
+              <img src="/image/seuvi/acc.svg">
+            </a>
+          </div>
+        </div>
         <div class="topmenu">
           <ul>
             <li>
@@ -149,12 +159,12 @@
           </ul>
         </div>
       </div>
-      <div class="col-lg-2 text-center">
+      <div class="col-lg-2 col-4 text-center">
         <a href="<?php echo $home; ?>">
           <img src="/image/seuvi/logo.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="logo" />
         </a>
       </div>
-      <div class="col-lg-5 flexed">
+      <div class="col-lg-5 col-4 flexed">
         <div class="search">
           <?php echo $search; ?>
         </div>
@@ -203,3 +213,115 @@
   </ul>
   </div>
 </div>
+<div class="mobmenu mobonly_block">
+  <ul>
+    <li class="goback">
+      <a>Назад</a>
+    </li>
+    <li class="parent">
+      <a href="#">
+        Каталог
+      </a>
+      <ul class="sub-menu">
+        <li class="goback_s">
+          <a>Назад</a>
+        </li>
+        <?php foreach ($categories as $category) { ?>
+        <?php if ($category['children']) { ?>
+        <li class="parent">
+          <a href="<?php echo $category['href']; ?>">
+            <?php echo $category['name']; ?>
+          </a>
+          <img src="/image/seuvi/mobmenu.svg" class="go_child">
+            <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
+            <ul class="first_level">
+              <li class="goback_s">
+                <a>Назад</a>
+              </li>
+              <?php foreach ($children as $child) { ?>
+              <li <?php if($child['children']){ ?>class="parent"<?php }?>>
+                <a href="<?php echo $child['href']; ?>">
+                  <?php echo $child['name']; ?>
+                </a>
+                <?php if($child['children']){ ?>
+                <img src="/image/seuvi/mobmenu.svg" class="go_child">
+                <ul class="second_level">
+                  <li class="goback_s">
+                    <a>Назад</a>
+                  </li>
+                  <?php foreach($child['children'] as $ch){ ?>
+                  <li><a href="<?php echo $ch['href'];?>"><?php echo $ch['name'];?></a></li>
+                  <?php }?>
+                </ul>
+                <?php }?>
+              </li>
+              <?php } ?>
+            </ul>
+            <?php } ?>
+        </li>
+        <?php } else { ?>
+        <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
+        <?php } ?>
+        <?php } ?>
+      </ul>
+    </li>
+    <li>
+      <a href="<?php echo $newest_link;?>">
+        <?php echo $text_menu_new;?>
+      </a>
+    </li>
+    <li>
+      <a href="<?php echo $special_link;?>">
+        <?php echo $text_menu_sale;?>
+      </a>
+    </li>
+    <li>
+      <a href="<?php echo $blog_link;?>">
+        <?php echo $text_blog; ?>
+      </a>
+    </li>
+    <li>
+      <a href="<?php echo $review_link;?>">
+        <?php echo $text_menu_otzivi;?>
+      </a>
+    </li>
+    <li class="parent">
+      <a href="#">
+        <?php echo $text_menu_klientam;?>
+      </a>
+      <ul class="sub-menu">
+        <li class="goback_s">
+          <a>Назад</a>
+        </li>
+        <?php foreach($informations as $information){ ?>
+        <li>
+          <a href="<?php echo $information['href'] ?>">
+            <?php echo $information['title']; ?>
+          </a>
+        </li>
+        <?php } ?>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function (){
+    $('.burger').click(function (){
+      $('.mobmenu').toggleClass('vis');
+    });
+    $('.mobmenu>ul>li.parent>a').click(function(e){
+      e.preventDefault();
+      $(this).next('ul').addClass('vis');
+    });
+    $('.mobmenu li.goback_s>a').click(function (){
+      $(this).closest('ul').removeClass('vis');
+    })
+    $('.mobmenu>ul>li.goback>a').click(function (){
+      $('.mobmenu').removeClass('vis');
+    });
+    $('.mobmenu li.parent .go_child').click(function (){
+      $(this).next('ul').addClass('vis');
+    })
+  })
+</script>

@@ -1,5 +1,5 @@
 
-<div class="product-layout cat_layout" style="width: 100%;">
+<div class="product-layout cat_layout col-12" style="width: 100%;">
     <div class="row">
 <?php foreach ($products as $product) { ?>
     <div class="col-lg-4">

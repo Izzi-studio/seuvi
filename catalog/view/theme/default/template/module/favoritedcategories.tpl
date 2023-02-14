@@ -17,11 +17,21 @@
 
 <script type="text/javascript">
 $('.f_cats .items').owlCarousel({
-    items: 5,
     autoPlay: 3000,
     singleItem: true,
     nav: true,
     dots:false,
-    navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">']
+    navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
+    responsive : {
+        0 : {
+            items:2
+        },
+        992 : {
+            items:3
+        },
+        1300 : {
+            items:5
+        }
+    }
 });
 </script>

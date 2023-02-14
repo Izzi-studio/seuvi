@@ -1,5 +1,6 @@
 <?php if($filter_groups || $categories || $options || $manufacturers || $attributes || $price_slider) { ?>
 <div class="box filter_holder">
+    <a class="close_filter mobonly"><img src="/image/seuvi/close.svg"></a>
 <div class="box-heading"><?php echo $heading_title; ?></div>
 
 <div class="box" id="adv_ajaxfilter_box">
