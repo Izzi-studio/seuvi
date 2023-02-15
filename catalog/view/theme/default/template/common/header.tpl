@@ -70,8 +70,11 @@
               <img src="/image/seuvi/phone_drop.svg">
             </span>
             <div class="minidrop">
-              <span><?php echo $text_header_grafik_raboty;?></span><br />
-              <?php echo $time;?> <?php echo $text_header_bez_vyhodnyh;?>
+              <div class="all_phones">
+                <?php echo html_entity_decode($telephone_footer);?>
+              </div>
+              <div class="graph_text"><?php echo $text_header_grafik_raboty;?></div>
+              <div class="graf_time"><?php echo $time;?> <?php echo $text_header_bez_vyhodnyh;?></div>
             </div>
           </div>
         </div>

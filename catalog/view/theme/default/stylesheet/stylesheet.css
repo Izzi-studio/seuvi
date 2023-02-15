@@ -61,6 +61,30 @@ button:focus{
 .minidrop{
 	position: absolute;
 	display: none;
+	left: 0;
+	top: 100%;
+	min-width: 220px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 8px rgb(150 147 147 / 25%);
+	border-radius: 5px;
+	padding: 16px;
+	z-index: 3;
+	color:#000;
+}
+.minidrop .all_phones{
+	margin-bottom: 4px;
+}
+.minidrop .graph_text {
+	font-weight: 400;
+	font-size: 12px;
+	line-height: 16px;
+	color: #828282;
+}
+.minidrop .graf_time{
+	font-weight: 400;
+	font-size: 14px;
+	line-height: 19px;
+	color: #1F1F1F;
 }
 .top_info .endpull{
 	display: flex;
@@ -86,6 +110,7 @@ button:focus{
 .top_info .phone{
 	display: flex;
 	align-items: center;
+	position: relative;
 }
 .top_info .phone .drop{
 	cursor: pointer;
