@@ -629,10 +629,6 @@ button.btn_wishlist{
 	right: 13px;
 	top:13px;
 }
-a.btn_wishlist.remove_wish img,
-button.btn_wishlist.remove_wish img{
-	filter:drop-shadow(0px 0px 2px red);
-}
 button.addto{
 	display: flex;
 	align-items: center;

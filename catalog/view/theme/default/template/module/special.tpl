@@ -5,7 +5,13 @@
   <div class="product-layout item">
     <div class="product-thumb transition">
       <div class="image">
+        <?php if($product['on_wishlist']){ ?>
+        <a href="/wishlist/?remove=<?php echo $product['product_id']?>" class="btn_wishlist remove_wish">
+          <img src="/image/seuvi/wish_icon_added.png">
+        </a>
+        <?php }else{ ?>
         <button type="button" class="btn_wishlist" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><img src="/image/seuvi/wish_icon.svg"></button>
+        <?php }?>
         <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a>
         <div class="prod_labels">
           <?php if ($product['special']) { ?>
@@ -95,9 +101,9 @@
       </div>
       <div class="button-group">
         <?php if(!empty($product['options'])) { ?>
-        <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+        <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
         <?php }else{ ?>
-        <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+        <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
         <?php } ?>
         <!--<button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>-->
       </div>

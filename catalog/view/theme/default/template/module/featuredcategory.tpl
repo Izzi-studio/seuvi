@@ -13,9 +13,15 @@
                         <div class="lab">-<?php echo $product['percent_sale']; ?> %</div>
                     <?php } ?>
                 </div>
+                <?php if($product['on_wishlist']){ ?>
+                <a href="/wishlist/?remove=<?php echo $product['product_id']?>" class="btn_wishlist remove_wish">
+                    <img src="/image/seuvi/wish_icon_added.png">
+                </a>
+                <?php }else{ ?>
                 <button type="button" onclick="wishlist.add('<?php echo $product['product_id']; ?>');" class="btn_wishlist">
                     <img src="/image/seuvi/wish_icon.svg">
                 </button>
+                <?php }?>
                 <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a>
             </div>
             <div class="flexed">

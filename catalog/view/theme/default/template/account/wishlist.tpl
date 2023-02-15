@@ -21,123 +21,10 @@
     <div id="content" class="<?php echo $class; ?>"><?php echo $content_top; ?>
       <h2><?php echo $heading_title; ?></h2>
       <?php if ($products) { ?>
-      <!--<table class="table table-bordered table-hover">
-        <thead>
-          <tr>
-            <td class="text-center"><?php echo $column_image; ?></td>
-            <td class="text-left"><?php echo $column_name; ?></td>
-            <td class="text-left"><?php echo $column_model; ?></td>
-            <td class="text-right"><?php echo $column_stock; ?></td>
-            <td class="text-right"><?php echo $column_price; ?></td>
-            <td class="text-right"><?php echo $column_action; ?></td>
-          </tr>
-        </thead>
-        <tbody>
-          <?php foreach ($products as $product) { ?>
-          <tr>
-            <td class="text-center"><?php if ($product['thumb']) { ?>
-              <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" /></a>
-              <?php } ?></td>
-            <td class="text-left"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></td>
-            <td class="text-left"><?php echo $product['model']; ?></td>
-            <td class="text-right"><?php echo $product['stock']; ?></td>
-            <td class="text-right"><?php if ($product['price']) { ?>
-              <div class="price">
-                <?php if (!$product['special']) { ?>
-                <?php echo $product['price']; ?>
-                <?php } else { ?>
-                <b><?php echo $product['special']; ?></b> <s><?php echo $product['price']; ?></s>
-                <?php } ?>
-              </div>
-              <?php } ?></td>
-            <td class="text-right"><button type="button" onclick="cart.add('<?php echo $product['product_id']; ?>');" data-toggle="tooltip" title="<?php echo $button_cart; ?>" class="btn btn-primary"><i class="fa fa-shopping-cart"></i></button>
-
-          </tr>
-          <?php } ?>
-        </tbody>
-      </table>-->
       <div class="cat_layout">
         <div class="row">
           <?php foreach ($products as $product) { ?>
           <div class="col-lg-4">
-            <!--<div class="item contrast_font product-layout" style="display: none">
-              <div class="image">
-                <?php if ($product['special'] && $cosyone_percentage_sale_badge == 'enabled') { ?>
-                <div class="sale_badge">-<?php echo $product['sales_percantage']; ?>%</div>
-                <?php } ?>
-                <?php if ($product['thumb_hover'] && $cosyone_rollover_effect == 'enabled') { ?>
-                <div class="image_hover"><a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb_hover']; ?>" alt="<?php echo $product['name']; ?>" /></a></div>
-                <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
-                <?php } elseif ($product['thumb']) { ?>
-                <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" /></a>
-                <?php } ?>
-
-              </div>
-              <div class="information_wrapper">
-                <div class="left">
-                  <div class="name"><a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a></div>
-                  <?php if ($product['brand_name'] && $cosyone_brand) { ?>
-                  <span class="brand main_font"><?php echo $product['brand_name']; ?></span>
-                  <?php } ?>
-                  <?php if ($product['rating']) { ?>
-                  <div class="rating">
-                    <span class="rating r<?php echo $product['rating']; ?>">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </span>
-                  </div>
-                  <?php } ?>
-                </div>
-                <div class="description main_font"><?php echo $product['description']; ?></div>
-                <?php if ($product['price']) { ?>
-                <div class="price">
-                  <?php if (!$product['special']) { ?>
-                  <?php echo $product['price']; ?>
-                  <?php } else { ?>
-                  <span class="price-old"><?php echo $product['price']; ?></span>
-                  <span class="price-new"><?php echo $product['special']; ?></span>
-                  <?php } ?>
-                  <?php if ($product['tax']) { ?>
-                  <br />
-                  <span class="price-tax"><?php echo $text_tax; ?> <?php echo $product['tax']; ?></span>
-                  <?php } ?>
-                </div>
-                <?php } ?>
-                <div class="cart">
-                  <button type="submit" class="button contrast" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" ><i class="fa fa-shopping-cart"></i> <?php echo $button_cart; ?></button>
-                </div>
-                <div class="icons_wrapper">
-                  <a class="sq_icon" onclick="wishlist.add('<?php echo $product['product_id']; ?>');" data-tooltip="<?php echo $button_wishlist; ?>"><i class="fa fa-heart"></i></a>
-                  <a class="sq_icon compare" onclick="compare.add('<?php echo $product['product_id']; ?>');" data-tooltip="<?php echo $button_compare; ?>"><i class="fa fa-arrow-right"></i><i class="fa fa-arrow-left"></i></a>
-
-                  <a class="sq_icon contrast add_to_cart" onclick="cart.add('<?php echo $product['product_id']; ?>', '<?php echo $product['minimum']; ?>');" data-tooltip="<?php echo $button_cart; ?>"><i class="fa fa-shopping-cart"></i></a>
-                  <a class="plain_link wishlist" onclick="wishlist.add('<?php echo $product['product_id']; ?>');" ><?php echo $button_wishlist; ?></a>
-                  <a class="plain_link compare" onclick="compare.add('<?php echo $product['product_id']; ?>');" ><?php echo $button_compare; ?></a>
-                </div>
-
-                <?php if (($product['special']) && ($product['special_date_end'] > 0) && ($cosyone_product_countdown)) { ?>
-                <div class="offer_popup">
-                  <div class="offer_background"></div>
-                  <div class="offer_content">
-                    <div class="countdown <?php echo $product['product_id']; ?>"></div>
-                    <?php if ($cosyone_product_hurry) { ?>
-                    <span class="hurry main_font"><?php echo $product['stock_quantity']; ?></span>
-                    <?php } ?>
-                  </div>
-                </div>
-                <script type="text/javascript">
-                  $('.<?php echo $product['product_id']; ?>').countdown({
-                    until: <?php echo $product['special_date_end']; ?>,
-		layout: '<span class="main_font"><?php echo $text_category_expire; ?></span><br /><i>{dn}</i> {dl}&nbsp; <i>{hn}</i>  {hl}&nbsp; <i>{mn}</i>  {ml}&nbsp; <i>{sn}</i> {sl}'});
-                </script>
-                <?php } ?>
-              </div>
-            </div>
-
-            -->
             <div class="product-layout item">
               <div class="product-thumb transition">
                 <div class="image">
@@ -233,9 +120,9 @@
                   </div>
                   <div class="button-group">
                     <?php if(!empty($product['options'])) { ?>
-                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php }else{ ?>
-                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php } ?>
                     <!--<button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>-->
                   </div>
