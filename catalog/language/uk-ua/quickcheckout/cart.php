@@ -19,3 +19,5 @@ $_['text_week']                      = 'week';
 $_['text_semi_month']                = 'half-month';
 $_['text_month']                     = 'month';
 $_['text_year']                      = 'year';
+
+$_['text_quant_warn']                = 'Товари відмічені *** відсутні в потрібній кількості або їх немає на складі!';

@@ -55,11 +55,21 @@
     </div>
     <script type="text/javascript">
         $('.prod_revs_car').owlCarousel({
-            items: 3,
             autoPlay: 3000,
             nav: true,
             dots:false,
-            navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">']
+            navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
+            responsive : {
+                0 : {
+                    items:1
+                },
+                992 : {
+                    items:2
+                },
+                1300 : {
+                    items:3
+                }
+            }
         });
     </script>
 </div>

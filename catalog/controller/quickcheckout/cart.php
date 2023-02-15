@@ -69,6 +69,8 @@ class ControllerQuickCheckoutCart extends Controller {
 		$data['entry_call_me'] = $this->language->get('entry_call_me');
 		$data['entry_total'] = $this->language->get('entry_total');
 
+        $data['text_quant_warn'] = $this->language->get('text_quant_warn');
+
 		$data['text_recurring_item'] = $this->language->get('text_recurring_item');
 			$data['text_payment_recurring'] = $this->language->get('text_payment_recurring');
 		

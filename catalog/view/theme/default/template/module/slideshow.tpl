@@ -4,7 +4,7 @@
     <img src="<?php echo $banner['image']; ?>" alt="<?php echo $banner['title']; ?>" class="img-responsive" />
     <div class="container-fluid">
       <div class="row">
-        <div class="col-lg-6 offset-lg-5">
+        <div class="col-lg-6 offset-lg-5 col-8 offset-4">
           <div class="b_title">
             <?php if ($banner['title']) { ?>
               <?php echo $banner['title']; ?>

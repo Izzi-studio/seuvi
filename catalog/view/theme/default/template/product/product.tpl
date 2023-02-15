@@ -575,12 +575,22 @@
     </div>
     <script type="text/javascript">
       $('.f_cat.spec .prods_list').owlCarousel({
-        items: 4,
         autoPlay: 3000,
         singleItem: true,
         nav: true,
         dots:false,
-        navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">']
+        navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
+        responsive : {
+          0 : {
+            items:1
+          },
+          992 : {
+            items:3
+          },
+          1300 : {
+            items:4
+          }
+        }
       });
     </script>
     <?php } ?>
