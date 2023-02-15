@@ -110,6 +110,7 @@ class ControllerCommonHeader extends Controller {
 		$data['blog_link'] = $this->url->link('blog/home', '', 'SSL');
         $data['special_link'] = $this->url->link('product/special','',true);
         $data['review_link'] = $this->url->link('review/review','',true);
+        $data['telephone_footer'] = $this->config->get('config_telephone_footer');
 		$status = true;
 
 		if (isset($this->request->server['HTTP_USER_AGENT'])) {

@@ -16,9 +16,15 @@ class ControllerModuleReviews extends Controller {
             $cat_id = array_pop($parts);
         }
 
-        $productIds = $this->model_catalog_product->getProducts(['start'=>0,'limit'=>5,'order'=>'rating','order'=>'DESC','filter_category_id'=>$cat_id]);
+        $productIds = $this->model_catalog_product->getProducts(['start'=>0,'limit'=>5,'order'=>'rating','sort'=>'DESC','filter_category_id'=>$cat_id]);
+
+
         foreach ($productIds as $product) {
             $results = $this->model_catalog_review->getReviewsByProductId($product['product_id'],0,1);
+
+
+
+
             if (($this->config->get('config_customer_price') && $this->customer->isLogged()) || !$this->config->get('config_customer_price')) {
                 $price = $this->currency->format($this->tax->calculate($product['price'], $product['tax_class_id'], $this->config->get('config_tax')));
             } else {
