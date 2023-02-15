@@ -21,6 +21,7 @@ $_['text_compare']      = 'Product Compare (%s)';
 
 
 $_['text_price_range']      = 'Цена';
-
+$_['text_categories']      = 'Категории';
+$_['text_manufacturers']      = 'Бренды';
 
 ?>

@@ -107,7 +107,7 @@
             <div class="bbg">
             <div class="row align-items-center">
               <div class="col-lg-6">
-                  <div class="text_total"><?php echo $text_total;?></div>
+                  <div class="text_total"><?php echo $text_total_s;?></div>
                   <div class="val_total"><?php echo $totals[1]['text']; ?></div>
               </div>
               <div class="col-lg-6">

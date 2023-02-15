@@ -1,13 +1,13 @@
 <?php
 // Text
-$_['text_cart']	= 'Ваше замовлення';
+$_['text_cart']	= 'Ваш заказ';
 $_['text_image']	= 'Image';
 $_['text_name']		= 'Product';
 $_['text_quantity']	= 'Quantity';
 $_['text_price']	= 'Price';
-$_['text_total']	= 'Разом';
-$_['entry_total']	= 'Вартість замовлення';
-$_['entry_call_me']	= 'Не дзвоніть мені, я впевнений в замовлені';
+$_['text_total']	= 'Всего';
+$_['entry_total']	= 'Стоимость заказа';
+$_['entry_call_me']	= 'Не перезванивайте мне, я уверен в заказе';
 
 $_['text_recurring_item']            = 'Recurring Item';
 $_['text_payment_recurring']         = 'Payment Profile';
@@ -20,4 +20,4 @@ $_['text_semi_month']                = 'half-month';
 $_['text_month']                     = 'month';
 $_['text_year']                      = 'year';
 
-$_['text_quant_warn']                = 'Товари відмічені *** відсутні в потрібній кількості або їх немає на складі!';
+$_['text_quant_warn']                = 'Товары отмеченные *** отсутствуют в нужном колличестве или их нет на складе!';

@@ -48,7 +48,7 @@ class ControllerCommonCart extends Controller {
 
 		$data['text_cart_name'] = $this->language->get('text_cart_name');
         $data['text_continue_shopping'] = $this->language->get('text_continue_shopping');
-        $data['text_total'] = $this->language->get('text_total');
+        $data['text_total_s'] = $this->language->get('text_total_s');
 
 		$data['button_remove'] = $this->language->get('button_remove');
 

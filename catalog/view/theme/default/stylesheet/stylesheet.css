@@ -1593,6 +1593,9 @@ select#input-sort option{
 
 /*Minicart*/
 
+#minicart ul.load_json .tots{
+	margin-top: 15px;
+}
 #minicart .modal-content{
 	padding: 25px;
 }

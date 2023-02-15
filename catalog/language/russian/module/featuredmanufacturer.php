@@ -1,4 +1,4 @@
 <?php
 // Locale
-$_['heading_title'] = 'Бренди';
-$_['text_brendov'] = 'Брендовв';
+$_['heading_title'] = 'Бренды';
+$_['text_brendov'] = 'Брендов';

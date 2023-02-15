@@ -84,7 +84,6 @@ $_['text_menu_sale']    = 'Акціії';
 $_['text_menu_new']    = 'Новинки';
 $_['text_menu_otzivi']    = 'Відгуки';
 $_['text_menu_klientam']    = 'Клієнтам';
-$_['text_menu_klientam']    = 'Клієнтам';
 
 $_['text_svernut']    = 'Згорнути';
 $_['text_razsvernut']    = 'Розгорнути';
