@@ -2958,6 +2958,111 @@ body[class^="account"] h2{
 		top: 15px;
 	}
 
+
+
+	/*Edits*/
+
+	.f_cat .prods_list{
+		padding: 0;
+	}
+	.f_cat .owl-nav{
+		display:none;
+	}
+	.f_cat .product-layout .prod_labels .lab{
+		width: 38px;
+		font-size: 9px;
+		margin-bottom: 3px;
+	}
+	.f_cat .product-layout{
+		padding:7px;
+	}
+	.f_cat a.btn_wishlist,
+	.f_cat button.btn_wishlist{
+		width: 13px;
+		height:13px;
+		top:5px;
+		right: 5px;
+	}
+	.f_cat .product-layout .prod_labels{
+		left: -7px;
+		top:6px;
+	}
+	.f_cat .product-layout .product-thumb .image{
+		padding: 3px 20px;
+		margin-bottom: 5px;
+	}
+	.f_cat .product-layout .flexed{
+		margin-bottom: 4px;
+	}
+	.f_cat .fa-stack{
+		width: 10px;
+		height: 10px;
+		line-height: 10px;
+		margin-right: 2px;
+	}
+	.f_cat .fa-stack-2x{
+		font-size: 10px;
+	}
+	.f_cat .revnum{
+		font-size: 8px;
+		background-size: 6px;
+		padding-left: 8px;
+		line-height: 11px;
+	}
+	.f_cat .product-layout .caption a.prodname{
+		font-size: 10px;
+	}
+	.f_cat .product-layout .flexed .rating{
+		display: flex;
+		align-items: center;
+	}
+	.f_cat .product-layout .caption .prod_brand{
+		font-size: 10px;
+		margin-bottom: 4px;
+	}
+	.f_cat .product-layout .price-new,
+	.f_cat .product-layout .price{
+		font-size: 14px;
+	}
+	.f_cat .product-layout .abs .radgroup .radio input+label{
+		font-size: 10px;
+		padding: 0 3px;
+		line-height: 20px;
+		margin-right: 2px;
+		margin-bottom: 10px;
+	}
+	.f_cat .product-layout .abs{
+		padding-top: 10px;
+	}
+	.f_cat button.addto{
+		margin-top: 0;
+		font-size: 12px;
+		padding: 8px 0;
+		font-weight: 400;
+	}
+	.f_cat .product-layout .abs .form-group{
+		margin-bottom: 0;
+	}
+	.f_cat button.addto img{
+		width: 16px!important;
+	}
+	.f_cat .more_btn a{
+		padding: 10px 50px;
+		width: auto;
+		font-size: 12px;
+		line-height: 16px;
+		display: inline-block;
+	}
+	.f_cat .more_btn{
+		margin-top: 20px;
+	}
+	.f_cat h3{
+		margin-bottom: 13px;
+		text-align: left;
+	}
+
+
+
 }
 @media (max-width: 600px) {
 	.mainslider .item img{

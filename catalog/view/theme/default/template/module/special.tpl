@@ -129,7 +129,7 @@
     navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
     responsive : {
       0 : {
-        items:1
+        items:2
       },
       992 : {
         items:3
