@@ -118,9 +118,15 @@
             <img src="/image/seuvi/burger.svg">
           </div>
           <div class="my_acc mobonly">
-            <a href="<?php echo $account; ?>">
-              <img src="/image/seuvi/acc.svg">
+            <a class="mobsearch">
+              <img src="/image/seuvi/mobsearch.svg">
             </a>
+            <form id="search_mob" class="input-group">
+              <input type="search" name="search" value="" placeholder="<?php echo $text_search; ?>" class="form-control input-lg" />
+              <span class="input-group-btn">
+                <button type="submit"><img src="/image/seuvi/search.svg"></button>
+              </span>
+            </form>
           </div>
         </div>
         <div class="topmenu">
@@ -182,6 +188,18 @@
 <div class="topcats">
   <div class="container-fluid">
   <ul class="mainmenu">
+    <li class="mega_parent">
+      <a href="<?php echo $link_manufacturers;?>">
+        <?php echo $text_manufacturers;?>
+      </a>
+      <div class="mega_level">
+          <ul class="second_level brands_drop">
+            <?php foreach($manufacturers as $man){ ?>
+              <li><a href="<?php echo $man['href'];?>"><?php echo $man['name'];?></a></li>
+            <?php }?>
+          </ul>
+      </div>
+    </li>
   <?php foreach ($categories as $category) { ?>
   <?php if ($category['children']) { ?>
     <li class="mega_parent">
@@ -216,11 +234,26 @@
   </ul>
   </div>
 </div>
+
 <div class="mobmenu mobonly_block">
+  <div class="topmob">
+    <a href="/" class="logo">
+      <img src="/image/seuvi/logo.svg" title="<?php echo $name; ?>" alt="<?php echo $name; ?>" class="logo" />
+    </a>
+    <div class="mob_lang">
+        <div data-lang="ua" <?php if($cur_lang=='ua'){ ?>class="active"<?php }?>>УКР</div>
+        <div data-lang="ru" <?php if($cur_lang=='ru'){ ?>class="active"<?php }?>>РУС</div>
+    </div>
+  </div>
+  <div class="mob_acc">
+    <a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>">
+      <img src="/image/seuvi/mob_acc.svg">Особистий кабінет
+    </a>
+  </div>
   <ul>
-    <li class="goback">
+    <!--<li class="goback">
       <a>Назад</a>
-    </li>
+    </li>-->
     <li class="parent">
       <a href="#">
         Каталог
@@ -235,18 +268,18 @@
           <a href="<?php echo $category['href']; ?>">
             <?php echo $category['name']; ?>
           </a>
-          <img src="/image/seuvi/mobmenu.svg" class="go_child">
+          <!--<img src="/image/seuvi/mobmenu.svg" class="go_child">-->
             <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
             <ul class="first_level">
-              <li class="goback_s">
+              <!--<li class="goback_s">
                 <a>Назад</a>
-              </li>
+              </li>-->
               <?php foreach ($children as $child) { ?>
-              <li <?php if($child['children']){ ?>class="parent"<?php }?>>
+              <li>
                 <a href="<?php echo $child['href']; ?>">
                   <?php echo $child['name']; ?>
                 </a>
-                <?php if($child['children']){ ?>
+                <!--<?php if($child['children']){ ?>
                 <img src="/image/seuvi/mobmenu.svg" class="go_child">
                 <ul class="second_level">
                   <li class="goback_s">
@@ -256,7 +289,7 @@
                   <li><a href="<?php echo $ch['href'];?>"><?php echo $ch['name'];?></a></li>
                   <?php }?>
                 </ul>
-                <?php }?>
+                <?php }?>-->
               </li>
               <?php } ?>
             </ul>
@@ -306,13 +339,28 @@
       </ul>
     </li>
   </ul>
+<div class="mob_infos">
+  <div class="mob_phones">
+    <?php echo html_entity_decode($telephone_footer);?>
+  </div>
+  <div class="mob_graph">
+    <?php echo $text_header_grafik_raboty;?><br />
+    <?php echo $time;?> <span><?php echo $text_header_bez_vyhodnyh;?></span>
+  </div>
 </div>
-
+</div>
+<div id="mob_over"></div>
 <script type="text/javascript">
   $(document).ready(function (){
     $('.burger').click(function (){
       $('.mobmenu').toggleClass('vis');
+      $('#mob_over').toggle();
     });
+    $('#mob_over').click(function () {
+      $('.mobmenu').toggleClass('vis');
+      $('#mob_over').toggle();
+      $('.mobmenu ul.sub-menu.vis').removeClass('vis');
+    })
     $('.mobmenu>ul>li.parent>a').click(function(e){
       e.preventDefault();
       $(this).next('ul').addClass('vis');
@@ -325,6 +373,79 @@
     });
     $('.mobmenu li.parent .go_child').click(function (){
       $(this).next('ul').addClass('vis');
+    });
+
+    $('.mob_lang>div').click(function (){
+      let clicked = $(this).data('lang');
+      $('.lang a[href="'+clicked+'"]').click();
     })
+
+    $('a.mobsearch').click(function(){
+      $('.mobonly #search_mob').slideToggle();
+    })
+
+    $('.mobflex .checks>div').click(function (){
+      let f = $(this).data('filter');
+      $('input#'+f+'').click();
+      $(this).toggleClass('checked');
+    })
+
+    if ($('input#flag_new').is(':checked')) {
+      $('.mobflex .checks>div[data-filter="flag_new"]').addClass('checked');
+    }
+    if ($('input#flag_special').is(':checked')) {
+      $('.mobflex .checks>div[data-filter="flag_special"]').addClass('checked');
+    }
+    if ($('input#flag_bestseller').is(':checked')) {
+      $('.mobflex .checks>div[data-filter="flag_bestseller"]').addClass('checked');
+    }
+
+
+    })
+
+
+
+  jQuery(document).ready(function(){
+    if($(window).width()>992) {
+      $(function () {
+        let arrowWidth = 30;
+
+        $.fn.resizeselect = function (settings) {
+          return this.each(function () {
+
+            $(this).change(function () {
+              let $this = $(this);
+
+              // get font-weight, font-size, and font-family
+              let style = window.getComputedStyle(this)
+              let {fontWeight, fontSize, fontFamily} = style
+
+              // create test element
+              let text = $this.find("option:selected").text();
+              let $test = $("<span>").html(text).css({
+                "font-size": fontSize,
+                "font-weight": fontWeight,
+                "font-family": fontFamily,
+                "visibility": "hidden" // prevents FOUC
+              });
+
+              // add to body, get width, and get out
+              $test.appendTo($this.parent());
+              let width = $test.width();
+              $test.remove();
+
+              // set select width
+              $this.width(width + arrowWidth + 30);
+
+              // run on start
+            }).change();
+
+          });
+        };
+
+        // run by default
+        $("#input-sort").resizeselect();
+      })
+    }
   })
 </script>

@@ -1,8 +1,8 @@
 
 <div class="product-layout cat_layout col-12" style="width: 100%;">
-    <div class="row">
+    <div class="row no-gutters">
 <?php foreach ($products as $product) { ?>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-6">
 
     <div class="product-layout item">
         <div class="product-thumb transition">
@@ -103,7 +103,8 @@
                 </div>
                 <div class="button-group">
                     <?php if(!empty($product['options'])) { ?>
-                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                    <button class="addto mobnone" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                    <a class="addto mobonly" href="<?php echo $product['href']; ?>"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></a>
                     <?php }else{ ?>
                     <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php } ?>

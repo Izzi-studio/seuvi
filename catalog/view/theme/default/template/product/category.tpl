@@ -45,6 +45,11 @@
             <a class="filter mobonly">
               <img src="/image/seuvi/filter.svg">
             </a>
+          <div class="mobnone checks">
+            <div data-filter="flag_special">Акції</div>
+            <div data-filter="flag_new">Новинки</div>
+            <div data-filter="flag_bestseller">Бестселери</div>
+          </div>
           <select id="input-sort" class="form-control" onchange="location = this.value;">
             <?php foreach ($sorts as $sorts) { ?>
             <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
@@ -97,9 +102,33 @@
     <div class="cat_desc">
       <div class="row justify-content-center">
         <div class="col-lg-10">
-          <?php echo $description; ?>
+          <div class="desc_inn">
+            <?php echo $description; ?>
+          </div>
+        </div>
+        <div class="c_but">
+          <a class="open_html">
+            <img src="/image/seuvi/plus.svg"><?php echo $text_open; ?>
+          </a>
+          <a class="close_html">
+            <img src="/image/seuvi/minus.svg"><?php echo $text_close; ?>
+          </a>
         </div>
       </div>
+      <script type="text/javascript">
+        $(document).ready(function(){
+          $('a.close_html').click(function(){
+            $(this).closest('.cat_desc').find('.desc_inn>*').hide();
+            $(this).hide();
+            $('a.open_html').css('display','inline-flex');
+          })
+          $('a.open_html').click(function(){
+            $(this).closest('.cat_desc').find('.desc_inn>*').show();
+            $(this).hide();
+            $('a.close_html').css('display','inline-flex');
+          })
+        })
+      </script>
     </div>
     <?php } ?>
     <?php echo $content_bottom; ?>

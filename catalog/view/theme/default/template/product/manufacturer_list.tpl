@@ -11,14 +11,14 @@
       <h1><?php echo $heading_title; ?></h1>
       <?php if ($categories) { ?>
 
-      <div class="brands">
+      <div class="brands_list">
           <div class="row no-gutters">
             <?php foreach($categories as $category){ ?>
             <?php foreach (array_chunk($category['manufacturer'], 1) as $manufacturers) { ?>
             <?php foreach ($manufacturers as $brand) { ?>
             <div class="col-lg-20">
               <a class="item" href="<?php echo $brand['href']; ?>">
-                <img src="<?php echo $brand['image']; ?>" title="<?php echo $brand['name']; ?>">
+                <?php echo $brand['name']; ?>
               </a>
             </div>
             <?php }

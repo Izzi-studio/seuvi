@@ -55,6 +55,10 @@
           <a class="filter mobonly">
             <img src="/image/seuvi/filter.svg">
           </a>
+          <div class="mobnone checks">
+            <div data-filter="flag_special">Акції</div>
+            <div data-filter="flag_bestseller">Бестселери</div>
+          </div>
           <select id="input-sort" class="form-control" onchange="location = this.value;">
             <?php foreach ($sorts as $sorts) { ?>
             <?php if ($sorts['value'] == $sort . '-' . $order) { ?>

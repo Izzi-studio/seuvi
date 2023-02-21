@@ -61,10 +61,14 @@
             navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
             responsive : {
                 0 : {
-                    items:1
+                    items:1,
+                    stagePadding:35,
+                    dots:true
                 },
                 992 : {
-                    items:2
+                    items:2,
+                    stagePadding:0,
+                    dots:false
                 },
                 1300 : {
                     items:3

@@ -101,9 +101,10 @@
                 </div>
                 <div class="button-group">
                     <?php if(!empty($product['options'])) { ?>
-                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'featuredcat');"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <button class="addto mobnone" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'featuredcat');"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <a class="addto mobonly" href="<?php echo $product['href']; ?>"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></a>
                     <?php }else{ ?>
-                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php } ?>
                     <!--<button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>-->
                 </div>

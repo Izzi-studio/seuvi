@@ -1,5 +1,5 @@
 <div class="f_cats">
-        <div class="owl-carousel items">
+        <div class="owl-carousel items mobnone">
             <?php foreach($categories as $cat){ ?>
                 <div class="item">
                     <a href="<?php echo $cat['href']?>">
@@ -11,6 +11,20 @@
                         </div>
                     </a>
                 </div>
+            <?php }?>
+        </div>
+        <div class="items_mob mobonly_block">
+            <?php foreach($categories as $cat){ ?>
+            <div class="item">
+                <a href="<?php echo $cat['href']?>">
+                    <div class="thumb">
+                        <img src="<?php echo $cat['thumb']?>">
+                    </div>
+                    <div class="name">
+                        <?php echo $cat['name']?>
+                    </div>
+                </a>
+            </div>
             <?php }?>
         </div>
 </div>

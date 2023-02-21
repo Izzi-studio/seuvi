@@ -27,14 +27,15 @@
             </div>
             <div class="col-lg-6 col-8">
               <div class="name">
-                  <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?></a>
+                  <a href="<?php echo $product['href']; ?>"><?php echo $product['name']; ?>
+                      <?php foreach ($product['option'] as $option) { ?>
+                      , <?php echo $option['value']; ?>
+                      <?php } ?></a>
                   <?php if (!$product['stock']) { ?>
                       <span class="text-danger">***</span>
                       <?php } ?>
                 <div>
-                  <?php foreach ($product['option'] as $option) { ?>
-                  <small><?php echo $option['value']; ?></small>
-                  <?php } ?>
+
 
                   <?php if ($product['recurring']) { ?>
                   <small><?php echo $text_recurring_item; ?>: <?php echo $product['recurring']; ?></small>

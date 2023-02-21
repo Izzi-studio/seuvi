@@ -5,6 +5,32 @@
     <li><a href="<?php echo $breadcrumb['href']; ?>"><?php echo $breadcrumb['text']; ?></a></li>
     <?php } ?>
   </ul>
+  <h1 class="mobonly prod_h"><?php echo $heading_title; ?></h1>
+  <div class="flexed_sku mobonly">
+    <div class="sku">
+      <span><?php echo $text_sku; ?></span>
+      <?php echo $sku; ?>
+    </div>
+    <div class="rate_com">
+    <?php if ($review_status) { ?>
+    <div class="rating">
+
+      <?php for ($i = 1; $i <= 5; $i++) { ?>
+      <?php if ($rating < $i) { ?>
+      <span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>
+      <?php } else { ?>
+      <span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>
+      <?php } ?>
+      <?php } ?>
+      <!-- AddThis Button BEGIN
+      <div class="addthis_toolbox addthis_default_style"><a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a></div>
+      <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+      AddThis Button END -->
+    </div>
+    <div class="revnum"><?php echo $reviews_count; ?></div>
+    <?php } ?>
+    </div>
+  </div>
   <div class="row">
     <?php echo $column_left; ?>
     <?php if ($column_left && $column_right) { ?>
@@ -65,7 +91,15 @@
                 nav: true,
                 URLhashListener:true,
                 dots:false,
-                navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">']
+                navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
+                responsive : {
+                  0 : {
+                    dots:true
+                  },
+                  992:{
+                    dots:false
+                  }
+                }
               });
               var owl = $('.prod_gal');
               owl.on('changed.owl.carousel', function(event) {
@@ -85,11 +119,11 @@
           <!--<div class="btn-group">
             <button type="button" data-toggle="tooltip" class="btn btn-default" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product_id; ?>');"><i class="fa fa-exchange"></i></button>
           </div>-->
-          <div class="man_img">
+          <div class="man_img mobnone">
             <img src="<?php echo $manufacturer_image;?>">
           </div>
-          <h1><?php echo $heading_title; ?></h1>
-          <div class="flexed">
+          <h1 class="mobnone"><?php echo $heading_title; ?></h1>
+          <div class="flexed mobnone">
             <div class="sku">
               <span><?php echo $text_sku; ?></span>
               <?php echo $sku; ?>
@@ -566,7 +600,8 @@
               </div>
               <div class="button-group">
                 <?php if(!empty($product['options'])) { ?>
-                <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                <button class="addto mobnone" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                <a class="addto mobonly" href="<?php echo $product['href']; ?>"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></a>
                 <?php }else{ ?>
                 <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                 <?php } ?>
@@ -588,7 +623,7 @@
         navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
         responsive : {
           0 : {
-            items:1
+            items:2
           },
           992 : {
             items:3
