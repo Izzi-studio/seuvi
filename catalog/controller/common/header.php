@@ -33,6 +33,7 @@ class ControllerCommonHeader extends Controller {
 		$data['styles'] = $this->document->getStyles();
 		$data['scripts'] = $this->document->getScripts();
 		$data['lang'] = $this->language->get('code');
+		$data['cur_lang'] = $this->language->get('code');
 		$data['direction'] = $this->language->get('direction');
 
 		$data['name'] = $this->config->get('config_name');
@@ -44,7 +45,7 @@ class ControllerCommonHeader extends Controller {
 		}
 
 		$this->load->language('common/header');
-
+        $this->load->language('module/adv_ajaxfilter');
 		$data['text_home'] = $this->language->get('text_home');
 
 		// Wishlist
@@ -74,6 +75,7 @@ class ControllerCommonHeader extends Controller {
 
         //custom
         $data['text_header_city']    = $this->language->get('text_header_city');
+        $data['text_manufacturers']    = $this->language->get('text_manufacturers');
         $data['text_header_grafik_raboty']    = $this->language->get('text_header_grafik_raboty');
         $data['text_header_bez_vyhodnyh']    = $this->language->get('text_header_bez_vyhodnyh');
         $data['text_header_osennie_skidki']    = $this->language->get('text_header_osennie_skidki');
@@ -91,7 +93,7 @@ class ControllerCommonHeader extends Controller {
         $data['text_blog']    =  $blog_title[$this->language->get('code')];
 
 
-
+        $data['link_manufacturers'] = $this->url->link('product/manufacturer','',true);
         $data["newest_link"]= $this->url->link('product/new','','SSL');
 		$data['home'] = $this->url->link('common/home');
 		$data['wishlist'] = $this->url->link('account/wishlist', '', 'SSL');
@@ -250,6 +252,37 @@ class ControllerCommonHeader extends Controller {
                 );
             }
         }
+
+        $this->load->model('catalog/manufacturer');
+
+        $this->load->model('tool/image');
+
+        $data['manufacturers'] = array();
+
+        $manufacturers = $this->model_catalog_manufacturer->getManufacturers();
+
+        if (!empty($manufacturers)) {
+            foreach ($manufacturers as $manufacturer_info) {
+
+                if ($manufacturer_info) {
+                    if ($manufacturer_info['image']) {
+                        $image = $this->model_tool_image->resize($manufacturer_info['image'], 270, 270);
+                    } else {
+                        $image = $this->model_tool_image->resize('placeholder.png', 270, 270);
+                    }
+
+                    $data['manufacturers'][] = array(
+                        'thumb'       => $image,
+                        'name'        => $manufacturer_info['name'],
+                        'href'        => $this->url->link('product/manufacturer', 'manufacturer_id=' . $manufacturer_info['manufacturer_id'])
+                    );
+                }
+            }
+        }
+
+        $this->load->language('common/search');
+
+        $data['text_search'] = $this->language->get('text_search');
 
 		if (file_exists(DIR_TEMPLATE . $this->config->get('config_template') . '/template/common/header.tpl')) {
 			return $this->load->view($this->config->get('config_template') . '/template/common/header.tpl', $data);

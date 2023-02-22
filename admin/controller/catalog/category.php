@@ -466,7 +466,15 @@ class ControllerCatalogCategory extends Controller {
 		if (isset($this->request->post['image']) && is_file(DIR_IMAGE . $this->request->post['image'])) {
 			$data['thumb'] = $this->model_tool_image->resize($this->request->post['image'], 100, 100);
 		} elseif (!empty($category_info) && is_file(DIR_IMAGE . $category_info['image'])) {
-			$data['thumb'] = $this->model_tool_image->resize($category_info['image'], 100, 100);
+
+            if(utf8_strtolower(utf8_substr(strrchr($category_info['image'], '.'), 1)) == 'svg'){
+                $data['thumb'] = FRONT_IMAGES.stristr($category_info['image'],'catalog/');
+            }else{
+                $data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
+            }
+
+
+			//$data['thumb'] = $this->model_tool_image->resize($category_info['image'], 100, 100);
 		} else {
 			$data['thumb'] = $this->model_tool_image->resize('no_image.png', 100, 100);
 		}

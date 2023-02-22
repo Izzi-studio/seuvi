@@ -19,7 +19,8 @@ class ControllerModuleFavoritedcategories extends Controller {
 
 				if ($category_info) {
 					if ($category_info['image']) {
-						$image = $this->model_tool_image->resize($category_info['image'], 270, 270);
+						//$image = $this->model_tool_image->resize($category_info['image'], 270, 270);
+						$image = FRONT_IMAGES.$category_info['image'];
 					} else {
 						$image = $this->model_tool_image->resize('placeholder.png', 270, 270);
 					}
