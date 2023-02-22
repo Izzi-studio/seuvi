@@ -11,7 +11,7 @@ $_['decimal_point'] = '.';
 $_['thousand_point'] = '';
 
 // Text
-$_['text_home'] = '<i class="fa fa-home"></i>';
+$_['text_home'] = 'Головна';
 $_['text_yes'] = 'Так';
 $_['text_no'] = 'Ні';
 $_['text_none'] = ' --- Не вибрано --- ';
@@ -83,7 +83,6 @@ $_['text_header_besplatnaya_dostavka']    = 'Безкоштовна достав
 $_['text_menu_sale']    = 'Акціії';
 $_['text_menu_new']    = 'Новинки';
 $_['text_menu_otzivi']    = 'Відгуки';
-$_['text_menu_klientam']    = 'Клієнтам';
 $_['text_menu_klientam']    = 'Клієнтам';
 
 $_['text_svernut']    = 'Згорнути';

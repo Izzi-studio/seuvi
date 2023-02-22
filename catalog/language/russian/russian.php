@@ -61,4 +61,20 @@ $_ = array (
   'error_upload_7' => 'Предупреждение: Ошибка записи!',
   'error_upload_8' => 'Предупреждение: Запрещено загружать файл с данным расширением!',
   'error_upload_999' => 'Предупреждение: Неизвестная ошибка!',
+
+
+    //custom
+    'text_header_city'    => 'Kиев',
+    'text_header_grafik_raboty'    => 'График работы колл-центра:',
+    'text_header_bez_vyhodnyh'    => 'без выходных',
+    'text_header_osennie_skidki'    => 'Осенние скидки до 50 %',
+    'text_header_besplatnaya_dostavka'    => 'Бесплатная доставка от 3500 грн',
+
+    'text_menu_sale'    => 'Акции',
+    'text_menu_new'    => 'Новинки',
+    'text_menu_otzivi'    => 'Отзывы',
+    'text_menu_klientam'    => 'Клиентам',
+
+    'text_svernut'    => 'Свернуть',
+    'text_razsvernut'    => 'Развернуть',
 );

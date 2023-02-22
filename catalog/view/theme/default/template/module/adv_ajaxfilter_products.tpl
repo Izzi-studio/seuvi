@@ -1,15 +1,15 @@
 
 <div class="product-layout cat_layout col-12" style="width: 100%;">
-    <div class="row">
+    <div class="row no-gutters">
 <?php foreach ($products as $product) { ?>
-    <div class="col-lg-4">
+    <div class="col-lg-4 col-6">
 
     <div class="product-layout item">
         <div class="product-thumb transition">
             <div class="image">
                 <?php if($product['on_wishlist']){ ?>
                 <a href="/wishlist/?remove=<?php echo $product['product_id']?>" class="btn_wishlist remove_wish">
-                    <img src="/image/seuvi/wish_icon.svg">
+                    <img src="/image/seuvi/wish_icon_added.png">
                 </a>
                 <?php }else{ ?>
                     <button type="button" class="btn_wishlist" onclick="wishlist.add('<?php echo $product['product_id']; ?>');"><img src="/image/seuvi/wish_icon.svg"></button>
@@ -103,9 +103,10 @@
                 </div>
                 <div class="button-group">
                     <?php if(!empty($product['options'])) { ?>
-                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                    <button class="addto mobnone" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'special');"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                    <a class="addto mobonly" href="<?php echo $product['href']; ?>"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></a>
                     <?php }else{ ?>
-                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><i class="fa fa-shopping-cart"></i> <span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span></button>
+                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span class="hidden-xs hidden-sm hidden-md"><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php } ?>
                     <!--<button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>-->
                 </div>

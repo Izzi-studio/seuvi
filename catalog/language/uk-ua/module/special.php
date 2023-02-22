@@ -1,6 +1,6 @@
 <?php
 // Heading 
-$_['heading_title']	= 'Акции';
+$_['heading_title']	= 'Акції';
 $_['btn_text']	= 'Показати всі';
 
 // Text

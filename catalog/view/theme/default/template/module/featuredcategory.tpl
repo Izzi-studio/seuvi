@@ -13,9 +13,15 @@
                         <div class="lab">-<?php echo $product['percent_sale']; ?> %</div>
                     <?php } ?>
                 </div>
+                <?php if($product['on_wishlist']){ ?>
+                <a href="/wishlist/?remove=<?php echo $product['product_id']?>" class="btn_wishlist remove_wish">
+                    <img src="/image/seuvi/wish_icon_added.png">
+                </a>
+                <?php }else{ ?>
                 <button type="button" onclick="wishlist.add('<?php echo $product['product_id']; ?>');" class="btn_wishlist">
                     <img src="/image/seuvi/wish_icon.svg">
                 </button>
+                <?php }?>
                 <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a>
             </div>
             <div class="flexed">
@@ -95,9 +101,10 @@
                 </div>
                 <div class="button-group">
                     <?php if(!empty($product['options'])) { ?>
-                    <button class="addto" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'featuredcat');"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <button class="addto mobnone" type="button" onclick="cart.quickadd('<?php echo $product['product_id']; ?>',1,'featuredcat');"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <a class="addto mobonly" href="<?php echo $product['href']; ?>"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></a>
                     <?php }else{ ?>
-                    <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
+                        <button class="addto" type="button" onclick="cart.add('<?php echo $product['product_id']; ?>',1);"><span><?php echo $button_cart; ?></span><img src="/image/seuvi/bag.svg"></button>
                     <?php } ?>
                     <!--<button type="button" data-toggle="tooltip" title="<?php echo $button_compare; ?>" onclick="compare.add('<?php echo $product['product_id']; ?>');"><i class="fa fa-exchange"></i></button>-->
                 </div>
@@ -124,7 +131,7 @@
         navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
         responsive : {
             0 : {
-                items:1
+                items:2
             },
             992 : {
                 items:3

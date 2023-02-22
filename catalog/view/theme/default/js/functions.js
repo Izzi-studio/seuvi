@@ -64,6 +64,10 @@ $(document).ready(function (){
 
     $('a.close_filter').click(function (){
         $('aside#column-left').removeClass('vis');
+    });
+
+    $('.top_info .phone .drop').click(function(){
+        $('.top_info .phone .minidrop').slideToggle();
     })
 
 })

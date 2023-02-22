@@ -76,7 +76,7 @@
             <?php } ?>
             <div class="flexed just">
               <div>x <?php echo $product['quantity']; ?></div>
-              <div><?php echo $product['total']; ?></div>
+              <div class="miniprice"><?php echo $product['total']; ?></div>
             </div>
             <button type="button" onclick="cart.remove('<?php echo $product['cart_id']; ?>');" title="<?php echo $button_remove; ?>" class="remove_prod">
               <img src="/image/seuvi/remove.svg">
@@ -107,7 +107,7 @@
             <div class="bbg">
             <div class="row align-items-center">
               <div class="col-lg-6">
-                  <div class="text_total"><?php echo $text_total;?></div>
+                  <div class="text_total"><?php echo $text_total_s;?></div>
                   <div class="val_total"><?php echo $totals[1]['text']; ?></div>
               </div>
               <div class="col-lg-6">

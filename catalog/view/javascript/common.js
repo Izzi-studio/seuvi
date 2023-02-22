@@ -63,6 +63,18 @@ $(document).ready(function() {
 
 		location = url;
 	});
+	$('form#search_mob').on('submit', function(e) {
+		e.preventDefault();
+		url = $('base').attr('href') + 'index.php?route=product/search';
+
+		var value = $('#search_mob input[name=\'search\']').val();
+
+		if (value) {
+			url += '&search=' + encodeURIComponent(value);
+		}
+
+		location = url;
+	});
 
 	/*$('#search input[name=\'search\']').on('keydown', function(e) {
 		if (e.keyCode == 13) {

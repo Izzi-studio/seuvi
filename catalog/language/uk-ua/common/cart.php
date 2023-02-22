@@ -7,4 +7,4 @@ $_['text_checkout'] = 'Оформити';
 $_['text_recurring'] = 'Платіжний профіль';
 $_['text_cart_name'] = 'Кошик';
 $_['text_continue_shopping'] = 'Продовжити покупки';
-$_['text_total'] = 'Разом';
+$_['text_total_s'] = 'Разом';

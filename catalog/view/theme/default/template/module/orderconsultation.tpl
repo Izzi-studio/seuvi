@@ -1,10 +1,10 @@
 <div class="consult">
     <div class="row no-gutters">
-        <div class="col-lg-5 girl_bg"></div>
-        <div class="col-lg-7">
+        <div class="col-lg-4 girl_bg"></div>
+        <div class="col-lg-8">
             <img class="stamp" src="/image/seuvi/consult_stamp.svg" />
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-10">
                     <h3><?php echo $heading_title; ?></h3>
                 </div>
             </div>
