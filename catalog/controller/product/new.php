@@ -5,6 +5,7 @@ class ControllerProductNew extends Controller
     public function index()
     {
         $this->load->language('product/category');
+        $this->load->language('product/new');
 
         $this->load->model('catalog/category');
 
@@ -64,11 +65,11 @@ class ControllerProductNew extends Controller
         }
 
 
-        $this->document->setTitle('Новинки');
-        $this->document->setDescription('Новинки');
-        $this->document->setKeywords('Новинки');
+        $this->document->setTitle($this->language->get('heading_title'));
+        $this->document->setDescription($this->language->get('heading_description'));
+        //$this->document->setKeywords('Новинки');
 
-        $data['heading_title'] = 'Новинки';
+        $data['heading_title'] = $this->language->get('heading_title');
 
         $data['text_refine'] = $this->language->get('text_refine');
         $data['text_empty'] = $this->language->get('text_empty');
