@@ -134,6 +134,7 @@ class ControllerProductSpecial extends Controller {
                 'options'        => $this->model_helper_helper->getProductOptions($result),
 				'thumb'       => $image,
 				'name'        => $result['name'],
+                'new'        => (bool)$result['flag_new'],
 				'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 				'price'       => $price,
 				'special'     => $special,

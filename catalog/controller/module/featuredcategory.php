@@ -91,6 +91,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                             'on_wishlist'=> in_array($product_info['product_id'],$wishListIds) ? true : false,
                             'product_id'  => $product_info['product_id'],
                             'thumb'       => $image,
+                            'new'        => (bool)$product_info['flag_new'],
                             'name'        => $product_info['name'],
                             'reviews'        => $product_info['reviews'],
                             'options'        => $this->model_helper_helper->getProductOptions($product_info),

@@ -121,6 +121,7 @@ class ControllerAccountWishList extends Controller {
                     'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'       => $product_info['name'],
 					'model'      => $product_info['model'],
+                    'new'        => (bool)$product_info['flag_new'],
 					'stock'      => $stock,
 					'price'      => $price,
 					'special'    => $special,

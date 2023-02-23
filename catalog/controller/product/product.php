@@ -442,6 +442,7 @@ class ControllerProductProduct extends Controller {
                     'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
 					'reviews'       => $result['reviews'],
 					'thumb'       => $image,
+                    'new'        => (bool)$result['flag_new'],
                     'options'        => $this->model_helper_helper->getProductOptions($product_info),
 					'name'        => $result['name'],
                     'manufacturer'        => $manufacturer['name'],
