@@ -20,4 +20,5 @@ $_ = array (
   'text_model_asc' => 'Модель (А - Я)',
   'text_model_desc' => 'Модель (Я - А)',
   'text_limit' => 'Показать',
+    'text_filter' => 'Фильтр',
 );

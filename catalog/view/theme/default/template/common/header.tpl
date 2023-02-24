@@ -89,8 +89,9 @@
           </div>
           <div class="top_user">
             <a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>">
-              <?php echo $text_account; ?>
+              <?php echo $text_enter; ?>
             </a>
+
             <!--<ul class="dropdown-menu dropdown-menu-right">
               <?php if ($logged) { ?>
               <li><a href="<?php echo $account; ?>"><?php echo $text_account; ?></a></li>
@@ -122,7 +123,7 @@
               <img src="/image/seuvi/mobsearch.svg">
             </a>
             <form id="search_mob" class="input-group">
-              <input type="search" name="search" value="" placeholder="<?php echo $text_search; ?>" class="form-control input-lg" />
+              <input type="search" name="search" value="" placeholder="<?php echo $text_searchwords; ?>" class="form-control input-lg" />
               <span class="input-group-btn">
                 <button type="submit"><img src="/image/seuvi/search.svg"></button>
               </span>
@@ -137,7 +138,7 @@
               </a>
             </li>
             <li>
-              <a href="<?php echo $special_link;?>">
+              <a href="<?php echo $special_link;?>" class="redlink">
                 <?php echo $text_menu_sale;?>
               </a>
             </li>
@@ -247,7 +248,7 @@
   </div>
   <div class="mob_acc">
     <a href="<?php echo $account; ?>" title="<?php echo $text_account; ?>">
-      <img src="/image/seuvi/mob_acc.svg">Особистий кабінет
+      <img src="/image/seuvi/mob_acc.svg"> <?php echo $text_enteracc;?>
     </a>
   </div>
   <ul>
@@ -268,28 +269,22 @@
           <a href="<?php echo $category['href']; ?>">
             <?php echo $category['name']; ?>
           </a>
-          <!--<img src="/image/seuvi/mobmenu.svg" class="go_child">-->
+          <img src="/image/seuvi/mobmenu.svg" class="go_child">
             <?php foreach (array_chunk($category['children'], ceil(count($category['children']) / $category['column'])) as $children) { ?>
             <ul class="first_level">
-              <!--<li class="goback_s">
-                <a>Назад</a>
-              </li>-->
               <?php foreach ($children as $child) { ?>
               <li>
                 <a href="<?php echo $child['href']; ?>">
                   <?php echo $child['name']; ?>
                 </a>
-                <!--<?php if($child['children']){ ?>
+                <?php if($child['children']){ ?>
                 <img src="/image/seuvi/mobmenu.svg" class="go_child">
                 <ul class="second_level">
-                  <li class="goback_s">
-                    <a>Назад</a>
-                  </li>
                   <?php foreach($child['children'] as $ch){ ?>
                   <li><a href="<?php echo $ch['href'];?>"><?php echo $ch['name'];?></a></li>
                   <?php }?>
                 </ul>
-                <?php }?>-->
+                <?php }?>
               </li>
               <?php } ?>
             </ul>
@@ -372,7 +367,8 @@
       $('.mobmenu').removeClass('vis');
     });
     $('.mobmenu li.parent .go_child').click(function (){
-      $(this).next('ul').addClass('vis');
+      $(this).next('ul').slideToggle();
+      $(this).toggleClass('opened');
     });
 
     $('.mob_lang>div').click(function (){
@@ -406,6 +402,16 @@
 
 
   jQuery(document).ready(function(){
+    $('#input-sorting .inn').click(function (){
+      $(this).parent().find('.minidrop').toggle();
+    });
+    $('#input-sorting .minidrop a').click(function(){
+      $('#input-sort').val($(this).data('href'));
+      $('#input-sort').change();
+      $('#input-sorting .inn').text($(this).text());
+      $('#input-sorting .minidrop').hide();
+    });
+
     if($(window).width()>992) {
       $(function () {
         let arrowWidth = 30;

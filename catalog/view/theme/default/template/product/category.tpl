@@ -12,9 +12,22 @@
   <?php if ($categories) { ?>
   <div class="subcats">
           <ul>
-            <?php foreach ($categories as $category) { ?>
+            <?php $cat_count = 1; foreach ($categories as $category) { ?>
               <li><a href="<?php echo $category['href']; ?>"><?php echo $category['name']; ?></a></li>
-            <?php } ?>
+            <?php $cat_count++; } ?>
+            <?php if($cat_count > 2){ ?>
+            <li class="cat_count">
+              <a class="open_subcats"><?php echo $text_allcats;?> <img src="/image/seuvi/allcats.svg"></a>
+            </li>
+            <script>
+              $(document).ready(function(){
+                $('a.open_subcats').click(function(){
+                  $(this).hide();
+                  $('.subcats ul li').css('display','inline-block');
+                })
+              })
+              </script>
+            <?php }?>
           </ul>
   </div>
   <?php } ?>
@@ -43,19 +56,43 @@
         </div>-->
         <div class="col-12 mobflex">
             <a class="filter mobonly">
-              <img src="/image/seuvi/filter.svg">
+              <img src="/image/seuvi/filter.svg"> <?php echo $text_filter;?> (<span></span>)
             </a>
           <div class="mobnone checks">
             <div data-filter="flag_special">Акції</div>
             <div data-filter="flag_new">Новинки</div>
             <div data-filter="flag_bestseller">Бестселери</div>
           </div>
+          <div id="input-sorting">
+            <?php foreach ($sorts as $sorted) { ?>
+            <?php if ($sorted['value'] == $sort . '-' . $order) { ?>
+            <div class="inn"><?php echo $sorted['text']; ?></div>
+            <?php } ?>
+            <?php } ?>
+              <ul class="minidrop">
+                <?php foreach ($sorts as $sorting) { ?>
+                <?php if ($sorting['value'] == $sort . '-' . $order) { ?>
+                <li>
+                  <a class="active" data-href="<?php echo $sorting['href']; ?>">
+                    <?php echo $sorting['text']; ?>
+                  </a>
+                </li>
+                <?php } else { ?>
+                <li>
+                  <a data-href="<?php echo $sorting['href']; ?>">
+                    <?php echo $sorting['text']; ?>
+                  </a>
+                </li>
+                <?php } ?>
+                <?php } ?>
+              </ul>
+          </div>
           <select id="input-sort" class="form-control" onchange="location = this.value;">
-            <?php foreach ($sorts as $sorts) { ?>
-            <?php if ($sorts['value'] == $sort . '-' . $order) { ?>
-            <option value="<?php echo $sorts['href']; ?>" selected="selected"><?php echo $sorts['text']; ?></option>
+            <?php foreach ($sorts as $sortp) { ?>
+            <?php if ($sorts['value'] == $sortp . '-' . $order) { ?>
+            <option value="<?php echo $sortp['href']; ?>" selected="selected"><?php echo $sortp['text']; ?></option>
             <?php } else { ?>
-            <option value="<?php echo $sorts['href']; ?>"><?php echo $sorts['text']; ?></option>
+            <option value="<?php echo $sortp['href']; ?>"><?php echo $sortp['text']; ?></option>
             <?php } ?>
             <?php } ?>
           </select>
@@ -105,14 +142,14 @@
           <div class="desc_inn">
             <?php echo $description; ?>
           </div>
-        </div>
-        <div class="c_but">
-          <a class="open_html">
-            <img src="/image/seuvi/plus.svg"><?php echo $text_open; ?>
-          </a>
-          <a class="close_html">
-            <img src="/image/seuvi/minus.svg"><?php echo $text_close; ?>
-          </a>
+          <div class="c_but">
+            <a class="open_html">
+              <img src="/image/seuvi/plus.svg"><?php echo $text_open; ?>
+            </a>
+            <a class="close_html">
+              <img src="/image/seuvi/minus.svg"><?php echo $text_close; ?>
+            </a>
+          </div>
         </div>
       </div>
       <script type="text/javascript">

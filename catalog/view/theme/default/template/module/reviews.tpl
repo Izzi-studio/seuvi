@@ -63,12 +63,14 @@
                 0 : {
                     items:1,
                     stagePadding:35,
-                    dots:true
+                    dots:true,
+                    autoWidth: true,
                 },
                 992 : {
                     items:2,
                     stagePadding:0,
-                    dots:false
+                    dots:false,
+                    autoWidth: false
                 },
                 1300 : {
                     items:3

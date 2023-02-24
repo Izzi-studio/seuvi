@@ -33,6 +33,9 @@
                   </a>
                   <a href="<?php echo $product['href']; ?>"><img src="<?php echo $product['thumb']; ?>" alt="<?php echo $product['name']; ?>" title="<?php echo $product['name']; ?>" class="img-responsive" /></a>
                   <div class="prod_labels">
+                    <?php if ($product['new']) { ?>
+                    <div class="lab newlab">NEW</div>
+                    <?php } ?>
                     <?php if ($product['special']) { ?>
                     <div class="lab">SALE</div>
                     <?php } ?>

@@ -267,6 +267,7 @@ function filter(b, c ) {
                 var cont = getContainer();
                 $(cont).advUnoverlay();
                 $("#adv_ajaxfilter").advUnoverlay();
+                $('.mobflex a.filter span').text(g.count);
             }
 		});
    // }

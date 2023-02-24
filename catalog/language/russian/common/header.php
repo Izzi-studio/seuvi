@@ -14,4 +14,7 @@ $_ = array (
   'text_checkout' => 'Оформление заказа',
   'text_search' => 'Поиск',
   'text_all' => 'Смотреть Все',
+    'text_enter' => 'Увійти',
+    'text_searchwords' => 'Крем, маска...',
+    'text_enteracc' => 'Войти в личный кабинет',
 );

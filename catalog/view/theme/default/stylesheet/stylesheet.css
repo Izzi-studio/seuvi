@@ -68,8 +68,11 @@ button:focus{
 	box-shadow: 0px 4px 8px rgb(150 147 147 / 25%);
 	border-radius: 5px;
 	padding: 16px;
-	z-index: 3;
+	z-index: 102;
 	color:#000;
+}
+#input-sorting .minidrop{
+	right: 0;
 }
 .minidrop .all_phones{
 	margin-bottom: 4px;
@@ -126,7 +129,7 @@ button:focus{
 .top_user{
 	padding-left: 32px;
 	background: url('/image/seuvi/acc.svg')no-repeat left;
-	margin-left: 50px;
+	margin-left: 25px;
 }
 .top_user a{
 	font-size: 18px;
@@ -171,6 +174,7 @@ button:focus{
 	transition: all .3s ease;
 	text-decoration: none;
 }
+.topmenu ul li a.redlink,
 .topmenu ul.sub-menu li a:hover,
 .topmenu ul li a:hover{
 	color: #D72848;
@@ -184,7 +188,7 @@ button:focus{
 	box-shadow: 0px 4px 8px rgba(150, 147, 147, 0.25);
 	border-radius: 5px;
 	padding: 16px;
-	z-index: 3;
+	z-index: 102;
 	display: none;
 }
 .topmenu ul.sub-menu li{
@@ -248,14 +252,27 @@ button:focus{
 }
 
 
-
+.f_cat h3{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.f_cat h3 .owl_counter_spec,
+.f_cat h3 .owl_counter{
+	font-weight: 400;
+	font-size: 18px;
+	line-height: 29px;
+}
 
 
 .topcats{
 	padding: 14px 0;
 	border-top: 2px solid #F9EDED;
 	border-bottom: 2px solid #F9EDED;
-	margin-bottom: 24px;
+	position: sticky;
+	top: 0;
+	z-index: 101;
+	background: #fff;
 }
 .topcats ul.mainmenu{
 	display: flex;
@@ -267,7 +284,7 @@ button:focus{
 }
 .topcats ul.mainmenu>li{
 	display: inline-block;
-	margin: 0 10px;
+	margin: 0 5px;
 }
 .topcats ul.mainmenu>li>a{
 	display: block;
@@ -409,6 +426,7 @@ a#wishlist-total{
 	position: relative;
 	text-align: center;
 	margin-bottom: 60px;
+	margin-top: 24px;
 }
 .common-home .mainslider .container-fluid{
 	position: absolute;
@@ -598,6 +616,9 @@ a#wishlist-total{
 	text-transform: uppercase;
 	color: #FFFFFF;
 	margin-bottom: 8px;
+}
+.product-layout .prod_labels .lab.newlab{
+	background: #343F24;
 }
 .product-layout .caption a.prodname{
 	font-weight: 600;
@@ -928,9 +949,10 @@ a.addto.mobonly{
 /*Begin category*/
 
 ul.breadcrumb{
-	margin-bottom: 24px;
-	padding: 0;
-	background: none;
+	padding: 10px 40px;
+	background: rgba(249, 237, 237, 0.5);
+	margin-left: -40px;
+	margin-right: -40px;
 }
 ul.breadcrumb li a{
 	font-weight: 400;
@@ -947,11 +969,11 @@ ul.breadcrumb li:last-child:after{
 }
 h1.cat_title{
 	font-weight: 400;
-	font-size: 40px;
-	line-height: 54px;
+	font-size: 32px;
+	line-height: 46px;
 	text-transform: uppercase;
 	color: #343F24;
-	margin-bottom: 38px;
+	margin-bottom: 30px;
 }
 .subcats ul{
 	margin: 0;
@@ -983,7 +1005,7 @@ h1.cat_title{
 	color: #fff;
 }
 .subcats{
-	margin-bottom: 40px;
+	margin-bottom: 30px;
 }
 #adv_ajaxfilter_box {
 	border: 1px solid #F9EDED;
@@ -1124,13 +1146,44 @@ select#input-sort{
 	border: 0;
 	padding-left: 45px;
 	background: url('/image/seuvi/sort.svg')no-repeat left;
-	display: inline-block;
 	padding-top: 0;
 	padding-bottom: 0;
 	appearance: none;
 	-webkit-appearance: none;
 	-moz-appearance: none;
 	padding-right: 0;
+	display:none!important;
+}
+#input-sorting{
+	display: inline-block;
+	font-weight: 400;
+	height: auto;
+	width: auto;
+	font-size: 26px;
+	line-height: 35px;
+	color: #343F24;
+	border: 0;
+	padding-left: 45px;
+	background: url('/image/seuvi/sort.svg')no-repeat left;
+	padding-top: 0;
+	padding-bottom: 0;
+	position: relative;
+	z-index: 100;
+}
+#input-sorting ul.minidrop{
+	padding:15px;
+}
+#input-sorting ul.minidrop li{
+	display: block;
+}
+#input-sorting ul.minidrop li a{
+	color:#000;
+	cursor: pointer;
+	font-size: 14px;
+	line-height: 28px;
+}
+#input-sorting ul.minidrop li a:hover{
+	color:#D72848;
 }
 select#input-sort option{
 	font-size: 16px;
@@ -1153,8 +1206,10 @@ select#input-sort option{
 }
 .prod_revs .item{
 	padding: 5px;
+	height: 100%;
 }
 .prod_revs .item .rev{
+	height: 100%;
 	padding: 15px;
 	border: 1px solid #FFBBBB;
 	border-radius: 5px;
@@ -1243,8 +1298,8 @@ select#input-sort option{
 .top_prods h3,
 .prod_revs h3{
 	font-weight: 400;
-	font-size: 40px;
-	line-height: 54px;
+	font-size: 32px;
+	line-height: 46px;
 	text-transform: uppercase;
 	color: #343F24;
 	margin-bottom: 30px;
@@ -1253,16 +1308,22 @@ select#input-sort option{
 .prod_revs{
 	margin-bottom: 60px;
 }
+body[class^="product"] .faqs{
+	margin-top: -70px;
+}
 .top_prods{
 	margin-bottom: 100px;
 }
 .top_prods .row{
-	margin-top: 22px;
-	margin-bottom: 22px;
 	align-items: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	margin-bottom: 14px;
 }
 .top_prods .row.hd{
 	margin-bottom: 14px;
+	padding-top: 0;
+	padding-bottom: 0;
 	margin-top: 0;
 	font-weight: 400;
 	font-size: 18px;
@@ -1586,6 +1647,11 @@ select#input-sort option{
 	border-bottom: 1px solid #F9EDED;
 	padding-bottom: 11px;
 	margin-bottom: 60px;
+	position: sticky;
+	top: 75px;
+	background: #fff;
+	z-index: 1;
+	padding-top: 11px;
 }
 .prod_tabs .nav-tabs li a{
 	background: #F7F8F5;
@@ -1970,11 +2036,12 @@ footer .infos>div.email{
 
 .quickcheckout-checkout h1{
 	font-weight: 400;
-	font-size: 40px;
-	line-height: 54px;
+	font-size: 32px;
+	line-height: 46px;
 	text-transform: uppercase;
 	color: #343F24;
 	margin-bottom: 18px;
+	margin-top:24px;
 }
 .checkout_inner{
 	padding: 20px;
@@ -2107,6 +2174,7 @@ footer .infos>div.email{
 }
 #quickcheckoutconfirm #payment-method input[type="radio"]:checked+label{
 	background: url('/image/seuvi/radio_checked.svg')no-repeat left;
+	color: #66833B;
 }
 #quickcheckoutconfirm #payment-method .comment_label{
 	font-weight: 600;
@@ -2279,7 +2347,9 @@ footer .infos>div.email{
 }
 
 /*End quick checkout*/
-
+.subcats ul li.cat_count{
+	display: none;
+}
 /*Account*/
 
 body[class^="account"] footer{
@@ -2416,10 +2486,16 @@ body[class^="account"] h2{
 	line-height: 140%;
 	margin-top: 15px;
 }
+.prod_revs_car .owl-stage{
+	display: flex;
+}
+
+
+
 
 @media (max-width: 1400px) {
 	.topcats ul.mainmenu>li{
-		margin: 0 5px;
+		margin: 0;
 	}
 }
 @media (max-width: 1300px) {
@@ -2451,6 +2527,12 @@ body[class^="account"] h2{
 		font-size: 16px;
 	}
 	.container-fluid{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	ul.breadcrumb{
+		margin-left: -15px;
+		margin-right: -15px;
 		padding-left: 15px;
 		padding-right: 15px;
 	}
@@ -2660,7 +2742,7 @@ body[class^="account"] h2{
 		margin-bottom: 15px;
 	}
 	.f_cat{
-		margin-bottom: 45px;
+		margin-bottom: 20px;
 	}
 	.brands{
 		margin-bottom: 30px;
@@ -2732,7 +2814,7 @@ body[class^="account"] h2{
 	}
 	#main_header img.logo {
 		filter: brightness(011);
-		width: 60px;
+		width: 69px;
 	}
 	#main_header .search{
 		display: none;
@@ -2760,7 +2842,7 @@ body[class^="account"] h2{
 		overflow: auto;
 		left: -280px;
 		transition: all .3s ease;
-		z-index: 99;
+		z-index: 104;
 		height: 100%;
 		top: 0;
 		width: 100%;
@@ -2812,8 +2894,12 @@ body[class^="account"] h2{
 	.mobmenu li.parent img.go_child{
 		position: absolute;
 		right: 15px;
-		top: 50%;
-		transform: translateY(-50%);
+		top: 10px;
+		transform: rotate(90deg);
+		transition: all .3s ease;
+	}
+	.mobmenu li.parent img.go_child.opened{
+		transform: rotate(270deg);
 	}
 	#minicart a.continue{
 		display: none;
@@ -2911,13 +2997,35 @@ body[class^="account"] h2{
 	.burger{
 		margin-right: 15px;
 	}
+	.subcats ul{
+		align-items: center;
+	}
 	.subcats ul li a{
 		font-size: 12px;
 		padding: 7px;
 	}
+	.subcats ul li a.open_subcats{
+		border: 0;
+		font-weight: 400;
+		font-size: 10px;
+		line-height: 14px;
+		text-decoration: underline;
+		color: #5E763A;
+		background: none;
+
+	}
 	.subcats ul li{
 		margin-right: 6px;
 		margin-bottom: 6px;
+		display: none;
+	}
+	.subcats{
+		margin-bottom: 8px;
+	}
+	.subcats ul li.cat_count,
+	.subcats ul li:nth-child(1),
+	.subcats ul li:nth-child(2){
+		display: inline-block;
 	}
 	.top_prods .row.hd{
 		align-items: center;
@@ -2930,7 +3038,7 @@ body[class^="account"] h2{
 		width: 100%;
 		height: 100%;
 		background: #fff;
-		z-index: 99;
+		z-index: 104;
 		overflow: auto;
 	}
 	.well{
@@ -2948,19 +3056,36 @@ body[class^="account"] h2{
 		align-items: center;
 		justify-content: center;
 		padding: 6px;
-		background: #5E763A;
+		background: #343F24;
 		border-radius: 3px;
 		flex: none;
-		margin-right: 15px;
+		width: 48%;
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 16px;
+		color: #FFFFFF;
 	}
+	.mobflex #input-sorting,
 	.mobflex select#input-sort{
 		font-size: 16px;
 		border: 1px solid #BDBDBD;
 		border-radius: 3px;
-		background: url('/image/seuvi/prod_drop.svg')no-repeat right 15px center;
+		background: url('/image/seuvi/prod_drop.svg')no-repeat right 6px center;
 		padding-left: 15px;
-		width: 100%;
-		padding-right: 45px;
+		width: 48%;
+		padding-right: 30px;
+		background-size: 22px;
+	}
+	.mobflex #input-sorting .inn{
+		overflow: hidden;
+		white-space: nowrap;
+		font-size: 11px;
+	}
+	.mobflex #input-sorting ul.minidrop li a{
+		display: block;
+		line-height: 20px;
+		margin-bottom: 8px;
+		font-size: 12px;
 	}
 	a.close_filter{
 		position: absolute;
@@ -3003,6 +3128,13 @@ body[class^="account"] h2{
 	.top_prods{
 		margin-bottom: 30px;
 	}
+	.top_prods{
+		background: rgba(249, 237, 237, 0.2);
+		margin-bottom: 20px;
+		margin-left: -6px;
+		margin-right: -6px;
+		padding: 20px 0;
+	}
 	.faqs .question{
 		padding: 10px;
 		font-size: 18px;
@@ -3022,7 +3154,7 @@ body[class^="account"] h2{
 	}
 	.prod_gal{
 		padding: 0 25px;
-		margin-bottom: 15px;
+		margin-bottom: 20px;
 	}
 	.prod_main button.btn_wishlist{
 		right: 45px;
@@ -3140,10 +3272,11 @@ body[class^="account"] h2{
 	}
 	a.btn_wishlist,
 	button.btn_wishlist{
-		width: 13px;
-		height:13px;
+		width: 16px;
+		height:16px;
 		top:5px;
 		right: 5px;
+		display: flex;
 	}
 	.product-layout .prod_labels{
 		left: -7px;
@@ -3172,7 +3305,7 @@ body[class^="account"] h2{
 		line-height: 11px;
 	}
 	.product-layout .caption a.prodname{
-		font-size: 10px;
+		font-size: 11px;
 	}
 	.product-layout .flexed .rating{
 		display: flex;
@@ -3184,7 +3317,7 @@ body[class^="account"] h2{
 	}
 	.product-layout .price-new,
 	.product-layout .price{
-		font-size: 14px;
+		font-size: 16px;
 	}
 	.product-layout .abs .radgroup .radio input+label{
 		font-size: 10px;
@@ -3199,7 +3332,7 @@ body[class^="account"] h2{
 	a.addto,
 	button.addto{
 		margin-top: 0;
-		font-size: 12px;
+		font-size: 13px;
 		padding: 8px 0;
 		font-weight: 400;
 	}
@@ -3291,9 +3424,10 @@ body[class^="account"] h2{
 	}
 	.common-home .mainslider{
 		margin-bottom: 0;
+		margin-top: 0;
 	}
 	.product-layout .caption a.prodname{
-		min-height: 56px;
+		min-height: 62px;
 	}
 	.mob_cats a{
 		display: flex;
@@ -3362,8 +3496,8 @@ body[class^="account"] h2{
 	}
 	.html_module{
 		padding: 9px 0;
-		font-size: 10px;
-		line-height: 14px;
+		font-size: 12px;
+		line-height: 18px;
 	}
 	.html_module h3{
 		font-size: 10px;
@@ -3423,7 +3557,8 @@ body[class^="account"] h2{
 		margin-bottom: 0;
 	}
 	.social_block .row.no-gutters{
-		margin: 0 60px;
+		margin: 0 auto;
+		width: 140px;
 	}
 	.social_block .item img{
 		width: 36px;
@@ -3445,10 +3580,12 @@ body[class^="account"] h2{
 	}
 	.mobmenu ul.first_level{
 		position: static;
+		display: none;
 	}
 	.mobmenu ul.sub-menu>li>a{
 		text-transform: uppercase;
-		color:#5E763A;
+		color:#343F24;
+		background: rgba(249, 237, 237, 0.5);
 	}
 	.mobmenu ul.sub-menu {
 		max-height: 100%;
@@ -3456,17 +3593,30 @@ body[class^="account"] h2{
 	}
 	.mobmenu ul.sub-menu>li.goback_s>a{
 		text-transform: none;
-		color: #0b0b0b;
+		color: #fff;
+		background: url('/image/seuvi/back_wh.svg')no-repeat left 15px center,#343F24;
 	}
 	.mobmenu ul.first_level>li>a{
-		padding-left: 90px;
-		font-size: 12px;
-		background: url('/image/seuvi/mobmenu.svg')no-repeat left 60px center;
+		padding-left: 45px;
+		font-size: 13px;
+		background: url('/image/seuvi/mobmenu.svg')no-repeat left 15px center;
+	}
+	.mobmenu ul.first_level>li{
+		position: relative;
+	}
+	.mobmenu ul.second_level{
+		position: static;
+		display: none;
+	}
+	.mobmenu ul.second_level li a{
+		padding-left: 60px;
+		font-size: 13px;
+		background: url('/image/seuvi/mobmenu.svg')no-repeat left 30px center,rgba(249, 237, 237, 0.5);
 	}
 	.mobmenu ul li a{
-		font-size: 14px;
+		font-size: 15px;
 		line-height: 19px;
-		padding: 12px 20px 12px 42px;
+		padding: 12px 20px 12px 12px;
 	}
 	.mobmenu{
 		width: 280px;
@@ -3489,13 +3639,13 @@ body[class^="account"] h2{
 		justify-content: space-between;
 	}
 	.topmob a.logo img{
-		width: 60px;
+		width: 72px;
 		filter: brightness(011);
 	}
 	.topmob .mob_lang{
 		display: flex;
 		align-items: center;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 		text-transform: capitalize;
 		color: #8F9587;
@@ -3518,7 +3668,7 @@ body[class^="account"] h2{
 		display: flex;
 		align-items: center;
 		font-weight: 400;
-		font-size: 14px;
+		font-size: 15px;
 		line-height: 19px;
 		color: #343F24;
 	}
@@ -3530,7 +3680,7 @@ body[class^="account"] h2{
 	}
 	.mob_infos .mob_phones a{
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 		color: #5E763A;
 		margin-bottom: 6px;
@@ -3541,7 +3691,7 @@ body[class^="account"] h2{
 	}
 	.mob_infos .mob_graph{
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 147.68%;
 		color: #000000;
 	}
@@ -3550,10 +3700,12 @@ body[class^="account"] h2{
 	}
 	a.mobsearch{
 		display: inline-block;
-		height: 24px;
+		height: 27px;
 	}
 	a.mobsearch img{
 		vertical-align: top;
+		width:27px;
+		height:27px;
 	}
 	.mobonly #search_mob{
 		position: absolute;
@@ -3591,6 +3743,9 @@ body[class^="account"] h2{
 	}
 	.faqs{
 		margin-bottom: 20px;
+	}
+	body[class^="product"] .faqs{
+		margin-top: 0;
 	}
 	.faqs .question{
 		font-size: 12px;
@@ -3630,7 +3785,7 @@ body[class^="account"] h2{
 	.cat_desc h3,
 	.cat_desc{
 		font-size: 12px;
-		line-height: 16px;
+		line-height: 18px;
 	}
 	.cat_desc h3{
 		margin-bottom: 15px;
@@ -3655,6 +3810,7 @@ body[class^="account"] h2{
 	}
 	.prod_revs .item{
 		padding-right: 12px;
+		width: 224px;
 	}
 	.prod_revs_car .owl-stage{
 		padding-left: 0!important;
@@ -3904,8 +4060,8 @@ body[class^="account"] h2{
 		max-width: 10000px;
 	}
 	.prod_tabs #tab-description {
-		font-size: 12px;
-		line-height: 16px;
+		font-size: 14px;
+		line-height: 22px;
 	}
 	.prod_tabs #tab-description ul{
 		padding-left: 20px;
@@ -3924,10 +4080,13 @@ body[class^="account"] h2{
 	}
 	.quickcheckout-cart .name a, #main_header .flexed .cart_prods a.prod_name{
 		font-weight: 600;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 140%;
 		display: block;
-		margin-bottom: 10px;
+		margin-bottom: 25px;
+	}
+	.quickcheckout-cart .item{
+		align-items: center;
 	}
 	.cart_prods .col-4{
 		padding-right: 0;
@@ -3991,7 +4150,7 @@ body[class^="account"] h2{
 	#quickcheckoutconfirm input[type="text"], #quickcheckoutconfirm input[type="password"]{
 		padding: 9px 10px;
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 160.19%;
 		margin-bottom: 10px;
 	}
@@ -4000,7 +4159,7 @@ body[class^="account"] h2{
 	}
 	#quickcheckoutconfirm p.yel_box {
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 		padding: 9px 42px;
 		border: 1px solid #F2C94C;
@@ -4015,7 +4174,7 @@ body[class^="account"] h2{
 	}
 	#quickcheckoutconfirm #shipping-method input[type="radio"]+label .ship_name{
 		font-weight: 600;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 	}
 	#quickcheckoutconfirm #shipping-method input[type="radio"]+label .shipping-sum {
@@ -4025,7 +4184,7 @@ body[class^="account"] h2{
 	}
 	#quickcheckoutconfirm #shipping-method input[type="radio"]+label .ship_desc{
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 	}
 	.entry_label{
@@ -4036,7 +4195,7 @@ body[class^="account"] h2{
 		background-size: 20px!important;
 		padding-left: 28px;
 		font-weight: 600;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 16px;
 	}
 	#quickcheckoutconfirm #shipping-method{
@@ -4056,7 +4215,7 @@ body[class^="account"] h2{
 	}
 	#quickcheckoutconfirm input[type="checkbox"]#callme_check+label{
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 160.19%;
 		padding: 8px 0px 8px 32px;
 		background: #F7F8F5;
@@ -4071,7 +4230,7 @@ body[class^="account"] h2{
 		background-size: 16px auto!important;
 		padding: 3px 0 3px 26px;
 		font-weight: 400;
-		font-size: 12px;
+		font-size: 13px;
 		line-height: 160.19%;
 		color: #66833B;
 	}
@@ -4081,7 +4240,7 @@ body[class^="account"] h2{
 	#quickcheckoutconfirm #terms input#agreement+label{
 		background: none!important;
 		font-weight: 400;
-		font-size: 8px;
+		font-size: 9px;
 		line-height: 140%;
 		padding: 14px 0 0;
 	}
@@ -4095,7 +4254,13 @@ body[class^="account"] h2{
 	#quickcheckoutconfirm #terms .quickcheckout-content .confirm{
 		margin-top: 0;
 	}
-
+	.f_cat h3 .owl_counter_spec,
+	.f_cat h3 .owl_counter{
+		display: none;
+	}
+	.quickcheckout-cart .item .mobflexed{
+		justify-content: flex-start;
+	}
 
 }
 @media (max-width: 600px) {
@@ -4109,7 +4274,7 @@ body[class^="account"] h2{
 		top: 0;
 	}
 	.mainslider .item{
-		height: 190px;
+		height: 170px;
 		position: relative;
 		overflow: hidden;
 	}

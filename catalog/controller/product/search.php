@@ -144,6 +144,8 @@ class ControllerProductSearch extends Controller {
 		$data['text_sort'] = $this->language->get('text_sort');
 		$data['text_limit'] = $this->language->get('text_limit');
 
+        $data['text_filter'] = $this->language->get('text_filter');
+
 		$data['entry_search'] = $this->language->get('entry_search');
 		$data['entry_description'] = $this->language->get('entry_description');
 

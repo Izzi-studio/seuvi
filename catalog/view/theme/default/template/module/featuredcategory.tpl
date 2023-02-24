@@ -1,11 +1,17 @@
 <div class="f_cat newprods">
-<h3><?php echo $heading_title; ?></h3>
+<h3>
+    <?php echo $heading_title; ?>
+    <div class="owl_counter"></div>
+</h3>
 <div class="owl-carousel prods_list">
     <?php foreach ($products as $product) { ?>
     <div class="product-layout item">
         <div class="product-thumb transition">
             <div class="image">
                 <div class="prod_labels">
+                    <?php if ($product['new']) { ?>
+                     <div class="lab newlab">NEW</div>
+                    <?php } ?>
                     <?php if ($product['special']) { ?>
                         <div class="lab">SALE</div>
                     <?php } ?>
@@ -127,8 +133,11 @@
         autoPlay: 3000,
         singleItem: true,
         nav: true,
+        loop:true,
         dots:false,
         navText: ['<img src="/image/seuvi/left.svg">','<img src="/image/seuvi/right.svg">'],
+        onInitialized  : counter,
+        onTranslated : counter,
         responsive : {
             0 : {
                 items:2
@@ -141,4 +150,13 @@
             }
         }
     });
+    function counter(e) {
+        if (!e.namespace) {
+            return;
+        }
+        $(".owl_counter").text(
+            e.relatedTarget.relative(e.item.index) + 1 + "/" + e.item.count
+        );
+    }
+
 </script>

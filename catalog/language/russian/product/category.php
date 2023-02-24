@@ -23,5 +23,7 @@ $_ = array (
   'text_model_desc' => 'Модель (Я - А)',
   'text_limit' => 'Показать',
     'text_open' => 'Развернуть',
-'text_close' => 'Свернуть'
+'text_close' => 'Свернуть',
+    'text_allcats' => 'Показать еще',
+    'text_filter' => 'Фильтр',
 );

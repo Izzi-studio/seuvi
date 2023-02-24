@@ -28,4 +28,5 @@ $_ = array (
   'text_limit' => 'Показать',
   'entry_search' => 'Поиск',
   'entry_description' => 'Искать в описании товаров',
+    'text_filter' => 'Фильтр',
 );

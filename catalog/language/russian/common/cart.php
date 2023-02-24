@@ -8,4 +8,5 @@ $_ = array (
     'text_cart_name' => 'Корзина',
     'text_continue_shopping' => 'Продолжить покупки',
     'text_total_s' => 'Всего'
+
 );

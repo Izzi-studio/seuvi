@@ -32,3 +32,4 @@ $_['text_limit'] = 'Показати';
 // Entry
 $_['entry_search'] = 'Пошук:';
 $_['entry_description'] = 'Шукати в описі товарів';
+$_['text_filter'] = 'Фільтр';
