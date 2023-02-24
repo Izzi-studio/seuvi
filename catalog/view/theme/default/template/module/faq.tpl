@@ -1,3 +1,4 @@
+<?php if(!empty($faqs)) { ?>
 <div class="faqs">
     <h3><?php echo $heading_title; ?></h3>
     <?php foreach($faqs as $faq){ ?>
@@ -20,3 +21,4 @@
         })
     </script>
 </div>
+<?php } ?>

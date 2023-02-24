@@ -75,6 +75,7 @@ class ControllerModuleSpecial extends Controller {
                     'on_wishlist'=> in_array($result['product_id'],$wishListIds) ? true : false,
                     'options'        => $this->model_helper_helper->getProductOptions($result),
                     'reviews'        => $result['reviews'],
+                    'new'        => (bool)$result['flag_new'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
                     'manufacturer'        => $manufacturer['name'],
