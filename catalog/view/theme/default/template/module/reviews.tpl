@@ -1,3 +1,4 @@
+<?php if(!empty($reviews)) { ?>
 <div class="prod_revs">
     <h3><?php echo $heading_title;?></h3>
     <div class="owl-carousel prod_revs_car">
@@ -77,4 +78,4 @@
         });
     </script>
 </div>
-
+<?php } ?>

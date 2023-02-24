@@ -1,3 +1,4 @@
+<?php if(!empty($top_products)) { ?>
 <div class="top_prods">
     <h3><?php echo $heading_title;?><br></h3>
     <div class="row hd">
@@ -21,3 +22,5 @@
     </div>
     <?php }?>
 </div>
+
+<?php } ?>
