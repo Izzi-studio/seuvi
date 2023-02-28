@@ -15,3 +15,7 @@ $_['text_checkout'] = 'Оформлення замовлення';
 $_['text_search'] = 'Пошук';
 $_['text_all'] = 'Дивитися всі';
 $_['text_phone']           = '<i class="fa fa-phone"></i>';
+$_['text_enter'] = 'Увійти';
+$_['text_searchwords'] = 'Крем, маска...';
+
+$_['text_enteracc'] = 'Увійти в особистий кабінет';

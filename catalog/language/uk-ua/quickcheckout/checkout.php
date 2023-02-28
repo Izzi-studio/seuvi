@@ -108,3 +108,5 @@ $_['error_reward']        		     = 'Warning: Please enter the amount of reward p
 $_['error_points']           		 = 'Warning: You don\'t have %s reward points!';
 $_['error_custom_field']             = '%s required!';
 $_['error_quantity']                 = 'Обраної кількості товарів немає в наявності!';
+
+$_['button_confirm_order']                 = 'Підтверджую замовлення';

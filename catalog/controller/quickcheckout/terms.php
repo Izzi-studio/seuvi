@@ -4,6 +4,7 @@ class ControllerQuickCheckoutTerms extends Controller {
 		$this->language->load('quickcheckout/checkout');
 		
 		$data['button_continue'] = $this->language->get('button_continue');
+        $data['button_confirm_order'] = $this->language->get('button_confirm_order');
 		
 		if ($this->config->get('config_checkout_id')) {
 			$this->load->model('catalog/information');
