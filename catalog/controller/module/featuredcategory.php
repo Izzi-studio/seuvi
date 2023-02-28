@@ -95,7 +95,7 @@ class ControllerModuleFeaturedcategory extends Controller {
                             'name'        => $product_info['name'],
                             'reviews'        => $product_info['reviews'],
                             'options'        => $this->model_helper_helper->getProductOptions($product_info),
-                            'manufacturer'        => $manufacturer['name'],
+                            'manufacturer'        => isset($manufacturer['name'])  ? $manufacturer['name'] : null,
                             'description' => utf8_substr(strip_tags(html_entity_decode($product_info['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
                             'price'       => $price,
                             'special'     => $special,

@@ -78,7 +78,7 @@ class ControllerModuleSpecial extends Controller {
                     'new'        => (bool)$result['flag_new'],
 					'thumb'       => $image,
 					'name'        => $result['name'],
-                    'manufacturer'        => $manufacturer['name'],
+                    'manufacturer'        => isset($manufacturer['name']) ? $manufacturer['name'] : null,
                     'percent_sale'     => $percentSale,
 					'description' => utf8_substr(strip_tags(html_entity_decode($result['description'], ENT_QUOTES, 'UTF-8')), 0, $this->config->get('config_product_description_length')) . '..',
 					'price'       => $price,

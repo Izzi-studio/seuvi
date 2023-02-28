@@ -709,7 +709,7 @@
                           </tbody>
                           <tfoot>
                             <tr>
-                              <td colspan="6"></td>
+                              <td colspan="8"></td>
                               <td class="text-left"><button type="button" onclick="addOptionValue('<?php echo $option_row; ?>');" data-toggle="tooltip" title="<?php echo $button_option_value_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
                             </tr>
                           </tfoot>
@@ -824,7 +824,7 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <td colspan="6"></td>
+                      <td colspan="8"></td>
                       <td class="text-left"><button type="button" onclick="addDiscount();" data-toggle="tooltip" title="<?php echo $button_discount_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
                     </tr>
                   </tfoot>
@@ -1272,6 +1272,7 @@ $('input[name=\'option\']').autocomplete({
 			html += '        <td class="text-right"><?php echo $entry_quantity; ?></td>';
 			html += '        <td class="text-left"><?php echo $entry_subtract; ?></td>';
 			html += '        <td class="text-right"><?php echo $entry_price; ?></td>';
+			html += '        <td class="text-right">Скидочная цена</td>';
 			html += '        <td class="text-right"><?php echo $entry_option_points; ?></td>';
 			html += '        <td class="text-right"><?php echo $entry_weight; ?></td>';
 			html += '        <td></td>';
@@ -1281,7 +1282,7 @@ $('input[name=\'option\']').autocomplete({
 			html += '    </tbody>';
 			html += '    <tfoot>';
 			html += '      <tr>';
-			html += '        <td colspan="6"></td>';
+			html += '        <td colspan="8"></td>';
 			html += '        <td class="text-left"><button type="button" onclick="addOptionValue(' + option_row + ');" data-toggle="tooltip" title="<?php echo $button_option_value_add; ?>" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>';
 			html += '      </tr>';
 			html += '    </tfoot>';
@@ -1339,6 +1340,7 @@ function addOptionValue(option_row) {
 	html += '    <option value="-">-</option>';
 	html += '  </select>';
 	html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][price]" value="" placeholder="<?php echo $entry_price; ?>" class="form-control" /></td>';
+    html += '<td class="text-right"><input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][price_special]" value="0.0000" placeholder="Скидочная цена" class="form-control"></td>'
 	html += '  <td class="text-right"><select name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][points_prefix]" class="form-control">';
 	html += '    <option value="+">+</option>';
 	html += '    <option value="-">-</option>';
@@ -1349,7 +1351,8 @@ function addOptionValue(option_row) {
 	html += '    <option value="-">-</option>';
 	html += '  </select>';
 	html += '  <input type="text" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][weight]" value="" placeholder="<?php echo $entry_weight; ?>" class="form-control" /></td>';
-	html += '  <td class="text-left"><button type="button" onclick="$(this).tooltip(\'destroy\');$(\'#option-value-row' + option_value_row + '\').remove();" data-toggle="tooltip" rel="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+    html += '<td class="text-right"><div class="checkbox"><label><input type="checkbox" name="product_option[' + option_row + '][product_option_value][' + option_value_row + '][default_selected]" value="1" id="input-default_selected">&nbsp;</label></div></td>';
+    html += '  <td class="text-left"><button type="button" onclick="$(this).tooltip(\'destroy\');$(\'#option-value-row' + option_value_row + '\').remove();" data-toggle="tooltip" rel="tooltip" title="<?php echo $button_remove; ?>" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
 	html += '</tr>';
 
 	$('#option-value' + option_row + ' tbody').append(html);
